@@ -1,0 +1,95 @@
+\documentclass[a4paper]{jarticle}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{cite}
+\usepackage{enumitem}
+\usepackage[top=30truemm,bottom=30truemm,left=20truemm,right=20truemm]{geometry}
+\usepackage{mathtools}
+\usepackage[refpage]{nomencl}
+
+\numberwithin{equation}{section}
+
+\renewcommand{\labelenumi}{\roman{enumi})}
+
+\newcommand{\Cbb}{\mathbb{C}}
+\newcommand{\Qbb}{\mathbb{Q}}
+\newcommand{\Rbb}{\mathbb{R}}
+\newcommand{\Tbb}{\mathbb{T}}
+\newcommand{\Zbb}{\mathbb{Z}}
+
+\newcommand{\crm}{\mathrm{c}}
+\newcommand{\drm}{\mathrm{d}}
+\newcommand{\Lrm}{\mathrm{L}}
+\newcommand{\Trm}{\mathrm{T}}
+
+\newcommand{\Ocal}{\mathcal{O}}
+
+\newcommand{\Afrak}{\mathfrak{A}}
+\newcommand{\Bfrak}{\mathfrak{B}}
+\newcommand{\Mfrak}{\mathfrak{M}}
+\newcommand{\cfrak}{\mathfrak{c}}
+
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\im}{\mathrm{i}}
+
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\gKer}{gKer}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\lspan}{span}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+
+\newcommand{\defeq}{\mathrel{\rlap{\raisebox{0.3ex}{$\cdot$}}\raisebox{-0.3ex}{$\cdot$}}=}
+
+% https://tex.stackexchange.com/questions/31354/how-to-remove-the-in-the-proof-environment
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep
+%        \itshape
+        \bfseries
+%    #1\@addpunct{.}]\ignorespaces
+    {#1}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+\theoremstyle{definition}
+\newtheorem{definition}{定義}[section]
+\newtheorem{lemma}[definition]{補題}
+\newtheorem{proposition}[definition]{命題}
+\newtheorem{theorem}[definition]{定理}
+\newtheorem{corollary}[definition]{系}
+\newtheorem{remark}[definition]{注意}
+\newtheorem{example}[definition]{例}
+\newtheorem{claim}{主張}
+\renewcommand\proofname{証明}
+
+\makenomenclature
+\renewcommand{\nomname}{記号索引}
+\renewcommand*\pagedeclaration[1]{\qquad #1}
+
+\begin{document}
+
+\input{1/main.tex}
+
+\input{bib.tex}
+
+\printnomenclature
+
+\end{document}
