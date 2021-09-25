@@ -37,7 +37,7 @@
     これを $S$ が生成する $\sigma$-加法族という．
 \end{example}
 
-\begin{example}
+\begin{example}\label{ex:Borel_algebra}
     位相空間 $(X,\Ocal)$ に対して，$\Ocal$ が生成する $X$ 上の $\sigma$-加法族を Borel 集合族 (Borel algebra) といい，$\Bfrak(X)$ と書く．
     $\Bfrak(X)$ の元を Borel 集合という．
     また，$\Bfrak^n\defeq\Bfrak(\Rbb^n)$ と置く．
@@ -82,8 +82,13 @@
     また，$\Ocal=\{O\cap\Rbb\mid O\in\overline\Ocal\}$ が成り立つ．
     すなわち，$\Rbb\cup\{\pm\infty\}$ の部分位相空間としての $\Rbb$ は $(\Rbb,\Ocal)$ と等しい．
 
-    $\Rbb\cup\{\pm\infty\}$ 上の Borel 集合族 $\Bfrak(\Rbb\cup\{\pm\infty\})$
-    !!!TODO!!!
+    従って，例 \ref{ex:Borel_algebra} によって $\Rbb\cup\{\pm\infty\}$ は自然に可測空間になる．
+    $\Rbb\cup\{\pm\infty\}$ 上の Borel 集合族は
+    \begin{align*}
+        \Bfrak(\Rbb\cup\{\pm\infty\})
+        =\{B\cup S\mid B\in\Bfrak(\Rbb),\ S\in\{+\infty,-\infty\}\}
+    \end{align*}
+    と特徴づけられる．
 \end{example}
 
 \begin{definition}
@@ -126,15 +131,15 @@
     \end{align*}
     と置く．
     $\mu_\Lrm^{n,\ast}:2^{\Rbb^n}\to\Rbb\cup\{+\infty\}$ を任意の $A\subset X$ に対して
-    \begin{align*}
+    \begin{align}
         \mu_\Lrm^{n,\ast}(A)\defeq\inf\left\{
             \sum_{i=1}^\infty\mathrm{vol}(I_i)
             \,\middle\vert\,
-            \text{$I_i$ : $\Rbb^n$ の区間，$A\subset\bigcup_{i=1}^\infty I_i$}
+            \text{$I_1,I_2,\ldots$ は $\Rbb^n$ の区間，$A\subset\bigcup_{i=1}^\infty I_i$}
         \right\}
-    \end{align*}
-    と定めると，これは $\Rbb^n$ 上の外測度になる．
-    % 直感的には，$A$ の``大きさ''を $A$ を区間の和集合で覆って近似することによって測っている．
+        \label{eqn:Lebesgue_outer_measure}
+    \end{align}
+    と定めると，これは $\Rbb^n$ 上の外測度になる (\!\cite[p.25]{It63} を参照)．
     $\mu_\Lrm^{n,\ast}$ を $n$ 次元 Lebesgue 外測度という．
     \nomenclature{$\mu_\Lrm^{n,\ast}$}{$n$ 次元 Lebesgue 外測度}
 \end{example}
@@ -165,54 +170,83 @@
 \end{theorem}
 
 \begin{remark}
-    $\Gamma=\mu_\Lrm^{n,\ast}$ の場合に \eqref{eqn:Caratheodory} が何を意味しているかを調べる．
-    $E\subset A$ とし，$A$ を $E$ を含む部分 ($A\cap E$) と $E$ を含まない部分 ($A\cap E^\crm$) に分けることを考える．
-    さらに，$A$ は有界な区間とする．
+    定理 \ref{thm:outer_measure_to_measure} によると，与えられた外測度を Carath\'eodory の条件が満たされる集合に制限することで測度が得られる．
+    よって，この条件は``大きさを測れるべき集合''が満たすべき自然なものになっていると考えられる．
+    しかし，この条件は一見してその意味するところが掴みにくい (と思う)．
+    そこで，$\Gamma=\mu_\Lrm^{n,\ast}$ の場合にこの条件が何を意味しているかを調べる．
 
-    このとき，\eqref{eqn:Caratheodory} を次のように書き換える．
+    $E$ を $\Rbb^n$ の有界集合，$A\supset E$ を有界な区間とする．
+    \eqref{eqn:Caratheodory} を次のように書き換える：
     \begin{align*}
-        \mu_\Lrm^{n,\ast}(A)=\mu_\Lrm^{n,\ast}(A\cap E)+\mu_\Lrm^{n,\ast}(A\cap E^\crm)
-        &\iff\mathrm{vol}(A)=\mu_\Lrm^{n,\ast}(E)+\mu_\Lrm^{n,\ast}(A\setminus E)\\
-        &\iff\mu_\Lrm^{n,\ast}(E)=\mathrm{vol}(A)-\mu_\Lrm^{n,\ast}(A\setminus E).
+        % \mu_\Lrm^{n,\ast}(A)=\mu_\Lrm^{n,\ast}(A\cap E)+\mu_\Lrm^{n,\ast}(A\cap E^\crm)
+        % &\iff\mathrm{vol}(A)=\mu_\Lrm^{n,\ast}(E)+\mu_\Lrm^{n,\ast}(A\setminus E)\\
+        % &\iff\mu_\Lrm^{n,\ast}(E)=\mathrm{vol}(A)-\mu_\Lrm^{n,\ast}(A\setminus E).
+        \mu_\Lrm^{n,\ast}(E)=\mathrm{vol}(A)-\mu_\Lrm^{n,\ast}(A\setminus E).
     \end{align*}
-    最後の式の右辺は，$E$ の``大きさ''を $E$ に含まれる区間の和集合で近似することによって測ることに相当している．
-    これは次のようにして分かる．
+    この右辺は，$A$ 全体の測度から $E$ の補集合の外測度を取り去ることで $E$ の大きさを測っていることに相当している ($A$ は有界なので $\infty-\infty$ の形は現れないことに注意)．
+    すなわち，ある意味で $E$ を内側から近似したような量になっている．
+    これは Lebesgue 内測度
     \begin{align*}
-        \mathrm{vol}(A)-\mu_\Lrm^{n,\ast}(A\setminus E)
-        &=\mathrm{vol}(A)-\inf\left\{
-            \sum_{i=1}^\infty\mathrm{vol}(I_i)
-            \,\middle\vert\,
-            \text{$I_i$ : $\Rbb^n$ の区間，$A\setminus E\subset\bigcup_{i=1}^\infty I_i$}
-        \right\}\\
-        &=\mathrm{vol}(A)-\inf\left\{
-            \sum_{i=1}^\infty\mathrm{vol}(I_i)
-            \,\middle\vert\,
-            \text{$I_i$ : $\Rbb^n$ の互いに素な区間，$A\setminus E\subset\bigcup_{i=1}^\infty I_i\subset A$}
-        \right\}\\
-        &=\sup\left\{
-            \mathrm{vol}(A)-\sum_{i=1}^\infty\mathrm{vol}(I_i)
-            \,\middle\vert\,
-            \text{$I_i$ : $\Rbb^n$ の互いに素な区間，$A\setminus E\subset\bigcup_{i=1}^\infty I_i\subset A$}
-        \right\}\\
-        &=\sup\left\{
-            \sum_{j=1}^\infty\mathrm{vol}(J_j)
-            \,\middle\vert\,
-            \text{$J_j$ : $\Rbb^n$ の互いに素な区間，$\bigcup_{j=1}^\infty J_j\subset E$}
-        \right\}.
+        \mu_{\Lrm,\ast}^n(E)\defeq\mathrm{vol}(A)-\mu_\Lrm^{n,\ast}(A\setminus E)
     \end{align*}
-    最後の等号では，$A$ を互いに素な区間 $I_1,I_2,\ldots,J_1,J_2,\ldots$ に分割したときに
-    \begin{itemize}
-        \item $\displaystyle\mathrm{vol}(A)=\sum_{i=1}^\infty\mathrm{vol}(I_i)+\sum_{j=1}^\infty\mathrm{vol}(J_j)$
-        \item $\displaystyle A\setminus E\subset\bigcup_{i=1}^\infty I_i\subset A\stackrel{\text{$A\setminus\cdot$ をとる}}{\iff}\bigcup_{j=1}^\infty J_j\subset E$
-    \end{itemize}
-    となることを用いた．
-
-    よって，$\mu_{\Lrm,\ast}^n(E)\defeq\mathrm{vol}(A)-\mu_\Lrm^{n,\ast}(A\setminus E)$ (``Lebesgue 内測度'') と置くと，Carath\'eodory の条件は
+    と呼ばれており，$A$ の選び方によらずに定まる．
+    また，
+    \begin{align}
+        \mu_{\Lrm,\ast}^n(E)=\sup\left\{\mu_\Lrm^{n,\ast}(K)\mid\text{$K\subset E$，$K$ はコンパクト}\right\}
+        \label{eqn:Lebesgue_inner_measure}
+    \end{align}
+    という特徴づけが知られている．
+    $E$ が有界とは限らない場合には \eqref{eqn:Lebesgue_inner_measure} を定義とする．
+    一般に，Carath\'eodory の条件は
     \begin{align*}
         \mu_\Lrm^{n,\ast}(E)=\mu_{\Lrm,\ast}^n(E)
     \end{align*}
-    と書ける (Riemann積分論における Jordan 可測性と類似)．
-    Lebesgue 積分論では，測度の構成のために外測度だけで事足りるので，内測度はあまり使われないようである．
+    と同値である (Riemann 積分論における Jordan 可測性と類似)．
+
+    Jordan 測度の場合と異なり，Lebesgue 外測度と内測度の定義の間に非対称性があることに注意する．
+    定義式が対称な形になるように，Lebesgue 内測度を
+    \begin{align*}
+        \mu_\Lrm^{n,\ast}(E)\stackrel{?}{\defeq}\sup\left\{
+            \sum_{i=1}^\infty\mathrm{vol}(I_i)
+            \,\middle\vert\,
+            \text{$I_1,I_2,\ldots$ は $\Rbb^n$ の区間，$E\supset\bigcup_{i=1}^\infty I_i$}
+        \right\}
+    \end{align*}
+    と定めるとうまくいかない．
+    このことは，たとえば $E=[0,1]\cap(\Rbb\setminus\Qbb)$ の場合を考えると了解できる
+    (内測度の値は $1$ になってほしいが，うまく内側から区間で近似できない)．
+    測度論の非対称性については \cite{ms308856} にコメントが載っている．
+
+    % \begin{align*}
+    %     \mathrm{vol}(A)-\mu_\Lrm^{n,\ast}(A\setminus E)
+    %     &=\mathrm{vol}(A)-\inf\left\{
+    %         \sum_{i=1}^\infty\mathrm{vol}(I_i)
+    %         \,\middle\vert\,
+    %         \text{$I_i$ : $\Rbb^n$ の区間，$A\setminus E\subset\bigcup_{i=1}^\infty I_i$}
+    %     \right\}\\
+    %     &=\mathrm{vol}(A)-\inf\left\{
+    %         \sum_{i=1}^\infty\mathrm{vol}(I_i)
+    %         \,\middle\vert\,
+    %         \text{$I_i$ : $\Rbb^n$ の互いに素な区間，$A\setminus E\subset\bigcup_{i=1}^\infty I_i\subset A$}
+    %     \right\}\\
+    %     &=\sup\left\{
+    %         \mathrm{vol}(A)-\sum_{i=1}^\infty\mathrm{vol}(I_i)
+    %         \,\middle\vert\,
+    %         \text{$I_i$ : $\Rbb^n$ の互いに素な区間，$A\setminus E\subset\bigcup_{i=1}^\infty I_i\subset A$}
+    %     \right\}\\
+    %     &=\sup\left\{
+    %         \sum_{j=1}^\infty\mathrm{vol}(J_j)
+    %         \,\middle\vert\,
+    %         \text{$J_j$ : $\Rbb^n$ の互いに素な区間，$\bigcup_{j=1}^\infty J_j\subset E$}
+    %     \right\}.
+    % \end{align*}
+    % 最後の等号では，$A$ を互いに素な区間 $I_1,I_2,\ldots,J_1,J_2,\ldots$ に分割したときに
+    % \begin{itemize}
+    %     \item $\displaystyle\mathrm{vol}(A)=\sum_{i=1}^\infty\mathrm{vol}(I_i)+\sum_{j=1}^\infty\mathrm{vol}(J_j)$
+    %     \item $\displaystyle A\setminus E\subset\bigcup_{i=1}^\infty I_i\subset A\stackrel{\text{$A\setminus\cdot$ をとる}}{\iff}\bigcup_{j=1}^\infty J_j\subset E$
+    % \end{itemize}
+    % となることを用いた．
+    % !!! 間違い !!! このような $J_j$ は取れないと思う
 \end{remark}
 
 \begin{proof}[定理 \ref{thm:outer_measure_to_measure} の証明]
@@ -260,7 +294,7 @@
         &\ge\sum_{i=1}^\infty\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm)&&\because\text{主張 \ref{claim:out1} で $m\to+\infty$}\\
         &\ge\Gamma\biggl(\bigcup_{i=1}^\infty(A\cap E_i)\biggr)+\Gamma(A\cap S^\crm)&&\because\text{\ref{item:om3}}\\
         &=\Gamma(A\cap S)+\Gamma(A\cap S^\crm)\\
-        &\ge\Gamma(A)&&\because\text{\ref{item:om3}}.
+        &\ge\Gamma(A).&&\because\text{\ref{item:om3}}
     \end{align*}
     ゆえに，
     \begin{align*}
@@ -295,11 +329,83 @@
 
 \begin{example}
     $X=\Rbb^n,\Gamma=\mu_\Lrm^{n,\ast}$ (例 \ref{ex:Lebesgue_outer_measure} を参照) に対して，
-    定理 $\ref{thm:outer_measure_to_measure}$ の方法で定まる $\sigma$-加法族を $\Bfrak_\Lrm^n$，測度を $\mu_\Lrm^n:\Bfrak_\Lrm^n\to\Rbb\cup\{+\infty\}$ と書く．
+    定理 $\ref{thm:outer_measure_to_measure}$ の方法で定まる $\sigma$-加法族を $\Bfrak_\Lrm^n$，
+    測度を $\mu_\Lrm^n:\Bfrak_\Lrm^n\to\Rbb\cup\{+\infty\}$ と書く．
     $\Bfrak_\Lrm^n$ の元を Lebesgue 可測集合，$\mu_\Lrm^n$ を $n$ 次元 Lebesgue 測度という．
-    \nomenclature{$\Bfrak_\Lrm^n$}{Legesgue 可測集合の全体}
+    \nomenclature{$\Bfrak_\Lrm^n$}{Lebesgue 可測集合の全体}
     \nomenclature{$\mu_\Lrm^n$}{$n$ 次元 Lebesgue 測度}
 \end{example}
+
+以上で Lebesgue 測度が構成できた．
+ここで用いた構成法は次のように一般化される
+\footnote{
+    Lebesgue 測度の構成は，定理 \ref{thm:Hopf_extension} で $\Ffrak$ として有限個の区間の和集合 (区間塊という) の全体を，
+    $m$ として区間塊の $n$ 次元体積を選ぶことに相当している．
+    ただし，定理を素朴に適用して得られるのは $\Ffrak$ が生成する $\sigma$-加法族
+    (これは Borel 集合族 $\Bfrak^n$ と一致する) を定義域とする測度であることに注意する．
+    特に，後に注意 \ref{rem:Borel_Lebesgue} で見るように $\Bfrak^n\subsetneq\Bfrak_\Lrm^n$ となるので，
+    定理によって得られるのは厳密には Lebesgue 測度ではない．
+    Lebesgue 測度を得るには，定理の証明において $\Gamma$ を $\Afrak$ 上ではなく $\Mfrak_\Gamma$ 上に制限すればよい．
+}．
+
+\begin{theorem}[E.\ Hopf の拡張定理，または Carath\'eodory の拡張定理]\label{thm:Hopf_extension}
+    \leavevmode\par
+    $X$ を集合とする．
+    $\Ffrak\subset2^X$ は \ref{item:sa1}, \ref{item:sa2} および
+    \begin{enumerate}[align=left]
+        \item[$\textsf{(SA3)}_\textsf{fin}$] 任意の $A,B\in\Ffrak$ に対して $A\cup B\in\Ffrak$
+    \end{enumerate}
+    を満たすとする (このような $\Ffrak$ を有限加法族という)．
+    $m:\Ffrak\to\Rbb\cup\{+\infty\}$ は \ref{item:m1} および
+    \begin{enumerate}[align=left]
+        \item[$\textsf{(M2)}_\textsf{fin}$] 互いに素な任意の $A,B\in\Ffrak$ に対して $m(A\cup B)=m(A)+m(B)$
+    \end{enumerate}
+    を満たすとする (このような $m$ を有限加法的測度という)．
+    $\Afrak$ を $\Ffrak$ が生成する $\sigma$-加法族とする．
+
+    このとき，測度 $\mu:\Afrak\to\Rbb\cup\{+\infty\}$ で $\mu\vert_\Ffrak=m$ を満たすものが存在するためには，
+    $m$ が $\Ffrak$ 上で $\sigma$-加法的であること：
+    \begin{itemize}
+        \item 互いに素な任意の $(A_i)_{i=1}^\infty\subset\Ffrak$ で
+            $\displaystyle\bigcup_{i=1}^\infty A_i\in\Ffrak$ なるものに対して
+            $\displaystyle m\biggl(\bigcup_{i=1}^\infty A_i\biggr)=\sum_{i=1}^\infty m(A_i)$，
+    \end{itemize}
+    が必要十分である．
+    さらに，ある $(X_i)_{i=1}^\infty\subset\Ffrak$ で
+    $m(X_i)<\infty$ ($i=1,2,\ldots$) かつ $\displaystyle\bigcup_{i=1}^\infty X_i=X$
+    なるものが存在するなら，このような $\mu$ は一意である．
+\end{theorem}
+
+\begin{proof}
+    まず，(\eqref{eqn:Lebesgue_outer_measure} に対応して)
+    $\Gamma:2^X\to\Rbb\cup\{+\infty\}$ を任意の $A\subset X$ に対して
+    \begin{align*}
+        \Gamma(A)=\inf\left\{
+            \sum_{i=1}^\infty m(E_i)
+            \,\middle\vert\,
+            E_1,E_2,\ldots\in\Ffrak,\ A\subset\bigcup_{i=1}^\infty E_i
+        \right\}
+    \end{align*}
+    と定めると，これは $X$ 上の外測度になる．
+    $\Gamma$ が $m$ の拡張になっていることを示そう．
+    $E\in\Ffrak$ とする．
+    $\Ffrak$ の元による $E$ の被覆として $\{E\}$ を選ぶことで $\Gamma(E)\le m(E)$ が分かる．
+    一方，$(E_i)_{i=1}^\infty\subset\Ffrak$ で $E\subset\bigcup_{i=1}^\infty E_i$ なるものに対して
+    \begin{align*}
+        m(E)
+        &=m(E_1\cap E)+m((E_2\setminus E_1)\cap E)+m((E_3\setminus(E_1\cup E_2))\cap E)+\cdots&&\because\text{$m$ は $\Ffrak$ 上 $\sigma$-加法的}\\
+        &\le m(E_1)+m(E_2)+m(E_3)+\cdots&&\because\text{\ref{item:om2}}
+    \end{align*}
+    となるので，右辺の下限をとると $m(E)\le\Gamma(E)$ を得る．
+    従って，$\Gamma$ は $m$ の拡張になっている．
+
+    この $\Gamma$ に対して定理 \ref{thm:outer_measure_to_measure} を適用すれば測度空間 $(X,\Mfrak_\Gamma,\mu)$ を得る．
+    $\Ffrak\subset\Mfrak_\Gamma$ \cite[定理 5.2]{It63} で $\Mfrak_\Gamma$ は $\sigma$-加法族なので，
+    特に $\Afrak\subset\Mfrak_\Gamma$ であって，$\mu$ を $\Afrak$ 上に制限することで所望の測度が得られる．
+    証明の残りの部分については \cite[定理 9.1]{It63} を参照．
+\end{proof}
+
+次に，測度空間の完備性について述べる．
 
 \begin{definition}
     $(X,\Afrak,\mu)$ を測度空間とする．
@@ -326,7 +432,7 @@
     となり $N'\in\Mfrak_\Gamma$ を得る．
 \end{proof}
 
-\begin{proposition}\label{prop:measure_completion}
+\begin{theorem}\label{thm:measure_completion}
     測度空間 $(X,\Afrak,\mu)$ に対して，$\mu^\ast:2^X\to\Rbb\cup\{+\infty\}$ を
     \begin{align*}
         \mu^\ast(A)\defeq\inf\left\{
@@ -334,24 +440,28 @@
         \right\}
     \end{align*}
     と定めると，これは $X$ 上の外測度になる．
-    $\mu^\ast$ に対して定理 \ref{thm:outer_measure_to_measure} の方法で定まる完備測度空間
+    さらに，定理 \ref{thm:outer_measure_to_measure} の完備測度空間
     $(X,\Mfrak_{\mu^*},\mu^\ast\vert_{\Mfrak_{\mu^\ast}})$ は
-    \begin{gather*}
+    \begin{align*}
         \Afrak\subset\Mfrak_{\mu^*},\quad
         \mu^\ast\vert_\Afrak=\mu
-    \end{gather*}
+    \end{align*}
     を満たす．
-\end{proposition}
+\end{theorem}
+
+\begin{proof}
+    \cite[定理 8.4]{It63} を参照．
+\end{proof}
 
 \begin{definition}
-    命題 \ref{prop:measure_completion} の測度空間 $(X,\Mfrak_{\mu^*},\mu^\ast\vert_{\Mfrak_{\mu^\ast}})$ を
+    定理 \ref{thm:measure_completion} の測度空間 $(X,\Mfrak_{\mu^*},\mu^\ast\vert_{\Mfrak_{\mu^\ast}})$ を
     $(X,\Afrak,\mu)$ の完備化 (completion) という．
 \end{definition}
 
-常に完備化したほうがいいというわけではない！
-$\to$ 可測関数の議論(次回)を参照
+常に完備化したほうがいいというわけではない！ % TODO
+可測関数の議論(次回)を参照
 
-\begin{remark}
+\begin{remark}\label{rem:Borel_Lebesgue}
     \leavevmode
     \begin{enumerate}
         \item
@@ -405,7 +515,7 @@ $\to$ 可測関数の議論(次回)を参照
 
                     このとき，$A_1,\ldots,A_m$ の少なくとも一つは Lebesgue 可測ではない．
                     実際，これらがすべて Lebesgue 可測であると仮定すると，Lebesgue 測度が回転と平行移動について不変であることから
-                    $4\pi^3/3=2\times(4\pi^3/3)$ がいえてしまい矛盾が起きる．
+                    $\mu_\Lrm^3(\text{球体})=2\times\mu_\Lrm^3(\text{球体})$ がいえてしまい矛盾が起きる．
             \end{enumerate}
 
         \item Borel でない Lebesgue 可測集合の例\cite{ms253786} (Lusin)．
