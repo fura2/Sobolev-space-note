@@ -1,4 +1,9 @@
-\subsection{Lebesgue測度の構成}
+\subsection{測度}
+
+集合に対して，``その部分集合の大きさを測る''機構を付与することで測度空間の概念が得られる．
+また，その前段階として現れる可測空間もそれ自身が重要な対象である．
+この節では，これらの定義から始めて，外測度を用いた測度の構成法について述べる．
+また，具体例として Lebesgue 測度を構成する．
 
 \begin{definition}
     $X$ を集合とする．
@@ -8,6 +13,7 @@
         \item\label{item:sa2} 任意の $A\in\Afrak$ に対して $A^\crm\in\Afrak$．\quad (ここで，$A^\crm\defeq X\setminus A$)
         \item\label{item:sa3} 任意の $(A_i)_{i=1}^\infty\subset\Afrak$ に対して $\displaystyle\bigcup_{i=1}^\infty A_i\in\Afrak$．
     \end{enumerate}
+    \nomenclature{$A^\crm$}{集合 $A$ の補集合}
     組 $(X,\Afrak)$ を可測空間 (measurable space)，$\Afrak$ の元を可測集合 (measurable set) という．
 \end{definition}
 
@@ -24,71 +30,124 @@
     $\Afrak=\{\emptyset,X\},2^X$ はいずれも $X$ 上の $\sigma$-加法族になる．
 \end{example}
 
+\begin{example}\label{ex:relative_sigma_algebra}
+    可測空間 $(X,\Afrak)$ と $E\subset X$ に対して，
+    \begin{align*}
+        \Afrak_E\defeq\{A\cap E\mid A\in\Afrak\}
+    \end{align*}
+    は $E$ 上の $\sigma$-加法族であって，$E$ は自然に可測空間 $(E,\Afrak_E)$ となる．
+    $\Afrak_E$ を $\Afrak$ から誘導される $E$ 上の相対 $\sigma$-加法族という．
+    \nomenclature{$\Afrak_E$}{$\Afrak$ から誘導される $E$ 上の相対 $\sigma$-加法族}
+    ここでは $E\in\Afrak$ を仮定していないことに注意 (例 \ref{ex:restriction_of_measure} も参照)．
+\end{example}
+
 \begin{example}
-    $X$ 上の $\sigma$-加法族の族 $\{\Afrak_\lambda\}_{\lambda\in\Lambda}$ に対して，
+    集合 $X$ 上の $\sigma$-加法族の族 $\{\Afrak_\lambda\}_{\lambda\in\Lambda}$ に対して，
         $\bigcap_{\lambda\in\Lambda}\Afrak_\lambda$
     も $X$ 上の $\sigma$-加法族になる．
 
     $S\subset 2^X$に対して，$S$ を含む (包含関係について) 最小の $\sigma$-加法族が
     \begin{align*}
-        \bigcap_{\substack{\text{$\Afrak$: $\sigma$-algebra on $X$}\\S\subset\Afrak}}\Afrak
+        \sigma[S]\defeq\bigcap_{\substack{\text{$\Afrak$: $\sigma$-algebra on $X$}\\S\subset\Afrak}}\Afrak
     \end{align*}
     として一意に定まる．
-    これを $S$ が生成する $\sigma$-加法族という．
+    これを $S$ によって生成される $X$ 上の $\sigma$-加法族という．
+    \nomenclature{$\sigma[S]$}{$S\subset2^X$ によって生成される $X$ 上の $\sigma$-加法族}
 \end{example}
 
 \begin{example}\label{ex:Borel_algebra}
-    位相空間 $(X,\Ocal)$ に対して，$\Ocal$ が生成する $X$ 上の $\sigma$-加法族を Borel 集合族 (Borel algebra) といい，$\Bfrak(X)$ と書く．
-    $\Bfrak(X)$ の元を Borel 集合という．
+    位相空間 $(X,\Ocal)$ に対して，$X$ の開集合系によって生成される $\sigma$-加法族
+    $\Bfrak(X)\defeq\sigma[\Ocal]$ を Borel 集合族 (Borel algebra)，
+    $\Bfrak(X)$ の元を Borel 集合 (Borel set) という．
     また，$\Bfrak^n\defeq\Bfrak(\Rbb^n)$ と置く．
     \nomenclature{$\Bfrak(X)$}{位相空間 $X$ 上の Borel 集合族}
     \nomenclature{$\Bfrak^n$}{$\Rbb^n$ 上の Borel 集合族}
 \end{example}
 
 \begin{example}
+    $(X,\Ocal)$ を位相空間，$E\subset X$ とする．
+    $E$ は相対位相 $\Ocal_E\defeq\{O\cap E\mid O\in\Ocal\}$ について位相空間となる．
+    \nomenclature{$\Ocal_E$}{$\Ocal$ から誘導される $E$ 上の相対位相}
+    このとき，$E$ を可測空間と見なす方法が $2$ 通りありうる：
+    \begin{enumerate}
+        \item $(E,\Ocal_E)$ に対して，例 \ref{ex:Borel_algebra} のやり方で $E$ 上の Borel 集合族をとる．
+        \item $(X,\Bfrak(X))$ に対して，例 \ref{ex:relative_sigma_algebra} のやり方で $E$ 上の相対 $\sigma$-加法族をとる．
+    \end{enumerate}
+    実はこれら二つの構成は一致する．
+    すなわち，$\sigma[\Ocal_E]=\sigma[\Ocal]_E$ が成り立つ．
+    実際，
+    \begin{align*}
+        \Ocal_E
+        =\{O\cap E\mid O\in\Ocal\}
+        \subset\{A\cap E\mid A\in\sigma[\Ocal]\}
+        =\sigma[\Ocal]_E
+    \end{align*}
+    で，最右辺は $E$ 上の $\sigma$-加法族なので $\sigma[\Ocal_E]\subset\sigma[\Ocal]_E$ となる．
+    一方，
+    \begin{align*}
+        \Ocal
+        \subset\{A\subset X\mid A\cap E\in\sigma[\Ocal_E]\}
+    \end{align*}
+    の右辺は $\sigma$-加法族となるので $\sigma[\Ocal]$ を含む．
+    従って，任意の $A\in\sigma[\Ocal]$ に対して $A\cap E\in\sigma[\Ocal_E]$，
+    すなわち $\sigma[\Ocal]_E\subset\sigma[\Ocal_E]$ となる．
+    \begin{align*}
+        \begin{CD}
+            (X,\Ocal) @>{\text{Borel}}>> (X,\Bfrak(X))\\
+            @V{\text{relative topology}}VV @VV{\text{relative $\sigma$-algebra}}V\\
+            (E,\Ocal_E) @>{\text{Borel}}>> (E,\Bfrak(E))
+        \end{CD}
+    \end{align*}
+\end{example}
+
+\begin{example}\label{ex:extended_real}
     実数体 $\Rbb$ に形式的な元 $+\infty,-\infty$ を加えた集合 $\Rbb\cup\{\pm\infty\}$ を考える．
-    $a\in\Rbb$ に対して，順序関係を $-\infty<a<+\infty$，四則演算を
+    $a\in\Rbb$ に対して，順序関係を $-\infty<a<+\infty$，演算を
     \begin{align*}
         &(\pm\infty)+a=a+(\pm\infty)\defeq\pm\infty,\quad
         (\pm\infty)+(\pm\infty)\defeq\pm\infty,\\
         &(\pm\infty)-a=a-(\pm\infty)\defeq\mp\infty,\quad
         (\pm\infty)-(\mp\infty)\defeq\pm\infty,\\
+        &-(+\infty)\defeq-\infty,\quad
+        -(-\infty)\defeq+\infty\\
         &a\cdot(\pm\infty)=(\pm\infty)\cdot a\defeq\begin{cases}
             \pm\infty&\text{($0<a<+\infty$ のとき)}\\
             \mp\infty&\text{($-\infty<a<0$ のとき)},
         \end{cases}\\
         &(\pm\infty)\cdot(\pm\infty)\defeq+\infty,\quad
-        (\pm\infty)\cdot(\mp\infty)\defeq-\infty,\\
-        &a/(\pm\infty)\defeq0,\\
-        &(\pm\infty)/a\defeq\begin{cases}
-            \pm\infty&\text{($0<a<+\infty$ のとき)}\\
-            \mp\infty&\text{($-\infty<a<0$ のとき)}
-        \end{cases}
+        (\pm\infty)\cdot(\mp\infty)\defeq-\infty
+        % &a/(\pm\infty)\defeq0,\\
+        % &(\pm\infty)/a\defeq\begin{cases}
+        %     \pm\infty&\text{($0<a<+\infty$ のとき)}\\
+        %     \mp\infty&\text{($-\infty<a<0$ のとき)}
+        % \end{cases}
     \end{align*}
     (すべて複号同順) と定める．
-    これら以外の四則演算は定義しない\footnote{測度論では $0\cdot(\pm\infty)=(\pm\infty)\cdot0\defeq0$ と定めることがあるが，\cite[p.12]{It63} に倣ってこの約束は用いずに進める．}．
+    これら以外の演算は定義しない\footnote{測度論では $0\cdot(\pm\infty)=(\pm\infty)\cdot0\defeq0$ と定めることがあるが，\cite[p.12]{It63} に倣ってこの約束は用いずに進める．}．
 
     $\Ocal$ を $\Rbb$ の通常の位相とする．
     $\Rbb\cup\{\pm\infty\}$ を，位相
-    \begin{align*}
-        \overline\Ocal\defeq\Ocal\cup\{O\cup(a,+\infty]\mid O\in\Ocal, a\in\Rbb\}\cup\{O\cup[-\infty,a)\mid O\in\Ocal, a\in\Rbb\}\cup\{\Rbb\cup\{\pm\infty\}\}
-    \end{align*}
+    \begin{align}
+        \widetilde\Ocal\defeq\Ocal\cup\{O\cup(a,+\infty]\mid O\in\Ocal, a\in\Rbb\}\cup\{O\cup[-\infty,a)\mid O\in\Ocal, a\in\Rbb\}\cup\{\Rbb\cup\{\pm\infty\}\}
+        \label{eqn:extended_real_topology}
+    \end{align}
     を備えた位相空間と見なす．
     % \begin{align*}
     %     \Ocal\cup\{(a,+\infty]\mid a\in\Rbb\}\cup\{[-\infty,a)\mid a\in\Rbb\}
     % \end{align*}
-    % が生成する位相 $\overline\Ocal$ を入れる．
-    このとき，$\Rbb\cup\{\pm\infty\}$ は閉区間 $[0,1]$ と同相になる．
-    また，$\Ocal=\{O\cap\Rbb\mid O\in\overline\Ocal\}$ が成り立つ．
+    % によって生成される位相 $\widetilde\Ocal$ を入れる．
+    このとき，$\Rbb\cup\{\pm\infty\}$ は閉区間 $[-1,1]$ と同相になる．
+    また，$\Ocal=\widetilde\Ocal_\Rbb$ が成り立つ．
     すなわち，$\Rbb\cup\{\pm\infty\}$ の部分位相空間としての $\Rbb$ は $(\Rbb,\Ocal)$ と等しい．
 
-    従って，例 \ref{ex:Borel_algebra} によって $\Rbb\cup\{\pm\infty\}$ は自然に可測空間になる．
+    例 \ref{ex:Borel_algebra} によって $\Rbb\cup\{\pm\infty\}$ は自然に可測空間になる．
     $\Rbb\cup\{\pm\infty\}$ 上の Borel 集合族は
     \begin{align*}
         \Bfrak(\Rbb\cup\{\pm\infty\})
-        =\{B\cup S\mid B\in\Bfrak(\Rbb),\ S\in\{+\infty,-\infty\}\}
+        =\{B\cup S\mid B\in\Bfrak(\Rbb),\ S\subset\{+\infty,-\infty\}\}
     \end{align*}
     と特徴づけられる．
+    !!!TODO!!!
 \end{example}
 
 \begin{definition}
@@ -110,6 +169,13 @@
     \end{enumerate}
 \end{remark}
 
+\begin{example}\label{ex:restriction_of_measure}
+    $(X,\Afrak,\mu)$ を測度空間，$E\in\Afrak$ とする．
+    このとき，例 \ref{ex:relative_sigma_algebra} の相対 $\sigma$-加法族 $\Afrak_E$ は
+    $\Afrak$ の部分集合になるので，$\mu$ を $\Afrak_E$ に制限することができる．
+    このようにして，$E$ は自然に測度空間 $(E,\Afrak_E,\mu\vert_{\Afrak_E})$ となる．
+\end{example}
+
 測度を具体的に構成するためには，次に示す外測度の概念が有用である．
 
 \begin{definition}
@@ -124,13 +190,16 @@
 
 \begin{example}\label{ex:Lebesgue_outer_measure}
     $I=(a_1,b_1]\times\cdots\times(a_n,b_n],\ -\infty\le a_i<b_i\le +\infty,$ と表される集合を $\Rbb^n$ の区間という．
-    ただし，$b_i=+\infty$ のときは $(a_i,b_i]\defeq(a_i,+\infty)$ と約束する．
-    また，
+    ただし，$b_i=+\infty$ のときは $(a_i,b_i]\defeq(a_i,+\infty)$ と約束する
+    \footnote{これは単に区間の表記を簡単にするための規約であって，区間の表記以外には適用しない．}．
+    便宜上，空集合も区間の一つと考える．
+    また，区間の $n$ 次元体積を
     \begin{align*}
-        \mathrm{vol}(I)\defeq(b_1-a_1)\cdots(b_n-a_n)\in\Rbb\cup\{+\infty\}
+        &\mathrm{vol}(I)\defeq(b_1-a_1)\cdots(b_n-a_n)\in\Rbb\cup\{+\infty\},\\
+        &\mathrm{vol}(\emptyset)\defeq0
     \end{align*}
     と置く．
-    $\mu_\Lrm^{n,\ast}:2^{\Rbb^n}\to\Rbb\cup\{+\infty\}$ を任意の $A\subset X$ に対して
+    $\mu_\Lrm^{n,\ast}:2^{\Rbb^n}\to\Rbb\cup\{+\infty\}$ を任意の $A\subset\Rbb^n$ に対して
     \begin{align}
         \mu_\Lrm^{n,\ast}(A)\defeq\inf\left\{
             \sum_{i=1}^\infty\mathrm{vol}(I_i)
@@ -139,8 +208,8 @@
         \right\}
         \label{eqn:Lebesgue_outer_measure}
     \end{align}
-    と定めると，これは $\Rbb^n$ 上の外測度になる (\!\cite[p.25]{It63} を参照)．
-    $\mu_\Lrm^{n,\ast}$ を $n$ 次元 Lebesgue 外測度という．
+    と定めると，これは $\Rbb^n$ 上の外測度になる \cite[p.25]{It63}．
+    $\mu_\Lrm^{n,\ast}$ を Lebesgue 外測度という．
     \nomenclature{$\mu_\Lrm^{n,\ast}$}{$n$ 次元 Lebesgue 外測度}
 \end{example}
 
@@ -195,6 +264,7 @@
         \mu_{\Lrm,\ast}^n(E)=\sup\left\{\mu_\Lrm^{n,\ast}(K)\mid\text{$K\subset E$，$K$ はコンパクト}\right\}
         \label{eqn:Lebesgue_inner_measure}
     \end{align}
+    \nomenclature{$\mu_{\Lrm,\ast}^n$}{$n$ 次元 Lebesgue 内測度}
     という特徴づけが知られている．
     $E$ が有界とは限らない場合には \eqref{eqn:Lebesgue_inner_measure} を定義とする．
     一般に，Carath\'eodory の条件は
@@ -204,17 +274,17 @@
     と同値である (Riemann 積分論における Jordan 可測性と類似)．
 
     Jordan 測度の場合と異なり，Lebesgue 外測度と内測度の定義の間に非対称性があることに注意する．
-    定義式が対称な形になるように，Lebesgue 内測度を
+    たとえば，定義式が (ある程度) 対称な形になるように Lebesgue 内測度を
     \begin{align*}
-        \mu_\Lrm^{n,\ast}(E)\stackrel{?}{\defeq}\sup\left\{
+        \mu_{\Lrm,\ast}^n(E)\stackrel{?}{\defeq}\sup\left\{
             \sum_{i=1}^\infty\mathrm{vol}(I_i)
             \,\middle\vert\,
-            \text{$I_1,I_2,\ldots$ は $\Rbb^n$ の区間，$E\supset\bigcup_{i=1}^\infty I_i$}
+            \text{$I_1,I_2,\ldots$ は互いに素な $\Rbb^n$ の区間，$E\supset\bigcup_{i=1}^\infty I_i$}
         \right\}
     \end{align*}
-    と定めるとうまくいかない．
-    このことは，たとえば $E=[0,1]\cap(\Rbb\setminus\Qbb)$ の場合を考えると了解できる
-    (内測度の値は $1$ になってほしいが，うまく内側から区間で近似できない)．
+    と定めてもうまくいかない．
+    このことは，$E=[0,1]\setminus\Qbb$ の場合を考えると了解できる
+    ($\mu_{\Lrm,\ast}^n(E)=1$ になってほしいが，$[0,1]\setminus\Qbb$ に含まれるように区間を選ぶことはできないので $\mu_{\Lrm,\ast}^n(E)=0$ になってしまう)．
     測度論の非対称性については \cite{ms308856} にコメントが載っている．
 
     % \begin{align*}
@@ -255,43 +325,43 @@
     互いに素な $(E_i)_{i=1}^\infty\subset\Mfrak_\Gamma$ を任意にとり，$S=\bigcup_{i=1}^\infty E_i$ と置く．
 
     \begin{claim}\label{claim:out1}
-        任意の $A\subset X$ と $m\in\Zbb_{>0}$ に対して
+        任意の $A\subset X$ と $k\in\Zbb_{>0}$ に対して
         \begin{align}
-            \Gamma(A)\ge\sum_{i=1}^m\Gamma(A\cap E_i)+\Gamma(A\cup S^\crm).
+            \Gamma(A)\ge\sum_{i=1}^k\Gamma(A\cap E_i)+\Gamma(A\cup S^\crm).
             \label{eqn:outer_measure_claim1}
         \end{align}
     \end{claim}
 
     \begin{proof}[主張 \ref{claim:out1} の証明]
-        $m$ について帰納法で示す．
-        $m=1$ のとき，
+        $k$ について帰納法で示す．
+        $k=1$ のとき，
         \begin{align*}
             \Gamma(A)
             &=\Gamma(A\cap E_1)+\Gamma(A\cap E_1^\crm)&&\because E_1\in\Mfrak_\Gamma\\
             &\ge\Gamma(A\cap E_1)+\Gamma(A\cap S^\crm)&&\because\text{\ref{item:om2}}
         \end{align*}
         となるので成立．
-        $m$ で成立を仮定する．
-        \eqref{eqn:outer_measure_claim1} の $A$ として $A\cap E_{m+1}^\crm$ を選ぶと
+        $k$ で成立を仮定する．
+        \eqref{eqn:outer_measure_claim1} の $A$ として $A\cap E_{k+1}^\crm$ を選ぶと
         \begin{align*}
-            \Gamma(A\cap E_{m+1}^\crm)
-            &\ge\sum_{i=1}^m\Gamma(A\cap E_{m+1}^\crm\cap E_i)+\Gamma(A\cap E_{m+1}^\crm\cap S^\crm)\\
-            &=\sum_{i=1}^m\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm).
+            \Gamma(A\cap E_{k+1}^\crm)
+            &\ge\sum_{i=1}^k\Gamma(A\cap E_{k+1}^\crm\cap E_i)+\Gamma(A\cap E_{k+1}^\crm\cap S^\crm)\\
+            &=\sum_{i=1}^k\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm).
         \end{align*}
         ゆえに，
         \begin{align*}
             \Gamma(A)
-            &=\Gamma(A\cap E_{m+1})+\Gamma(A\cap E_{m+1}^\crm)&&\because E_{m+1}\in\Mfrak_\Gamma\\
-            &\ge\Gamma(A\cap E_{m+1})+\sum_{i=1}^m\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm)\\
-            &=\sum_{i=1}^{m+1}\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm)
+            &=\Gamma(A\cap E_{k+1})+\Gamma(A\cap E_{k+1}^\crm)&&\because E_{k+1}\in\Mfrak_\Gamma\\
+            &\ge\Gamma(A\cap E_{k+1})+\sum_{i=1}^k\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm)\\
+            &=\sum_{i=1}^{k+1}\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm)
         \end{align*}
-        となって $m+1$ でも成立．
+        となって $k+1$ でも成立．
     \end{proof}
 
     よって，任意の $A\subset X$ に対して
     \begin{align*}
         \Gamma(A)
-        &\ge\sum_{i=1}^\infty\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm)&&\because\text{主張 \ref{claim:out1} で $m\to+\infty$}\\
+        &\ge\sum_{i=1}^\infty\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm)&&\because\text{主張 \ref{claim:out1} で $k\to+\infty$}\\
         &\ge\Gamma\biggl(\bigcup_{i=1}^\infty(A\cap E_i)\biggr)+\Gamma(A\cap S^\crm)&&\because\text{\ref{item:om3}}\\
         &=\Gamma(A\cap S)+\Gamma(A\cap S^\crm)\\
         &\ge\Gamma(A).&&\because\text{\ref{item:om3}}
@@ -310,7 +380,7 @@
     \end{claim}
     \begin{proof}[主張 \ref{claim:out2} の証明]
         \begin{align*}
-            &\Gamma(A\cap E\cap F)+\Gamma(A\cap(E\cap F)^\crm)\\
+            &\Gamma(A\cap(E\cap F))+\Gamma(A\cap(E\cap F)^\crm)\\
             &=\Gamma(A\cap E\cap F)+\Gamma(A\cap(E\cap F)^\crm\cap E)+\Gamma(A\cap(E\cap F)^\crm\cap E^\crm)&&\because E\in\Mfrak_\Gamma\\
             &=\Gamma(A\cap E\cap F)+\Gamma(A\cap E\cap F^\crm)+\Gamma(A\cap E^\crm)\\
             &=\Gamma(A\cap E)+\Gamma(A\cap E^\crm)&&\because F\in\Mfrak_\Gamma\\
@@ -341,11 +411,13 @@
 \footnote{
     Lebesgue 測度の構成は，定理 \ref{thm:Hopf_extension} で $\Ffrak$ として有限個の区間の和集合 (区間塊という) の全体を，
     $m$ として区間塊の $n$ 次元体積を選ぶことに相当している．
-    ただし，定理を素朴に適用して得られるのは $\Ffrak$ が生成する $\sigma$-加法族
-    (これは Borel 集合族 $\Bfrak^n$ と一致する) を定義域とする測度であることに注意する．
+    ただし，定理を素朴に適用して得られるのは $\sigma[\Ffrak]$
+    (これは Borel 集合族 $\Bfrak^n$ と一致する．
+    \cite[定理 6.4]{It63} または命題 \ref{prop:measurable_function_characterization} の証明を参照．)
+    を定義域とする測度であることに注意する．
     特に，後に注意 \ref{rem:Borel_Lebesgue} で見るように $\Bfrak^n\subsetneq\Bfrak_\Lrm^n$ となるので，
     定理によって得られるのは厳密には Lebesgue 測度ではない．
-    Lebesgue 測度を得るには，定理の証明において $\Gamma$ を $\Afrak$ 上ではなく $\Mfrak_\Gamma$ 上に制限すればよい．
+    Lebesgue 測度を得るには，定理の証明において $\Gamma$ を $\sigma[\Ffrak]$ 上に制限するステップを省略すればよい．
 }．
 
 \begin{theorem}[E.\ Hopf の拡張定理，または Carath\'eodory の拡張定理]\label{thm:Hopf_extension}
@@ -361,9 +433,8 @@
         \item[$\textsf{(M2)}_\textsf{fin}$] 互いに素な任意の $A,B\in\Ffrak$ に対して $m(A\cup B)=m(A)+m(B)$
     \end{enumerate}
     を満たすとする (このような $m$ を有限加法的測度という)．
-    $\Afrak$ を $\Ffrak$ が生成する $\sigma$-加法族とする．
 
-    このとき，測度 $\mu:\Afrak\to\Rbb\cup\{+\infty\}$ で $\mu\vert_\Ffrak=m$ を満たすものが存在するためには，
+    このとき，測度 $\mu:\sigma[\Ffrak]\to\Rbb\cup\{+\infty\}$ で $\mu\vert_\Ffrak=m$ を満たすものが存在するためには，
     $m$ が $\Ffrak$ 上で $\sigma$-加法的であること：
     \begin{itemize}
         \item 互いに素な任意の $(A_i)_{i=1}^\infty\subset\Ffrak$ で
@@ -377,6 +448,8 @@
 \end{theorem}
 
 \begin{proof}
+    必要性は明らか．
+    十分性を示す．
     まず，(\eqref{eqn:Lebesgue_outer_measure} に対応して)
     $\Gamma:2^X\to\Rbb\cup\{+\infty\}$ を任意の $A\subset X$ に対して
     \begin{align*}
@@ -399,9 +472,9 @@
     となるので，右辺の下限をとると $m(E)\le\Gamma(E)$ を得る．
     従って，$\Gamma$ は $m$ の拡張になっている．
 
-    この $\Gamma$ に対して定理 \ref{thm:outer_measure_to_measure} を適用すれば測度空間 $(X,\Mfrak_\Gamma,\mu)$ を得る．
+    この $\Gamma$ に対して定理 \ref{thm:outer_measure_to_measure} を適用して測度空間 $(X,\Mfrak_\Gamma,\Gamma\vert_{\Mfrak_\Gamma})$ を得る．
     $\Ffrak\subset\Mfrak_\Gamma$ \cite[定理 5.2]{It63} で $\Mfrak_\Gamma$ は $\sigma$-加法族なので，
-    特に $\Afrak\subset\Mfrak_\Gamma$ であって，$\mu$ を $\Afrak$ 上に制限することで所望の測度が得られる．
+    特に $\sigma[\Ffrak]\subset\Mfrak_\Gamma$ であって，$\Gamma$ を $\sigma[\Ffrak]$ 上に制限することで所望の測度 $\mu$ が得られる．
     証明の残りの部分については \cite[定理 9.1]{It63} を参照．
 \end{proof}
 
@@ -440,7 +513,7 @@
         \right\}
     \end{align*}
     と定めると，これは $X$ 上の外測度になる．
-    さらに，定理 \ref{thm:outer_measure_to_measure} の完備測度空間
+    さらに，$\mu^\ast$ に対して定理 \ref{thm:outer_measure_to_measure} を適用して得られる完備測度空間
     $(X,\Mfrak_{\mu^*},\mu^\ast\vert_{\Mfrak_{\mu^\ast}})$ は
     \begin{align*}
         \Afrak\subset\Mfrak_{\mu^*},\quad
@@ -458,7 +531,7 @@
     $(X,\Afrak,\mu)$ の完備化 (completion) という．
 \end{definition}
 
-常に完備化したほうがいいというわけではない！ % TODO
+常に完備化した空間で考えた方がいいというわけではない！ % TODO
 可測関数の議論(次回)を参照
 
 \begin{remark}\label{rem:Borel_Lebesgue}
@@ -511,7 +584,7 @@
                     $\Rbb^3$ における半径 $1$ の球体を有限個の集合 $A_1,\ldots,A_m$ に分割して，
                     それらを回転と平行移動によって組み替えることで，半径 $1$ の球体を二つ作ることができる．
                     これは Banach--Tarski のパラドックスと呼ばれている．
-                    YouTube \cite{yts86-Z-CbaHA} に綺麗なグラフィックスを用いた解説がある (英語だが字幕もついている)．
+                    YouTube \cite{yts86-Z-CbaHA} に綺麗なグラフィックスを用いた解説がある (英語だが字幕がついている)．
 
                     このとき，$A_1,\ldots,A_m$ の少なくとも一つは Lebesgue 可測ではない．
                     実際，これらがすべて Lebesgue 可測であると仮定すると，Lebesgue 測度が回転と平行移動について不変であることから
