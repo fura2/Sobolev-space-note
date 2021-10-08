@@ -1,0 +1,140 @@
+\subsubsection{可測空間}\label{sec:measurable_space}
+
+\begin{definition}
+    $X$ を集合とする．
+    次の三つの条件を満たす $\Afrak\subset2^X$ を $X$ 上の $\sigma$-加法族 ($\sigma$-algebra) という．
+    \begin{enumerate}[label=\textsf{(SA\arabic*)},align=left]
+        \item\label{item:sa1} $\emptyset\in\Afrak$．
+        \item\label{item:sa2} 任意の $A\in\Afrak$ に対して $A^\crm\in\Afrak$．\quad (ここで，$A^\crm\defeq X\setminus A$)
+        \item\label{item:sa3} 任意の $(A_i)_{i=1}^\infty\subset\Afrak$ に対して $\displaystyle\bigcup_{i=1}^\infty A_i\in\Afrak$．
+    \end{enumerate}
+    \nomenclature{$A^\crm$}{集合 $A$ の補集合}
+    組 $(X,\Afrak)$ を可測空間 (measurable space)，$\Afrak$ の元を可測集合 (measurable set) という．
+\end{definition}
+
+\begin{remark}\label{rem:measurable_space_other_axioms}
+    可測空間 $(X,\Afrak)$ に対して次が成り立つ．
+    \begin{enumerate}
+        \item $X\in\Afrak$．
+        \item 任意の $(A_i)_{i=1}^\infty\subset\Afrak$ に対して $\displaystyle\bigcap_{i=1}^\infty A_i\in\Afrak$．
+    \end{enumerate}
+    \textrm{i)} は \ref{item:sa1} と \ref{item:sa2} から，\textrm{ii)} は \ref{item:sa2} と \ref{item:sa3} から従う．
+\end{remark}
+
+\begin{example}
+    $\Afrak=\{\emptyset,X\},2^X$ はいずれも $X$ 上の $\sigma$-加法族になる．
+\end{example}
+
+\begin{example}\label{ex:relative_sigma_algebra}
+    可測空間 $(X,\Afrak)$ と $E\subset X$ に対して，
+    \begin{align*}
+        \Afrak_E\defeq\{A\cap E\mid A\in\Afrak\}
+    \end{align*}
+    は $E$ 上の $\sigma$-加法族であって，$E$ は自然に可測空間 $(E,\Afrak_E)$ となる．
+    $\Afrak_E$ を $\Afrak$ から誘導される $E$ 上の相対 $\sigma$-加法族という．
+    \nomenclature{$\Afrak_E$}{$\Afrak$ から誘導される $E$ 上の相対 $\sigma$-加法族}
+    ここでは $E\in\Afrak$ を仮定する必要がないことに注意 (例 \ref{ex:restriction_of_measure} も参照)．
+\end{example}
+
+\begin{example}
+    集合 $X$ 上の $\sigma$-加法族の族 $\{\Afrak_\lambda\}_{\lambda\in\Lambda}$ に対して，
+        $\bigcap_{\lambda\in\Lambda}\Afrak_\lambda$
+    も $X$ 上の $\sigma$-加法族になる．
+
+    $S\subset 2^X$に対して，$S$ を含む (包含関係について) 最小の $\sigma$-加法族が
+    \begin{align*}
+        \sigma(S)\defeq\bigcap_{\substack{\text{$\Afrak$: $\sigma$-algebra on $X$}\\S\subset\Afrak}}\Afrak
+    \end{align*}
+    として一意に定まる．
+    $\sigma(S)$ を $S$ によって生成される $X$ 上の $\sigma$-加法族という．
+    \nomenclature{$\sigma(S)$}{$S\subset2^X$ によって生成される $X$ 上の $\sigma$-加法族}
+\end{example}
+
+\begin{example}\label{ex:product_sigma_algebra}
+    $((X_\lambda,\Afrak_\lambda))_{\lambda\in\Lambda}$ を可測空間の族とする．
+    直積集合を $X=\prod_{\lambda\in\Lambda}X_\lambda$，
+    $X$ から各 $X_\lambda$ への自然な射影を $\pi_\lambda:X\to X_\lambda$ と置く．
+    このとき，$X$ 上の $\sigma$-加法族
+    \begin{align*}
+        \bigotimes_{\lambda\in\Lambda}\Afrak_\lambda
+        \defeq\sigma(\{\pi_\lambda^{-1}(A)\mid A\in\Afrak_\lambda,\ \lambda\in\Lambda\})
+    \end{align*}
+    を $(\Afrak_\lambda)_{\lambda\in\Lambda}$ の直積 $\sigma$-加法族といい，
+    可測空間 $\left(X,\bigotimes_{\lambda\in\Lambda}\Afrak_\lambda\right)$ を
+    $((X_\lambda,\Afrak_\lambda))_{\lambda\in\Lambda}$ の直積可測空間という．
+    \nomenclature{$(\Afrak_\lambda)_{\lambda\in\Lambda}$ の直積 $\sigma$-加法族}{$\bigotimes_{\lambda\in\Lambda}\Afrak_\lambda$}
+    $\Lambda$ が有限集合 $\{1,2,\ldots,k\}$ のときは直積 $\sigma$-加法族を
+    $\Afrak_1\otimes\cdots\otimes\Afrak_k$ や $\bigotimes_{i=1}^k\Afrak_i$ とも書く．
+    また，$\Lambda$ が高々可算な集合のときは
+    \begin{align*}
+        \bigotimes_{\lambda\in\Lambda}\Afrak_\lambda
+        =\sigma\biggl(\prod_{\lambda\in\Lambda}\Afrak_\lambda\biggr)
+    \end{align*}
+    が成り立つ\footnote{
+        有限個の位相空間についてそれらの直積位相 (product topology) と箱位相 (box topology) が一致する，という事実とよく似ている．
+        開集合が有限個の intersection について閉じているのに対して，
+        可測集合は可算無限個の intersection について閉じている (注意 \ref{rem:measurable_space_other_axioms})
+        ので，このようなことが成り立つ．
+    }．
+    ここで，右辺の $\prod_{\lambda\in\Lambda}\Afrak_\lambda$ は集合としての直積を表す．
+\end{example}
+
+\begin{example}\label{ex:Borel_algebra}
+    位相空間 $(X,\Ocal)$ に対して，$X$ の開集合系によって生成される $\sigma$-加法族
+    $\Bfrak(X)\defeq\sigma(\Ocal)$ を Borel 集合族 (Borel algebra)，
+    $\Bfrak(X)$ の元を Borel 集合 (Borel set) という．
+    \nomenclature{$\Bfrak(X)$}{位相空間 $X$ 上の Borel 集合族}
+    また，$\Bfrak^n\defeq\Bfrak(\Rbb^n)$ と置く．
+    \nomenclature{$\Bfrak^n$}{$\Rbb^n$ 上の Borel 集合族}
+    このようにして，任意の位相空間は自然に可測空間と見なすことができる．
+\end{example}
+
+\begin{example}\label{ex:extended_real}
+    実数体 $\Rbb$ に形式的な元 $+\infty,-\infty$ を加えた集合 $\Rbb\cup\{\pm\infty\}$ を考える．
+    $a\in\Rbb$ に対して，順序関係を $-\infty<a<+\infty$，演算を
+    \begin{align*}
+        &(\pm\infty)+a=a+(\pm\infty)\defeq\pm\infty,\quad
+        (\pm\infty)+(\pm\infty)\defeq\pm\infty,\\
+        &(\pm\infty)-a=a-(\mp\infty)\defeq\pm\infty,\quad
+        (\pm\infty)-(\mp\infty)\defeq\pm\infty,\\
+        &-(+\infty)\defeq-\infty,\quad
+        -(-\infty)\defeq+\infty\\
+        &a\cdot(\pm\infty)=(\pm\infty)\cdot a\defeq\begin{cases}
+            \pm\infty&\text{if $0<a<+\infty$}\\
+            \mp\infty&\text{if $-\infty<a<0$},
+        \end{cases}\\
+        &(\pm\infty)\cdot(\pm\infty)\defeq+\infty,\quad
+        (\pm\infty)\cdot(\mp\infty)\defeq-\infty
+        % &a/(\pm\infty)\defeq0,\\
+        % &(\pm\infty)/a\defeq\begin{cases}
+        %     \pm\infty&\text{if $0<a<+\infty$}\\
+        %     \mp\infty&\text{if $-\infty<a<0$}
+        % \end{cases}
+    \end{align*}
+    (すべて複号同順) と定める．
+    これら以外の演算は定義しない\footnote{測度論では $0\cdot(\pm\infty)=(\pm\infty)\cdot0\defeq0$ と定めることがあるが，\cite[p.12]{It63} に倣ってこの約束は用いずに進める．}．
+
+    $\Ocal$ を $\Rbb$ の通常の位相とする．
+    $\Rbb\cup\{\pm\infty\}$ を，位相
+    \begin{align}
+        \widetilde\Ocal\defeq\Ocal\cup\{O\cup(a,+\infty]\mid O\in\Ocal, a\in\Rbb\}\cup\{O\cup[-\infty,a)\mid O\in\Ocal, a\in\Rbb\}\cup\{\Rbb\cup\{\pm\infty\}\}
+        \label{eqn:extended_real_topology}
+    \end{align}
+    を備えた位相空間と見なす．
+    % \begin{align*}
+    %     \Ocal\cup\{(a,+\infty]\mid a\in\Rbb\}\cup\{[-\infty,a)\mid a\in\Rbb\}
+    % \end{align*}
+    % によって生成される位相 $\widetilde\Ocal$ を入れる．
+    このとき，$\Rbb\cup\{\pm\infty\}$ は閉区間 $[-1,1]$ と同相になる．
+    また，$\Ocal=\widetilde\Ocal_\Rbb$ が成り立つ．
+    すなわち，$\Rbb\cup\{\pm\infty\}$ の部分位相空間としての $\Rbb$ は $(\Rbb,\Ocal)$ と等しい．
+
+    例 \ref{ex:Borel_algebra} によって $\Rbb\cup\{\pm\infty\}$ は自然に可測空間になる．
+    $\Rbb\cup\{\pm\infty\}$ 上の Borel 集合族は
+    \begin{align*}
+        \Bfrak(\Rbb\cup\{\pm\infty\})
+        =\{B\cup S\mid B\in\Bfrak(\Rbb),\ S\subset\{+\infty,-\infty\}\}
+    \end{align*}
+    と特徴づけられる．
+    {\color{red} TODO もう少し補足したいかも}
+\end{example}

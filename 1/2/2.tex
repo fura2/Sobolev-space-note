@@ -1,63 +1,6 @@
-\subsection{可測関数}
+\subsubsection{可測関数}
 
-位相空間論では，二つの位相空間が与えられたとき，それらの間の連続関数を考察の対象とする．
-これと類似して，測度論では二つの可測空間の間の可測写像が定義される．
-この節では可測写像についての基本的な事項を述べる．
-
-\begin{definition}
-    $(X,\Afrak_1),(Y,\Afrak_2)$ を可測空間とする．
-    $f:X\to Y$ が可測写像 (measurable map) であるとは，任意の $B\in\Afrak_2$ に対して $f^{-1}(B)\in\Afrak_1$ となることをいう．
-\end{definition}
-
-\begin{proposition}\label{prop:Meas_prop}
-    可測空間 $(X,\Afrak_1),(Y,\Afrak_2),(Z,\Afrak_3)$ に対して次が成り立つ．
-    \begin{enumerate}
-        \item 可測写像 $f:X\to Y,\ g:Y\to Z$ に対して，$g\circ f:X\to Z$ も可測写像．
-        \item 恒等写像 $\mathrm{id}_X:X\to X$ は可測写像．
-    \end{enumerate}
-\end{proposition}
-
-\begin{proof}
-    定義より直ちに従う．
-\end{proof}
-
-\begin{proposition}\label{prop:Borel_functor}
-    $(X,\Ocal_1),(Y,\Ocal_2)$ を位相空間，$f:X\to Y$ を連続写像とする．
-    $X,Y$ を例 \ref{ex:Borel_algebra} によってそれぞれ可測空間 $(X,\Bfrak(X)),(Y,\Bfrak(Y))$ と見なすとき，
-    $f$ は可測写像になる．
-\end{proposition}
-
-\begin{proof}
-    \begin{align*}
-        \Ocal_2
-        &\subset\{B\subset Y\mid f^{-1}(B)\in\Ocal_1\}&&\because\text{$f$ は連続}\\
-        &\subset\{B\subset Y\mid f^{-1}(B)\in\Bfrak(X)\}&&\because\Ocal_1\subset\Bfrak(X)
-    \end{align*}
-    であって，最右辺は $Y$ 上の $\sigma$-加法族であるから $\Bfrak(Y)$ を含む．
-    すなわち，$B\in\Bfrak(Y)$ ならば $f^{-1}(B)\in\Bfrak(X)$．
-\end{proof}
-
-\begin{remark}
-    命題 \ref{prop:Meas_prop} によって，(小さな) 可測空間を対象とし，可測写像を射とする圏が定義される．
-    これを可測空間の圏といい $\mathbf{Meas}$ と書く．
-    \nomenclature{$\mathbf{Meas}$}{可測空間の圏}
-    $\mathbf{Top}$ を位相空間の圏とする．
-    例 \ref{ex:Borel_algebra} によって位相空間から可測空間を作ることができるが，
-    命題 \ref{prop:Borel_functor} により，この対応 $\mathbf{Top}\to\mathbf{Meas}$，
-    \begin{itemize}
-        \item $(X,\Ocal)\mapsto(X,\Bfrak(X)),$
-        \item $f\mapsto f,$
-    \end{itemize}
-    は関手になっていることが分かる．
-\end{remark}
-
-\begin{example}
-   $(X,\Afrak)$ を可測空間，$E\subset X$ とする．
-   例 \ref{ex:relative_sigma_algebra} の相対 $\sigma$-加法族 $\Afrak_E$ は，
-   包含写像 $\iota:E\hookrightarrow X$ が可測になるような $E$ 上の $\sigma$-加法族のうち最小のものである．
-   これより特に，可測写像 $f:X\to Y$ に対して，その $E$ への制限 $f\vert_E=f\circ\iota:E\to Y$ も可測になることが分かる．
-\end{example}
-
+{\color{red} TODO 文章考え直す}
 次に，可測写像 $f:X\to Y$ の積分を考えたい．
 そのためにはもう少し空間に構造を課す必要がある．
 まず，積分演算は線形性を持つべきという観点から，$Y$ (すなわち，積分の値が属する空間) はベクトル空間であってほしい．
@@ -73,8 +16,8 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
     $(X,\Afrak)$ を可測空間，$Y=\Rbb\cup\{\pm\infty\} $ または $\Cbb$ とする．
     例 \ref{ex:Borel_algebra}, \ref{ex:extended_real} によって $(Y,\Bfrak(Y))$ も可測空間となる．
     このときの可測写像 $f:X\to Y$ を可測関数 (measurable function) という
-    \footnote{このように可測写像と可測関数を呼び分けるのがどのくらいメジャーかは分からないが，ある程度のコンセンサスは得られていると思う\cite{ms95741}．}．
-    特に，$E\subset\Rbb^n$ に対して，(例 \ref{ex:relative_sigma_algebra} の記号を用いて)
+    \footnote{このように可測写像と可測関数を呼び分けている文献はあまり見かけないが，ある程度妥当な命名だと思う\cite{ms95741}．}．
+    特に，$E\subset\Rbb^n$ に対して，(例 \ref{ex:relative_sigma_algebra} の記法を用いて)
     \begin{enumerate}
         \item $(X,\Afrak)=(E,(\Bfrak^n)_E)$ のとき，$f$ を Borel 可測関数という．
         \item $(X,\Afrak)=(E,(\Bfrak_\Lrm^n)_E)$ のとき，$f$ を Lebesgue 可測関数という．
@@ -87,30 +30,35 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
         \item 関数 $f:X\to\Rbb$ に対して，$f:X\to\Rbb\cup\{\pm\infty\}$ と見なしたときの可測性と
         $f:X\to\Cbb$ と見なしたときの可測性は同値になる．
     \end{itemize}
+    {\color{red} TODO why?}
 \end{remark}
 
 \begin{remark}\label{rem:Borel_implies_Lebesgue}
     注意 \ref{rem:Borel_Lebesgue} により $\Bfrak^n\subset\Bfrak_\Lrm^n$ なので，Borel 可測関数は Lebesgue 可測である．
-    特に命題 \ref{prop:Borel_functor} により，連続関数は Lebesgue 可測である．
+    特に命題 \ref{prop:conti_implies_measurable} により，連続関数は Lebesgue 可測である．
 \end{remark}
 
 \begin{remark}[\!\!\cite{mo31603}]
-    可測関数 $f:X\to Y$ に対して，$Y$ 側の $\sigma$-加法族として常に Borel 集合族 $\Bfrak(Y)$ を選んでいることに注意．
+    可測関数 $f:X\to Y$ の定義において，$Y$ 上の $\sigma$-加法族として常に Borel 集合族 $\Bfrak(Y)$ を選んでいることに注意．
     $f$ が $\Rbb$-値 や $\Cbb\,(\simeq\Rbb^2)$-値のとき，
-    $Y$ 側の $\sigma$-加法族として $\Bfrak_\Lrm^1$ や $\Bfrak_\Lrm^2$ を選ぶこともできるが，
+    $Y$ 上の $\sigma$-加法族として $\Bfrak_\Lrm^1$ や $\Bfrak_\Lrm^2$ を選ぶこともできるが，
     そのようにして定義された可測関数はあまり良い性質を持たない．
     たとえば，注意 \ref{rem:Borel_implies_Lebesgue} で見た，連続関数が可測になるという性質はもはや成立しなくなる．
 
     測度論で扱える関数 (または，積分できる関数) を増やしたいという文脈では，できるだけ多くの関数 $f:X\to Y$ が可測になってほしい．
-    そのためには $X$ 側の $\sigma$-加法族はできるだけ大きいものを，$Y$ 側の $\sigma$-加法族はできるだけ小さいものを選択するのがよさそうである．
-    この意味で，$X$ 側の $\sigma$-加法族として $(\Bfrak_\Lrm^n)_E$ を選ぶ (すなわち，Lebesgue 可測関数を考える) のは合理的であり，
-    一方で $Y$ 側の $\sigma$-加法族として $\Bfrak_\Lrm^1$ などを選ぶのは指針に反する．
+    そのためには $X$ 上の $\sigma$-加法族はできるだけ大きいものを，$Y$ 上の $\sigma$-加法族はできるだけ小さいものを選択するのがよさそうである．
+    この意味で，$X$ 上の $\sigma$-加法族として $(\Bfrak_\Lrm^n)_E$ を選ぶのは理にかなっており，
+    {\color{red}(TODO 完備化のことを書く)}
+    一方で $Y$ 上の $\sigma$-加法族として $\Bfrak_\Lrm^1$ などを選ぶのは不合理である．
     また，後に \ref{sec:integration} 節で $f$ の積分を定義する際には，$Y$ の区間の $f$ による逆像が $X$ の可測集合になることを要請したい
-    (命題 \ref{prop:measurable_function_characterization} と，命題 \ref{prop:approx_measurable_by_simple} の証明を参照)．
+    (命題 \ref{prop:approx_measurable_by_simple} の証明を参照)．
     $\Bfrak(Y)$ はこの要請を満たす $\sigma$-加法族として最小のものである．
+    {\color{red}
+    これをふまえて書き直す https://math.stackexchange.com/questions/3033951/confusion-about-measurability-requirements-for-lebesgue-integral
+    }
 \end{remark}
 
-可測関数の特徴づけとして，次のことが知られている (こちらを可測関数の定義とすることも多い)．
+可測関数の特徴づけとして次のことが知られている (こちらを可測関数の定義とすることも多い)．
 
 \begin{proposition}\label{prop:measurable_function_characterization}
     可測空間 $(X,\Afrak)$ に対して次が成り立つ．
@@ -130,7 +78,7 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
     \textrm{i)} を示す．
     \begin{itemize}[align=left]
         \item[$f$ が可測 $\Rightarrow$ (a)--(d)：]
-            可測関数の定義から明らか．
+            明らか．
         \item[(a) $\Rightarrow$ (b)：]
             $\displaystyle f^{-1}([-\infty,a])=\bigcap_{k=1}^\infty f^{-1}\biggl(\biggl[-\infty,a+\frac{1}{k}\biggr)\biggr)\in\Afrak$ より従う．
         \item[(b) $\Rightarrow$ (c)：]
@@ -147,17 +95,17 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
                 Lindel\"of の被覆定理 \cite[付録 \S2 定理 2]{It63} によって，これらから可算無限個を
                 抜き出して，なお $O$ を被覆するようにできる．
             }ので，$f^{-1}(O)\in\Afrak$ も分かる．
-            このことと \eqref{eqn:extended_real_topology} より，$\Rbb\cup\{\pm\infty\}$ の開集合系を $\widetilde\Ocal$ として
+            このことと \eqref{eqn:extended_real_topology} より，$\Rbb\cup\{\pm\infty\}$ の位相を $\widetilde\Ocal$ として
             \begin{align*}
-                \widetilde\Ocal\subset\{B\subset\Rbb\cup\{\pm\infty\}\mid f^{-1}(B)\in\Afrak\}
+                \widetilde\Ocal\subset\{A\subset\Rbb\cup\{\pm\infty\}\mid f^{-1}(A)\in\Afrak\}
             \end{align*}
             となる．
             この右辺は $\Rbb\cup\{\pm\infty\}$ 上の $\sigma$-加法族であるから $\Bfrak(\Rbb\cup\{\pm\infty\})$ を含む．
             ゆえに $f$ は可測関数である．
     \end{itemize}
 
-    次に \textrm{ii)} を示す．
-    TODO
+    \textrm{ii)} を示す．
+    {\color{red} TODO}
 \end{proof}
 
 \begin{remark}
@@ -185,7 +133,7 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
 
     特に，$g$ が Lebesgue 可測であることしか分かっていないときには，合成関数の可測性については何も保証されないことに注意．
     $1,2$ 行目は可測関数の定義と $\Bfrak^n\subset\Bfrak_\Lrm^n$ から直ちに従う．
-    $3$ 行目は反例が \cite[pp.72--73]{It63} にある．
+    $3$ 行目は反例が \cite[\S2 Exercise 9]{Fo99}\cite[pp.72--73]{It63} にある．
     $4$ 行目は $3$ 行目から直ちに従う．
 \end{remark}
 
@@ -195,14 +143,24 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
         \item 可測関数 $f:X\to\Cbb,\ g:X\to\Cbb$ と $\alpha\in\Cbb,\ p>0$ に対して，$f+g,\ \alpha f,\ fg,\ |f|^p$ は可測である．
         \item 可測関数列 $(f_i:X\to\Rbb\cup\{\pm\infty\})_{i=1}^\infty$ に対して，$\displaystyle\sup_{i\ge1}f_i,\ \inf_{i\ge1}f_i$ は可測である．
     \end{enumerate}
+    {\color{red} TODO limsup, liminf について書く。$\Rbb\cup\{\pm\}$ のケースをどこまで書くか}
 \end{theorem}
+
+\begin{proof}
+    {\color{red} TODO}
+\end{proof}
 
 \begin{theorem}\label{thm:measurable_function_pointwise_convergence}
     $(X,\Afrak)$ を可測空間，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ とする．
     可測関数列 $(f_i:X\to Y)_{i=1}^\infty$ が関数 $f:X\to Y$ に $X$ 上で各点収束するなら，$f$ も可測である．
 \end{theorem}
 
+\begin{proof}
+    {\color{red} TODO}
+\end{proof}
+
 \begin{remark}
+    {\color{red} TODO 論理的に正しい文章を考え直す}
     定理 \ref{thm:measurable_function_pointwise_convergence} は
     可測関数の空間が各点収束について閉じていることを主張しており，
     これは非常に多くの可測関数が存在することを示唆している (と思う)．
