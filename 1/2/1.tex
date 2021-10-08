@@ -1,0 +1,225 @@
+\subsubsection{可測写像}
+
+\begin{definition}
+    $(X_1,\Afrak_1),(X_2,\Afrak_2)$ を可測空間とする．
+    $f:X_1\to X_2$ が可測写像 (measurable map) であるとは，任意の $A\in\Afrak_2$ に対して $f^{-1}(A)\in\Afrak_1$ となることをいう．
+\end{definition}
+
+\begin{proposition}\label{prop:Meas_prop}
+    $(X_1,\Afrak_1),(X_2,\Afrak_2),(X_3,\Afrak_3)$ を可測空間とするとき，次が成り立つ．
+    \begin{enumerate}
+        \item 可測写像 $f:X_1\to X_2,\ g:X_2\to X_3$ に対して，$g\circ f:X_1\to X_3$ も可測写像．
+        \item 恒等写像 $\mathrm{id}_{X_1}:{X_1}\to{X_1}$ は可測写像．
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    明らか．
+\end{proof}
+
+\begin{example}\label{ex:initial_sigma_algebra}
+    \ref{sec:measurable_space} 節で見た $\sigma$-加法族の構成のうちいくつかは，ある写像の族を可測にするような最小の $\sigma$-加法族として統一的に扱うことができる
+    \footnote{位相空間論における initial topology の概念によく似ている．}．
+    \begin{enumerate}
+        \item
+            $(X,\Afrak)$ を可測空間，$E\subset X$ とする．
+            例 \ref{ex:relative_sigma_algebra} の相対 $\sigma$-加法族 $\Afrak_E$ は，
+            包含写像 $\iota:E\to X$ が可測になるような $E$ 上の $\sigma$-加法族のうち最小のものである．
+            すなわち，
+            \begin{align*}
+                \Afrak_E
+                =\{\iota^{-1}(A)\mid A\in\Afrak\}
+                =\sigma(\{\iota^{-1}(A)\mid A\in\Afrak\}).
+            \end{align*}
+        \item
+            $((X_\lambda,\Afrak_\lambda))_{\lambda\in\Lambda}$ を可測空間の族とする．
+            例 \ref{ex:product_sigma_algebra} の直積 $\sigma$-加法族 $\bigotimes_{\lambda\in\Lambda}\Afrak_\lambda$ は，
+            自然な射影 $\pi_\lambda:\prod_{\lambda\in\Lambda}X_\lambda\to X_\lambda$ が可測になるような
+            $\prod_{\lambda\in\Lambda}X_\lambda$ 上の $\sigma$-加法族のうち最小のものである．
+        \end{enumerate}
+\end{example}
+
+\begin{proposition}\label{prop:Meas_product}
+    $(X,\Afrak)$ を可測空間，$(Y,\Cfrak)$ を可測空間の族 $((Y,\Cfrak_\lambda))_{\lambda\in\Lambda}$ の直積可測空間とする．
+    自然な射影を $\pi_\lambda:Y\to Y_\lambda$ と置く．
+    このとき，写像 $f=(f_\lambda)_{\lambda\in\Lambda}:X\to Y$ に対して次は同値である．
+    \begin{enumerate}
+        \item $f:X\to Y$ は可測写像である．
+        \item 任意の $\lambda\in\Lambda$ に対して $f_\lambda=\pi_\lambda\circ f:X\to Y_\lambda$ は可測写像である．
+    \end{enumerate}
+    \begin{equation*}
+        \begin{tikzcd}
+            X\arrow[rd,"f_\lambda"]\arrow[d,"f"']\\
+            Y\arrow[r,"\pi_\lambda"]&Y_\lambda
+        \end{tikzcd}
+    \end{equation*}
+\end{proposition}
+
+\begin{proof}
+    \textrm{i)} $\Rightarrow$ \textrm{ii)} は，
+    例 \ref{ex:initial_sigma_algebra} \textrm{ii)} より $\pi_\lambda$ が可測になることから直ちに従う．
+    \textrm{ii)} $\Rightarrow$ \textrm{i)} を示す．
+    任意の $C\in\Cfrak_\lambda$ に対して
+    \begin{align*}
+        f^{-1}(\pi_\lambda^{-1}(C))
+        =(\pi_\lambda\circ f)^{-1}(C)
+        =f_\lambda^{-1}(C)\in\Afrak
+    \end{align*}
+    となるので，
+    \begin{align*}
+        \{\pi_\lambda^{-1}(C)\mid C\in\Cfrak_\lambda,\ \lambda\in\Lambda\}
+        \subset\{C\subset Y\mid f^{-1}(C)\in\Afrak\}.
+    \end{align*}
+    右辺は $Y$ 上の $\sigma$-加法族であるから $\Cfrak$ を含む．
+    ゆえに $f$ は可測．
+\end{proof}
+
+\begin{remark}
+    命題 \ref{prop:Meas_prop} によって，(小さな) 可測空間を対象とし，可測写像を射とする圏が定義される．
+    これを可測空間の圏といい $\mathbf{Meas}$ と書く．
+    \nomenclature{$\mathbf{Meas}$}{可測空間の圏}
+    また，命題 \ref{prop:Meas_product} によって直積可測空間は $\mathbf{Meas}$ における積になることが分かる．
+\end{remark}
+
+\begin{proposition}\label{prop:conti_implies_measurable}
+    $(X_1,\Ocal_1),(X_2,\Ocal_2)$ を位相空間，$f:X_1\to X_2$ を連続写像とする．
+    $X_1,X_2$ を例 \ref{ex:Borel_algebra} によって可測空間 $(X_1,\Bfrak(X_1)),(X_2,\Bfrak(X_2))$ と見なすとき，
+    $f$ は可測写像になる．
+\end{proposition}
+
+\begin{proof}
+    \begin{align*}
+        \Ocal_2
+        &\subset\{A\subset X_2\mid f^{-1}(A)\in\Ocal_1\}&&\because\text{$f$ は連続}\\
+        &\subset\{A\subset X_2\mid f^{-1}(A)\in\Bfrak(X_1)\}&&\because\Ocal_1\subset\Bfrak(X_1)
+    \end{align*}
+    であって，最右辺は $X_2$ 上の $\sigma$-加法族であるから $\Bfrak(X_2)$ を含む．
+    すなわち，$A\in\Bfrak(X_2)$ ならば $f^{-1}(A)\in\Bfrak(X_1)$．
+\end{proof}
+
+\begin{remark}\label{rem:Borel_functor}
+    $\mathbf{Top}$ を位相空間の圏とする．
+    例 \ref{ex:Borel_algebra} によって位相空間から可測空間を作ることができるが，
+    命題 \ref{prop:conti_implies_measurable} により，この対応 $\mathbf{Top}\to\mathbf{Meas}$，
+    \begin{itemize}
+        \item $(X,\Ocal)\mapsto(X,\Bfrak(X)),$
+        \item $f\mapsto f,$
+    \end{itemize}
+    は関手であることが分かる．
+\end{remark}
+
+次の二つの命題は，相対 $\sigma$-加法族や直積 $\sigma$-加法族を取る構成と注意 \ref{rem:Borel_functor} の関手 $\mathbf{Top}\to\mathbf{Meas}$
+との関係を述べている．
+
+\begin{proposition}
+    $(X,\Ocal)$ を位相空間，$E\subset X$ とする．
+    包含写像を $\iota:E\to X$ と置く．
+    $E$ は相対位相 $\Ocal_E\defeq\{O\cap E\mid O\in\Ocal\}$ について位相空間となる．
+    \nomenclature{$\Ocal_E$}{$\Ocal$ から誘導される $E$ 上の相対位相}
+    このとき，$E$ を可測空間と見なす方法が $2$ 通りありうる：
+    \begin{itemize}
+        \item $(E,\Ocal_E)$ に対して，例 \ref{ex:Borel_algebra} のやり方で $E$ 上の Borel 集合族をとる．
+        \item $(X,\Bfrak(X))$ に対して，例 \ref{ex:relative_sigma_algebra} のやり方で $E$ 上の相対 $\sigma$-加法族をとる．
+    \end{itemize}
+    これら二つの構成は一致する．
+    すなわち，$\Bfrak(E)=\Bfrak(X)_E$ が成り立つ．
+    \begin{equation*}
+        \begin{tikzcd}
+            (X,\Ocal)\arrow[r,mapsto,"\text{Borel}"]\arrow[d,mapsto,"\text{relative topology}"']&
+            (X,\Bfrak(X))\arrow[d,mapsto,"\text{relative $\sigma$-algebra}"]\\
+            (E,\Ocal_E)\arrow[r,mapsto,"\text{Borel}"]&(E,\Bfrak(X)_E)
+        \end{tikzcd}
+    \end{equation*}
+\end{proposition}
+
+\begin{proof}
+    相対位相の定義によって $\iota:E\to X$ は連続になるので，
+    命題 \ref{prop:conti_implies_measurable} より $\iota:(E,\Bfrak(E))\to(X,\Bfrak(X))$ は可測．
+    従って，例 \ref{ex:initial_sigma_algebra} \textrm{i)} より $\Bfrak(X)_E\subset\Bfrak(E)$ が分かる．
+    一方，任意の $O\in\Ocal$ に対して
+    \begin{align*}
+        O\cap E=\iota^{-1}(O)\in\{\iota^{-1}(A)\mid A\in\Bfrak(X)\}=\Bfrak(X)_E
+    \end{align*}
+    となるので，$\Ocal_E\subset\Bfrak(X)_E$．
+    従って $\Bfrak(E)\subset\Bfrak(X)_E$ を得る．
+\end{proof}
+
+\begin{proposition}\label{prop:product_compatibility}
+    $((X_\lambda,\Ocal_\lambda))_{\lambda\in\Lambda}$ を位相空間の族とする．
+    直積集合を $X=\prod_{\lambda\in\Lambda}X_\lambda$，
+    自然な射影を $\pi_\lambda:X\to X_\lambda$ と置く．
+    $X$ は直積位相 $\Ocal$ について位相空間となる．
+    このとき，$X$ を可測空間と見なす方法が $2$ 通りありうる：
+    \begin{itemize}
+        \item $(X,\Ocal)$ に対して，例 \ref{ex:Borel_algebra} のやり方で $X$ 上の Borel 集合族をとる．
+        \item $((X_\lambda,\Bfrak(X_\lambda)))_{\lambda\in\Lambda}$ に対して，
+            例 \ref{ex:product_sigma_algebra} のやり方で $X$ 上の直積 $\sigma$-加法族をとる．
+    \end{itemize}
+    これら二つの構成の関係について，次のことが成り立つ．
+    \begin{enumerate}
+        \item $\bigotimes_{\lambda\in\Lambda}\Bfrak(X_\lambda)\subset\Bfrak(X)$ が成り立つ．
+        \item $\Lambda$ は高々可算な集合であって，各 $\lambda\in\Lambda$ に対して $X_\lambda$ は第二可算公理を満たすとする．
+            このとき，$X$ も第二可算公理を満たし，$\Bfrak(X)\subset\bigotimes_{\lambda\in\Lambda}\Bfrak(X_\lambda)$ が成り立つ
+            \footnote{
+                位相が任意個の合併について閉じているのに対して，$\sigma$-加法族は可算個の合併についてしか閉じていない．
+                証明において，第二可算公理はこのギャップを埋める (すなわち，任意個の合併が実は可算個の合併として書けることを保証する) ために用いられる．
+            }．
+    \end{enumerate}
+    \begin{equation*}
+        \begin{tikzcd}
+            ((X_i,\Ocal_i))_{i=1}^\infty\arrow[r,mapsto,"\text{Borel}"]\arrow[d,mapsto,"\text{product topology}"']&
+            ((X_i,\Bfrak(X_i)))_{i=1}^\infty\arrow[d,mapsto,"\text{product $\sigma$-algebra}"]\\
+            \displaystyle\biggl(\prod_{i=1}^\infty X_i,\Ocal\biggr)\arrow[r,mapsto,"\text{Borel}"]&
+            \displaystyle\biggl(\prod_{i=1}^\infty X_i,\bigotimes_{i=1}^\infty\Bfrak(X_i)\biggr)
+        \end{tikzcd}
+    \end{equation*}
+\end{proposition}
+
+\begin{proof}
+    各 $\lambda\in\Lambda$ に対して，直積位相の定義によって $\pi_\lambda:X\to X_\lambda$ は連続になるので，
+    命題 \ref{prop:conti_implies_measurable} より $\pi_\lambda:(X,\Bfrak(X))\to(X_\lambda,\Bfrak(X_\lambda))$ は可測．
+    従って，例 \ref{ex:initial_sigma_algebra} \textrm{ii)} より \textrm{i)} が分かる．
+
+    \textrm{ii)} を示す．
+    $\Ucal_\lambda$ を $X_\lambda$ の高々可算な開基として
+    \begin{align*}
+        \Ucal
+        =\{\pi_{\lambda_1}^{-1}(U_1)\cap\cdots\cap\pi_{\lambda_k}^{-1}(U_k)
+        \mid U_i\in\Ucal_{\lambda_i},\lambda_i\in\Lambda\ \text{for}\ i=1,2,\ldots,k;\ k<+\infty\}
+    \end{align*}
+    と置く．
+    $\Ucal$ は $X$ の開基である．
+    実際，任意の $O_i\in\Ocal_{\lambda_i},\lambda_i\in\Lambda,\ i=1,2,\ldots,k,$ に対して，
+    各 $O_i$ は $\Ucal_{\lambda_i}$ の元の和集合で表されるので，
+    \begin{align}
+        \pi_{\lambda_1}^{-1}(O_1)\cap\cdots\cap\pi_{\lambda_k}^{-1}(O_k)
+        \label{eqn:product_open_basis}
+    \end{align}
+    は $\Ucal$ の元の和集合で表される．
+    また，$\Lambda,\,\Ucal_{\lambda_i}$ は高々可算であって
+    \begin{align*}
+        \Ucal
+        =\bigcup_{k=1}^\infty\{\pi_{\lambda_1}^{-1}(U_1)\cap\cdots\cap\pi_{\lambda_k}^{-1}(U_k)
+        \mid U_i\in\Ucal_{\lambda_i},\lambda_i\in\Lambda\ \text{for}\ i=1,2,\ldots,k\}
+    \end{align*}
+    と書けるので，$\Ucal$ も高々可算である．
+    ゆえに，$X$ は第二可算である．
+
+    任意の $O\in\Ocal_\lambda$ に対して
+    \begin{align*}
+        \pi_\lambda^{-1}(O)\in\{\pi_\lambda^{-1}(A)\mid A\in\Bfrak(X_\lambda)\}\subset\bigotimes_{\lambda\in\Lambda}\Bfrak(X_\lambda)
+    \end{align*}
+    となる．
+    注意 \ref{rem:measurable_space_other_axioms} \textrm{ii)} より，
+    \eqref{eqn:product_open_basis} の形の元も $\bigotimes_{\lambda\in\Lambda}\Bfrak(X_\lambda)$ に属する．
+    $\Ucal$ は高々可算な $X$ の開基だったので，\ref{item:sa3} より $X$ の任意の開集合も $\bigotimes_{\lambda\in\Lambda}\Bfrak(X_\lambda)$ に属する．
+    ゆえに，$\Bfrak(X)\subset\bigotimes_{\lambda\in\Lambda}\Bfrak(X_\lambda)$ を得る．
+\end{proof}
+
+\begin{corollary}
+    $\Bfrak^n=\underbrace{\Bfrak^1\otimes\cdots\otimes\Bfrak^1}_{\text{$n$ 個}}$.
+\end{corollary}
+
+\begin{proof}
+    命題 \ref{prop:product_compatibility} を $\Lambda=\{1,2,\ldots,n\},X_\lambda=\Rbb$ として適用すればいい．
+\end{proof}

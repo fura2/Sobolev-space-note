@@ -1,10 +1,10 @@
 \documentclass[a4paper,dvipdfmx]{jarticle}
 
-\usepackage{amscd}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{cite}
+\usepackage{color}
 \usepackage{enumitem}
 \usepackage{fnpct}
 \usepackage[top=30truemm,bottom=30truemm,left=20truemm,right=20truemm]{geometry}
@@ -13,6 +13,7 @@
 \usepackage{mathtools}
 \usepackage[refpage]{nomencl}
 \usepackage{pxjahyper}
+\usepackage{tikz-cd}
 
 \numberwithin{equation}{section}
 
@@ -30,9 +31,11 @@
 \newcommand{\Trm}{\mathrm{T}}
 
 \newcommand{\Ocal}{\mathcal{O}}
+\newcommand{\Ucal}{\mathcal{U}}
 
 \newcommand{\Afrak}{\mathfrak{A}}
 \newcommand{\Bfrak}{\mathfrak{B}}
+\newcommand{\Cfrak}{\mathfrak{C}}
 \newcommand{\Ffrak}{\mathfrak{F}}
 \newcommand{\Mfrak}{\mathfrak{M}}
 \newcommand{\cfrak}{\mathfrak{c}}
@@ -83,6 +86,7 @@
 \newtheorem{remark}[definition]{注意}
 \newtheorem{example}[definition]{例}
 \newtheorem{claim}{主張}
+\newtheorem*{claim*}{主張}
 \renewcommand\proofname{証明}
 
 \makenomenclature
@@ -91,8 +95,10 @@
 
 \begin{document}
 
-\input{1/main.tex}
+\tableofcontents
+\clearpage
 
+\input{1/main.tex}
 \input{bib.tex}
 
 \printnomenclature
