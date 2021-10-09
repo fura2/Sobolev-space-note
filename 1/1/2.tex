@@ -34,7 +34,7 @@
     \begin{enumerate}[label=\textsf{(OM\arabic*)},align=left]
         \item\label{item:om1} 任意の $A\subset X$ に対して $\Gamma(A)\ge0$.また，$\Gamma(\emptyset)=0$．
         \item\label{item:om2} 任意の $A,B\subset X,\ A\subset B,$ に対して $\Gamma(A)\le\Gamma(B)$．
-        \item\label{item:om3} 任意の $(A_i)_{i=1}^\infty\subset\Afrak$ に対して $\displaystyle\Gamma\biggl(\bigcup_{i=1}^\infty A_i\biggr)\le\sum_{i=1}^\infty\Gamma(A_i)$．
+        \item\label{item:om3} 任意の $(A_i)_{i=1}^\infty\subset2^X$ に対して $\displaystyle\Gamma\biggl(\bigcup_{i=1}^\infty A_i\biggr)\le\sum_{i=1}^\infty\Gamma(A_i)$．
     \end{enumerate}
 \end{definition}
 
@@ -48,7 +48,7 @@
     \end{gather*}
     のうちいずれか一つとする．
     また，空集合も区間の一つと考える．
-    区間の $n$ 次元体積を
+    区間 $I$ の $n$ 次元体積を
     \begin{align*}
         &\mathrm{vol}(I)\defeq\begin{cases}
             0&\text{if $I=\emptyset$}\\
@@ -335,6 +335,8 @@
     特に $\sigma(\Ffrak)\subset\Mfrak_\Gamma$ であって，$\Gamma$ を $\sigma(\Ffrak)$ 上に制限することで所望の測度 $\mu$ が得られる．
     $\mu$ の一意性については \cite[定理 9.1]{It63} を参照．
 \end{proof}
+
+{\color{red} TODO 直積測度空間について書く}
 
 次に，測度空間の完備性について述べる．
 
