@@ -6,7 +6,7 @@
     \begin{enumerate}[label=\textsf{(SA\arabic*)},align=left]
         \item\label{item:sa1} $\emptyset\in\Afrak$．
         \item\label{item:sa2} 任意の $A\in\Afrak$ に対して $A^\crm\in\Afrak$．\quad (ここで，$A^\crm\defeq X\setminus A$)
-        \item\label{item:sa3} 任意の $(A_i)_{i=1}^\infty\subset\Afrak$ に対して $\displaystyle\bigcup_{i=1}^\infty A_i\in\Afrak$．
+        \item\label{item:sa3} 任意の $(A_n)_{n=1}^\infty\subset\Afrak$ に対して $\displaystyle\bigcup_{n=1}^\infty A_n\in\Afrak$．
     \end{enumerate}
     \nomenclature{$A^\crm$}{集合 $A$ の補集合}
     組 $(X,\Afrak)$ を可測空間 (measurable space)，$\Afrak$ の元を可測集合 (measurable set) という．
@@ -16,7 +16,7 @@
     可測空間 $(X,\Afrak)$ に対して次が成り立つ．
     \begin{enumerate}
         \item $X\in\Afrak$．
-        \item 任意の $(A_i)_{i=1}^\infty\subset\Afrak$ に対して $\displaystyle\bigcap_{i=1}^\infty A_i\in\Afrak$．
+        \item 任意の $(A_n)_{n=1}^\infty\subset\Afrak$ に対して $\displaystyle\bigcap_{n=1}^\infty A_n\in\Afrak$．
     \end{enumerate}
     \textrm{i)} は \ref{item:sa1} と \ref{item:sa2} から，\textrm{ii)} は \ref{item:sa2} と \ref{item:sa3} から従う．
 \end{remark}
@@ -63,8 +63,8 @@
     可測空間 $\left(X,\bigotimes_{\lambda\in\Lambda}\Afrak_\lambda\right)$ を
     $((X_\lambda,\Afrak_\lambda))_{\lambda\in\Lambda}$ の直積可測空間という．
     \nomenclature{$(\Afrak_\lambda)_{\lambda\in\Lambda}$ の直積 $\sigma$-加法族}{$\bigotimes_{\lambda\in\Lambda}\Afrak_\lambda$}
-    $\Lambda$ が有限集合 $\{1,2,\ldots,k\}$ のときは直積 $\sigma$-加法族を
-    $\Afrak_1\otimes\cdots\otimes\Afrak_k$ や $\bigotimes_{i=1}^k\Afrak_i$ とも書く．
+    $\Lambda$ が有限集合 $\{1,2,\ldots,n\}$ のときは直積 $\sigma$-加法族を
+    $\Afrak_1\otimes\cdots\otimes\Afrak_n$ や $\bigotimes_{k=1}^n\Afrak_k$ とも書く．
     また，$\Lambda$ が高々可算な集合のときは
     \begin{align*}
         \bigotimes_{\lambda\in\Lambda}\Afrak_\lambda
@@ -97,8 +97,7 @@
         (\pm\infty)+(\pm\infty)\defeq\pm\infty,\\
         &(\pm\infty)-a=a-(\mp\infty)\defeq\pm\infty,\quad
         (\pm\infty)-(\mp\infty)\defeq\pm\infty,\\
-        &-(+\infty)\defeq-\infty,\quad
-        -(-\infty)\defeq+\infty\\
+        &-(\pm\infty)\defeq\mp\infty\\
         &a\cdot(\pm\infty)=(\pm\infty)\cdot a\defeq\begin{cases}
             \pm\infty&\text{if $0<a<+\infty$}\\
             \mp\infty&\text{if $-\infty<a<0$},

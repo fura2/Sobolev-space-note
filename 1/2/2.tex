@@ -139,8 +139,8 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
     $(X,\Afrak)$ を可測空間とする．
     \begin{enumerate}
         \item 可測関数 $f:X\to\Cbb,\ g:X\to\Cbb$ と $\alpha\in\Cbb,\ p>0$ に対して，$f+g,\ \alpha f,\ fg,\ |f|^p$ は可測である．
-        \item 可測関数列 $(f_i:X\to\Rbb\cup\{\pm\infty\})_{i=1}^\infty$ に対して，
-            $\displaystyle\sup_{i\ge1}f_i,\ \inf_{i\ge1}f_i$ は可測である．
+        \item 可測関数列 $(f_n:X\to\Rbb\cup\{\pm\infty\})_{n=1}^\infty$ に対して，
+            $\displaystyle\sup_{n\ge1}f_n,\ \inf_{n\ge1}f_n$ は可測である．
     \end{enumerate}
     {\color{red} TODO limsup, liminf について書く。$\Rbb\cup\{\pm\}$ のケースをどこまで書くか}
 \end{theorem}
@@ -151,7 +151,7 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
 
 \begin{corollary}\label{cor:measurable_function_pointwise_convergence}
     $(X,\Afrak)$ を可測空間，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ とする．
-    可測関数列 $(f_i:X\to Y)_{i=1}^\infty$ が関数 $f:X\to Y$ に $X$ 上で各点収束するなら，$f$ も可測である．
+    可測関数列 $(f_n:X\to Y)_{n=1}^\infty$ が関数 $f:X\to Y$ に $X$ 上で各点収束するなら，$f$ も可測である．
 \end{corollary}
 
 \begin{proof}
@@ -163,6 +163,5 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
     これは連続関数の空間との著しい違いである．
     たとえば $X=[0,1],f_n=x^n$ のとき，$(f_n)_{n=1}^\infty$ の各点収束極限 $\chi_{\{1\}}$ は連続ではない．
     「連続関数列の一様収束極限は連続である」という定理は，
-    連続関数の空間における系 \ref{cor:measurable_function_pointwise_convergence} の一つの対応物と考えられる
-    \footnote{もちろん，$X$ には一様収束が意味を持つような構造を課す必要がある．たとえば距離空間など．一般には一様空間．}．
+    連続関数の空間における系 \ref{cor:measurable_function_pointwise_convergence} の一つの対応物と考えられる．
 \end{remark}

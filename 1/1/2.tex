@@ -5,8 +5,9 @@
     次の二つの条件を満たす $\mu:\Afrak\to\Rbb\cup\{+\infty\}$ を $X$ 上の測度 (measure) という．
     \begin{enumerate}[label=\textsf{(M\arabic*)},align=left]
         \item\label{item:m1} 任意の $A\in\Afrak$ に対して $\mu(A)\ge0$．また，$\mu(\emptyset)=0$．\qquad (非負性)
-        \item\label{item:m2} 互いに素\footnote{pairwise disjoint．すなわち，$i\ne j$ ならば $A_i\cap A_j=\emptyset$．}な任意の $(A_i)_{i=1}^\infty\subset\Afrak$ に対して
-            $\displaystyle\mu\biggl(\bigcup_{i=1}^\infty A_i\biggr)=\sum_{i=1}^\infty\mu(A_i)$．\qquad ($\sigma$-加法性)
+        \item\label{item:m2} 互いに素\footnote{pairwise disjoint．すなわち，$i\ne j$ ならば $A_i\cap A_j=\emptyset$．}な
+            任意の $(A_n)_{n=1}^\infty\subset\Afrak$ に対して
+            $\displaystyle\mu\biggl(\bigcup_{n=1}^\infty A_n\biggr)=\sum_{n=1}^\infty\mu(A_n)$．\qquad ($\sigma$-加法性)
     \end{enumerate}
     三つ組 $(X,\Afrak,\mu)$ を測度空間 (measure space) という．
 \end{definition}
@@ -34,7 +35,8 @@
     \begin{enumerate}[label=\textsf{(OM\arabic*)},align=left]
         \item\label{item:om1} 任意の $A\subset X$ に対して $\Gamma(A)\ge0$.また，$\Gamma(\emptyset)=0$．
         \item\label{item:om2} 任意の $A,B\subset X,\ A\subset B,$ に対して $\Gamma(A)\le\Gamma(B)$．
-        \item\label{item:om3} 任意の $(A_i)_{i=1}^\infty\subset2^X$ に対して $\displaystyle\Gamma\biggl(\bigcup_{i=1}^\infty A_i\biggr)\le\sum_{i=1}^\infty\Gamma(A_i)$．
+        \item\label{item:om3} 任意の $(A_n)_{n=1}^\infty\subset2^X$ に対して
+            $\displaystyle\Gamma\biggl(\bigcup_{n=1}^\infty A_n\biggr)\le\sum_{n=1}^\infty\Gamma(A_n)$．
     \end{enumerate}
 \end{definition}
 
@@ -180,58 +182,58 @@
 \begin{proof}[定理 \ref{thm:outer_measure_to_measure} の証明]
     \ref{item:sa1}, \ref{item:sa2}, \ref{item:m1} は明らか．
     \ref{item:sa3}, \ref{item:m2} を示す．
-    互いに素な $(E_i)_{i=1}^\infty\subset\Mfrak_\Gamma$ を任意にとり，$S=\bigcup_{i=1}^\infty E_i$ と置く．
+    互いに素な $(E_n)_{n=1}^\infty\subset\Mfrak_\Gamma$ を任意にとり，$S=\bigcup_{n=1}^\infty E_n$ と置く．
 
     \begin{claim}\label{claim:out1}
-        任意の $A\subset X$ と $k\in\Zbb_{>0}$ に対して
+        任意の $A\subset X$ と $n\in\Zbb_{>0}$ に対して
         \begin{align}
-            \Gamma(A)\ge\sum_{i=1}^k\Gamma(A\cap E_i)+\Gamma(A\cup S^\crm).
+            \Gamma(A)\ge\sum_{k=1}^n\Gamma(A\cap E_k)+\Gamma(A\cup S^\crm).
             \label{eqn:outer_measure_claim1}
         \end{align}
     \end{claim}
 
     \begin{proof}[主張 \ref{claim:out1} の証明]
-        $k$ について帰納法で示す．
-        $k=1$ のとき，
+        $n$ について帰納法で示す．
+        $n=1$ のとき，
         \begin{align*}
             \Gamma(A)
             &=\Gamma(A\cap E_1)+\Gamma(A\cap E_1^\crm)&&\because E_1\in\Mfrak_\Gamma\\
             &\ge\Gamma(A\cap E_1)+\Gamma(A\cap S^\crm)&&\because\text{\ref{item:om2}}
         \end{align*}
         となるので成立．
-        $k$ で成立を仮定する．
-        \eqref{eqn:outer_measure_claim1} の $A$ として $A\cap E_{k+1}^\crm$ を選ぶと
+        $n$ で成立を仮定する．
+        \eqref{eqn:outer_measure_claim1} の $A$ として $A\cap E_{n+1}^\crm$ を選ぶと
         \begin{align*}
-            \Gamma(A\cap E_{k+1}^\crm)
-            &\ge\sum_{i=1}^k\Gamma(A\cap E_{k+1}^\crm\cap E_i)+\Gamma(A\cap E_{k+1}^\crm\cap S^\crm)\\
-            &=\sum_{i=1}^k\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm).
+            \Gamma(A\cap E_{n+1}^\crm)
+            &\ge\sum_{k=1}^n\Gamma(A\cap E_{n+1}^\crm\cap E_k)+\Gamma(A\cap E_{n+1}^\crm\cap S^\crm)\\
+            &=\sum_{k=1}^n\Gamma(A\cap E_k)+\Gamma(A\cap S^\crm).
         \end{align*}
         ゆえに，
         \begin{align*}
             \Gamma(A)
-            &=\Gamma(A\cap E_{k+1})+\Gamma(A\cap E_{k+1}^\crm)&&\because E_{k+1}\in\Mfrak_\Gamma\\
-            &\ge\Gamma(A\cap E_{k+1})+\sum_{i=1}^k\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm)\\
-            &=\sum_{i=1}^{k+1}\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm)
+            &=\Gamma(A\cap E_{n+1})+\Gamma(A\cap E_{n+1}^\crm)&&\because E_{n+1}\in\Mfrak_\Gamma\\
+            &\ge\Gamma(A\cap E_{n+1})+\sum_{k=1}^n\Gamma(A\cap E_k)+\Gamma(A\cap S^\crm)\\
+            &=\sum_{k=1}^{n+1}\Gamma(A\cap E_k)+\Gamma(A\cap S^\crm)
         \end{align*}
-        となって $k+1$ でも成立．
+        となって $n+1$ でも成立．
     \end{proof}
 
     よって，任意の $A\subset X$ に対して
     \begin{align*}
         \Gamma(A)
-        &\ge\sum_{i=1}^\infty\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm)&&\because\text{主張 \ref{claim:out1} で $k\to+\infty$}\\
-        &\ge\Gamma\biggl(\bigcup_{i=1}^\infty(A\cap E_i)\biggr)+\Gamma(A\cap S^\crm)&&\because\text{\ref{item:om3}}\\
+        &\ge\sum_{k=1}^\infty\Gamma(A\cap E_k)+\Gamma(A\cap S^\crm)&&\because\text{主張 \ref{claim:out1} で $n\to+\infty$}\\
+        &\ge\Gamma\biggl(\bigcup_{k=1}^\infty(A\cap E_k)\biggr)+\Gamma(A\cap S^\crm)&&\because\text{\ref{item:om3}}\\
         &=\Gamma(A\cap S)+\Gamma(A\cap S^\crm)\\
         &\ge\Gamma(A).&&\because\text{\ref{item:om3}}
     \end{align*}
     ゆえに，
     \begin{align*}
         \Gamma(A)
-        =\sum_{i=1}^\infty\Gamma(A\cap E_i)+\Gamma(A\cap S^\crm)
+        =\sum_{k=1}^\infty\Gamma(A\cap E_k)+\Gamma(A\cap S^\crm)
         =\Gamma(A\cap S)+\Gamma(A\cap S^\crm)
     \end{align*}
     となり $S\in\Mfrak_\Gamma$ が分かる．
-    $A=S$ として $\Gamma(S)=\sum_{i=1}^\infty\Gamma(E_i)$ もいえるので，\ref{item:m2} が成立．
+    $A=S$ として $\Gamma(S)=\sum_{k=1}^\infty\Gamma(E_k)$ もいえるので，\ref{item:m2} が成立．
 
     \begin{claim}\label{claim:out2}
         任意の $E,F\in\Mfrak_\Gamma$ に対して $E\cap F,E\setminus F\in\Mfrak_\Gamma$．
@@ -248,9 +250,9 @@
         また，$E\setminus F=E\cap F^\crm\in\Mfrak_\Gamma$．
     \end{proof}
 
-    互いに素とは限らない $(E_i)_{i=1}^\infty\subset\Mfrak_\Gamma$ に対して，主張 \ref{claim:out2} より
+    互いに素とは限らない $(E_n)_{n=1}^\infty\subset\Mfrak_\Gamma$ に対して，主張 \ref{claim:out2} より
     \begin{align*}
-        \bigcup_{i=1}^\infty E_i=E_1\cup(E_2\setminus E_1)\cup(E_3\setminus(E_1\cup E_2))\cup\cdots\in\Mfrak_\Gamma
+        \bigcup_{n=1}^\infty E_n=E_1\cup(E_2\setminus E_1)\cup(E_3\setminus(E_1\cup E_2))\cup\cdots\in\Mfrak_\Gamma
     \end{align*}
     となって，\ref{item:sa3} が成立．
 \end{proof}
@@ -295,13 +297,13 @@
     このとき，測度 $\mu:\sigma(\Ffrak)\to\Rbb\cup\{+\infty\}$ で $\mu\vert_\Ffrak=m$ を満たすものが存在するためには，
     $m$ が $\Ffrak$ 上で $\sigma$-加法的であること\footnote{このような $m$ は前測度 (premeasure) と呼ばれる．}：
     \begin{itemize}
-        \item 互いに素な任意の $(A_i)_{i=1}^\infty\subset\Ffrak$ で
-            $\displaystyle\bigcup_{i=1}^\infty A_i\in\Ffrak$ なるものに対して
-            $\displaystyle m\biggl(\bigcup_{i=1}^\infty A_i\biggr)=\sum_{i=1}^\infty m(A_i)$，
+        \item 互いに素な任意の $(A_n)_{n=1}^\infty\subset\Ffrak$ で
+            $\displaystyle\bigcup_{n=1}^\infty A_n\in\Ffrak$ なるものに対して
+            $\displaystyle m\biggl(\bigcup_{n=1}^\infty A_n\biggr)=\sum_{n=1}^\infty m(A_n)$，
     \end{itemize}
     が必要十分である．
-    さらに，ある $(X_i)_{i=1}^\infty\subset\Ffrak$ で
-    $m(X_i)<\infty$ ($i=1,2,\ldots$) かつ $\displaystyle\bigcup_{i=1}^\infty X_i=X$
+    さらに，ある $(X_n)_{n=1}^\infty\subset\Ffrak$ で
+    $m(X_n)<\infty$ ($n=1,2,\ldots$) かつ $\displaystyle\bigcup_{n=1}^\infty X_n=X$
     なるものが存在するなら，このような $\mu$ は一意である．
 \end{theorem}
 
@@ -312,16 +314,16 @@
     $\Gamma:2^X\to\Rbb\cup\{+\infty\}$ を任意の $A\subset X$ に対して
     \begin{align*}
         \Gamma(A)=\inf\left\{
-            \sum_{i=1}^\infty m(E_i)
+            \sum_{n=1}^\infty m(E_n)
             \,\middle\vert\,
-            E_1,E_2,\ldots\in\Ffrak,\ A\subset\bigcup_{i=1}^\infty E_i
+            E_1,E_2,\ldots\in\Ffrak,\ A\subset\bigcup_{n=1}^\infty E_n
         \right\}
     \end{align*}
     と定めると，これは $X$ 上の外測度になる．
     $\Gamma$ が $m$ の拡張になっていることを示そう．
     $E\in\Ffrak$ とする．
     $\Ffrak$ の元による $E$ の被覆として $\{E\}$ を選ぶことで $\Gamma(E)\le m(E)$ が分かる．
-    一方，$(E_i)_{i=1}^\infty\subset\Ffrak$ で $E\subset\bigcup_{i=1}^\infty E_i$ なるものに対して
+    一方，$(E_n)_{n=1}^\infty\subset\Ffrak$ で $E\subset\bigcup_{n=1}^\infty E_n$ なるものに対して
     \begin{align*}
         m(E)
         &=m(E_1\cap E)+m((E_2\setminus E_1)\cap E)+m((E_3\setminus(E_1\cup E_2))\cap E)+\cdots&&\because\text{$m$ は $\Ffrak$ 上 $\sigma$-加法的}\\
@@ -463,8 +465,8 @@
                 \left\{
                     x\in\Rbb\setminus\Qbb\,\middle\vert\,
                     \begin{array}{c}
-                        \text{ある $0\le i_0<i_1<\cdots$ に対して}\\
-                        a_{i_0}\mid a_{i_1}\mid a_{i_2}\mid\cdots
+                        \text{ある $0\le n_0<n_1<\cdots$ に対して}\\
+                        a_{n_0}\mid a_{n_1}\mid a_{n_2}\mid\cdots
                     \end{array}
                 \right\}\in\Bfrak_\Lrm^1\setminus\Bfrak^1.
             \end{align*}
