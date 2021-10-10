@@ -131,7 +131,7 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
 
     特に，$g$ が Lebesgue 可測であることしか分かっていないときには，合成関数の可測性については何も保証されないことに注意．
     $1,2$ 行目は可測関数の定義と $\Bfrak^n\subset\Bfrak_\Lrm^n$ から直ちに従う．
-    $3$ 行目は反例が \cite[\S2 Exercise 9]{Fo99}\cite[pp.72--73]{It63} にある．
+    $3$ 行目は反例が \cite[\S2 Exercise 9]{Fo99} や \cite[pp.72--73]{It63} にある．
     $4$ 行目は $3$ 行目から直ちに従う．
 \end{remark}
 
@@ -142,7 +142,6 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
         \item 可測関数列 $(f_n:X\to\Rbb\cup\{\pm\infty\})_{n=1}^\infty$ に対して，
             $\displaystyle\sup_{n\ge1}f_n,\ \inf_{n\ge1}f_n,\ \limsup_{n\to\infty}f_n,\ \liminf_{n\to\infty}f_n$ は可測である．
     \end{enumerate}
-    {\color{red} TODO $\Rbb\cup\{\pm\infty\}$ のケースをどこまで書くか}
 \end{theorem}
 
 \begin{proof}
@@ -154,7 +153,19 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
     $fg,|f|^p$ についても同様にして示される．
 
     \textrm{ii)} を示す．
-    {\color{red} TODO}
+    任意の $a\in\Rbb$ に対して
+    \begin{align*}
+        \Bigl(\sup_{n\ge1}f_n\Bigr)^{-1}((a,+\infty])
+        =\bigcup_{n=1}^\infty f_n^{-1}((a,+\infty])\in\Afrak
+    \end{align*}
+    と書けるので，命題 \ref{prop:measurable_function_characterization} より $\sup_{n\ge1}f_n$ は可測．
+    同様にして $\inf_{n\ge1}f_n$ が可測であることも分かる．
+    ゆえに
+    \begin{align*}
+        \limsup_{n\to\infty}f_n=\inf_{n\ge1}\Bigl(\sup_{m\ge n}f_m\Bigr),\quad
+        \liminf_{n\to\infty}f_n=\sup_{n\ge1}\Bigl(\inf_{m\ge n}f_m\Bigr)
+    \end{align*}
+    も可測．
 \end{proof}
 
 \begin{corollary}\label{cor:measurable_function_pointwise_convergence}
