@@ -138,14 +138,22 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
 \begin{theorem}\label{thm:elementary_measuable_functions}
     $(X,\Afrak)$ を可測空間とする．
     \begin{enumerate}
-        \item 可測関数 $f:X\to\Cbb,\ g:X\to\Cbb$ と $\alpha\in\Cbb,\ p>0$ に対して，$f+g,\ \alpha f,\ fg,\ |f|^p$ は可測である．
+        \item 可測関数 $f,g:X\to\Cbb$ と $\alpha\in\Cbb,\ p>0$ に対して，$f+g,\ \alpha f,\ fg,\ |f|^p$ は可測である．
         \item 可測関数列 $(f_n:X\to\Rbb\cup\{\pm\infty\})_{n=1}^\infty$ に対して，
-            $\displaystyle\sup_{n\ge1}f_n,\ \inf_{n\ge1}f_n$ は可測である．
+            $\displaystyle\sup_{n\ge1}f_n,\ \inf_{n\ge1}f_n,\ \limsup_{n\to\infty}f_n,\ \liminf_{n\to\infty}f_n$ は可測である．
     \end{enumerate}
-    {\color{red} TODO limsup, liminf について書く。$\Rbb\cup\{\pm\}$ のケースをどこまで書くか}
+    {\color{red} TODO $\Rbb\cup\{\pm\infty\}$ のケースをどこまで書くか}
 \end{theorem}
 
 \begin{proof}
+    \textrm{i)} を示す．
+    命題 \ref{prop:Meas_product} より $(X,\Afrak)\ni x\mapsto(f,g)\in(\Cbb\times\Cbb,\Bfrak(\Cbb)\otimes\Bfrak(\Cbb))$ は可測．
+    また，$\Cbb\times\Cbb\ni(a,b)\mapsto a+b\in\Cbb$ は連続なので命題 \ref{prop:conti_implies_measurable}, \ref{prop:product_compatibility} より可測．
+    従って，これらを合成して得られる $f+g$ も可測．
+    同様に，$\alpha f$ は $f$ と連続写像 $\Cbb\ni z\mapsto\alpha z\in\Cbb$ を合成して得られるので可測．
+    $fg,|f|^p$ についても同様にして示される．
+
+    \textrm{ii)} を示す．
     {\color{red} TODO}
 \end{proof}
 
@@ -155,7 +163,8 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
 \end{corollary}
 
 \begin{proof}
-    {\color{red} TODO}
+    $Y=\Rbb\cup\{\pm\infty\}$ のときは定理 \ref{thm:elementary_measuable_functions} \textrm{ii)} より明らか．
+    $Y=\Cbb$ のときは命題 \ref{prop:measurable_function_characterization} \textrm{ii)} よって前者のケースに帰着できる．
 \end{proof}
 
 \begin{remark}
