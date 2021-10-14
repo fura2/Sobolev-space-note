@@ -1,26 +1,32 @@
 \subsubsection{可測関数}
 
-{\color{red} TODO 文章考え直す}
-次に，可測写像 $f:X\to Y$ の積分を考えたい．
-そのためにはもう少し空間に構造を課す必要がある．
-まず，積分演算は線形性を持つべきという観点から，$Y$ (すなわち，積分の値が属する空間) はベクトル空間であってほしい．
-また，積分を定義する際に極限操作が必要となるので，$Y$ は位相空間にもなっていてほしい．
-従って，$Y$ が位相ベクトル空間であることを要請したい．
-そのようなもののうち最も基本的な状況として，$Y$ が``数''の空間である場合を考えよう
-\footnote{このように動機付けを行なったが，残念ながら
-定義 \ref{def:measurable_function} に現れる $\Rbb\cup\{\pm\infty\}$ はベクトル空間ではない．
-$(+\infty)+(-\infty)$ などが定義できないため．}
-\footnote{他にも，$Y$ が Banach 空間の場合に適用できる積分の理論がある (Bochner 積分という)．}．
+この節では，$Y$ が``数''の空間であるときの可測写像 $f:X\to Y$ の性質を調べる．
+\ref{sec:integration} 節で見るように，これらは``積分できる''関数の候補となるため，特に重要である．
 
 \begin{definition}\label{def:measurable_function}
     $(X,\Afrak)$ を可測空間，$Y=\Rbb\cup\{\pm\infty\} $ または $\Cbb$ とする．
     例 \ref{ex:Borel_algebra}, \ref{ex:extended_real} によって $(Y,\Bfrak(Y))$ も可測空間となる．
     このときの可測写像 $f:X\to Y$ を可測関数 (measurable function) という
-    \footnote{このように可測写像と可測関数を呼び分けている文献はあまり見かけないが，ある程度妥当な命名だと思う\cite{ms95741}．}．
+    \footnote{このように可測写像と可測関数を呼び分けるのは必ずしも一般的ではないが，ある程度妥当な命名だと思う\cite{ms95741}．}．
     特に，$E\subset\Rbb^n$ に対して，(例 \ref{ex:relative_sigma_algebra} の記法を用いて)
     \begin{enumerate}
         \item $(X,\Afrak)=(E,(\Bfrak^n)_E)$ のとき，$f$ を Borel 可測関数という．
-        \item $(X,\Afrak)=(E,(\Bfrak_\Lrm^n)_E)$ のとき，$f$ を Lebesgue 可測関数という．
+        \item $(X,\Afrak)=(E,(\Bfrak_\Lrm^n)_E)$ のとき，$f$ を Lebesgue 可測関数という
+            \footnote{
+                積分できる関数を増やしたいという文脈では，できるだけ多くの関数 $f:X\to Y$ が可測になってほしい．
+                そのためには $X$ 上の $\sigma$-加法族はできるだけ大きいものを，
+                $Y$ 上の $\sigma$-加法族はできるだけ小さいもの (必要最小限の可測集合だけを備えたもの) を選択するのがよさそうである．
+                この意味において，($(X,\Afrak)$ 上の測度 $\mu$ が与えられたときに) 測度空間 $(X,\Afrak,\mu)$ として完備なものを選ぶのは理にかなっており，
+                $Y$ 上の $\sigma$-加法族として $\Bfrak_\Lrm^1$ などを選ぶのは不合理である．
+                実際，$f$ が $\Rbb$-値 や $\Cbb\,(\simeq\Rbb^2)$-値のとき，
+                $Y$ 上の $\sigma$-加法族として $\Bfrak_\Lrm^1$ や $\Bfrak_\Lrm^2$ を選ぶこともできるが，
+                そのような可測写像はあまり良い性質を持たない．
+                たとえば，注意 \ref{rem:Borel_implies_Lebesgue} で見た，連続関数が可測になるという性質はもはや成立しなくなる \cite{mo31603}．
+
+                一方で，常に Lebesgue 可測関数を選ぶ (あるいは，$(X,\Afrak,\mu)$ として完備測度空間を選ぶ) のが良いとは限らない．
+                たとえば，注意 \ref{rem:Borel_Lebesgue_composition} で見るように，Lebesgue 可測関数は関数の合成についてよく振る舞わない．
+                どのクラスの可測関数を考えるのが適切かはケースバイケースだと思われる．
+            }．
     \end{enumerate}
 \end{definition}
 
@@ -36,26 +42,6 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
 \begin{remark}\label{rem:Borel_implies_Lebesgue}
     注意 \ref{rem:Borel_Lebesgue} により $\Bfrak^n\subset\Bfrak_\Lrm^n$ なので，Borel 可測関数は Lebesgue 可測である．
     特に命題 \ref{prop:conti_implies_measurable} により，連続関数は Lebesgue 可測である．
-\end{remark}
-
-\begin{remark}[\!\!\cite{mo31603}]
-    可測関数 $f:X\to Y$ の定義において，$Y$ 上の $\sigma$-加法族として常に Borel 集合族 $\Bfrak(Y)$ を選んでいることに注意．
-    $f$ が $\Rbb$-値 や $\Cbb\,(\simeq\Rbb^2)$-値のとき，
-    $Y$ 上の $\sigma$-加法族として $\Bfrak_\Lrm^1$ や $\Bfrak_\Lrm^2$ を選ぶこともできるが，
-    そのようにして定義された可測関数はあまり良い性質を持たない．
-    たとえば，注意 \ref{rem:Borel_implies_Lebesgue} で見た，連続関数が可測になるという性質はもはや成立しなくなる．
-
-    測度論で扱える関数 (または，積分できる関数) を増やしたいという文脈では，できるだけ多くの関数 $f:X\to Y$ が可測になってほしい．
-    そのためには $X$ 上の $\sigma$-加法族はできるだけ大きいものを，$Y$ 上の $\sigma$-加法族はできるだけ小さいものを選択するのがよさそうである．
-    この意味で，$X$ 上の $\sigma$-加法族として $(\Bfrak_\Lrm^n)_E$ を選ぶのは理にかなっており，
-    {\color{red}(TODO 完備化のことを書く)}
-    一方で $Y$ 上の $\sigma$-加法族として $\Bfrak_\Lrm^1$ などを選ぶのは不合理である．
-    また，後に \ref{sec:integration} 節で $f$ の積分を定義する際には，$Y$ の区間の $f$ による逆像が $X$ の可測集合になることを要請したい
-    (命題 \ref{prop:approx_measurable_by_simple} の証明を参照)．
-    $\Bfrak(Y)$ はこの要請を満たす $\sigma$-加法族として最小のものである．
-    {\color{red}
-    これをふまえて書き直す https://math.stackexchange.com/questions/3033951/confusion-about-measurability-requirements-for-lebesgue-integral
-    }
 \end{remark}
 
 可測関数の特徴づけとして次のことが知られている (こちらを可測関数の定義とすることも多い)．
@@ -106,7 +92,7 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
     \textrm{ii)} は命題 \ref{prop:Meas_product} と系 \ref{cor:Borel_product} より直ちに従う．
 \end{proof}
 
-\begin{remark}
+\begin{remark}\label{rem:Borel_Lebesgue_composition}
     Borel 可測関数や Lebesgue 可測関数の合成関数の可測性についてまとめておく．
 
     $E\subset\Rbb^n$ とし，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ とする．
@@ -146,7 +132,7 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
 
 \begin{proof}
     \textrm{i)} を示す．
-    命題 \ref{prop:Meas_product} より $(X,\Afrak)\ni x\mapsto(f,g)\in(\Cbb\times\Cbb,\Bfrak(\Cbb)\otimes\Bfrak(\Cbb))$ は可測．
+    命題 \ref{prop:Meas_product} より $(X,\Afrak)\ni x\mapsto(f(x),g(x))\in(\Cbb\times\Cbb,\Bfrak(\Cbb)\otimes\Bfrak(\Cbb))$ は可測．
     また，$\Cbb\times\Cbb\ni(a,b)\mapsto a+b\in\Cbb$ は連続なので命題 \ref{prop:conti_implies_measurable}, \ref{prop:product_compatibility} より可測．
     従って，これらを合成して得られる $f+g$ も可測．
     同様に，$\alpha f$ は $f$ と連続写像 $\Cbb\ni z\mapsto\alpha z\in\Cbb$ を合成して得られるので可測．
@@ -182,6 +168,6 @@ $(+\infty)+(-\infty)$ などが定義できないため．}
     系 \ref{cor:measurable_function_pointwise_convergence} は可測関数の空間が各点収束について閉じていることを意味している．
     これは連続関数の空間との著しい違いである．
     たとえば $X=[0,1],f_n=x^n$ のとき，$(f_n)_{n=1}^\infty$ の各点収束極限 $\chi_{\{1\}}$ は連続ではない．
-    「連続関数列の一様収束極限は連続である」という定理は，
+    「連続関数列の一様収束極限は連続である」という事実は，
     連続関数の空間における系 \ref{cor:measurable_function_pointwise_convergence} の一つの対応物と考えられる．
 \end{remark}

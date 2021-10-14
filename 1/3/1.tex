@@ -1,0 +1,247 @@
+\subsubsection{積分の定義と性質}
+
+測度空間 $(X,\Afrak,\mu)$ が与えられているとする．
+$X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ に値をとる可測写像 $f:X\to Y$) に対して積分を定義しよう
+\footnote{
+    被積分関数の候補として可測関数を選ぶのは天下り的に感じるかもしれない．
+    この理由については，次のように発見的に議論できる．
+
+    集合 $Y$ に値をとる写像 $f:X\to Y$ に対して，$f$ の $X$ 上の積分 $\int_Xf\,\drm\mu$ を定義したい．
+    そのために，$Y$ や $f$ はどのような条件を満たすべきだろうか．
+    まず，積分演算は線形性を持つべきという観点から，積分の値が属する空間 $Y$ はベクトル空間であってほしい．
+    また，積分を定義する際に極限操作が必要となる．
+    具体的には，$f$ を性質がよく分かっている写像 (単関数) の列 $(f_n)_{n=1}^\infty$ で近似し，
+    それらの積分 $\int_X f_n\,\drm\mu$ の極限をもって $\int_Xf\,\drm\mu$ の値を定める．
+    そのためには $Y$ は位相空間にもなっていてほしい．
+    従って，$Y$ が位相ベクトル空間であることを要請したい．
+    ゆえに，$f:X\to Y$ は測度空間から位相ベクトル空間への写像である．
+    しかしそれだけではうまくいかない．
+    compatibility が必要である：
+    \begin{quote}
+        複数の数学的構造にわたる理論においてはいつも，それらの構造の間の何かしらの関係が規定される (と思う)．
+        たとえば，環とは Abel 群とモノイドの構造を併せ持つ数学的対象であるが，二つの演算の間に分配法則が成り立つことを仮定する．
+        また，位相ベクトル空間では和とスカラー倍の演算が連続であることを仮定する．
+        複数の構造を結びつけるために，このような関係は必要不可欠である．
+    \end{quote}
+    最も基本的な状況として，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ である場合を考えよう．
+    $Y=\Rbb\cup\{\pm\infty\}$ のときには，compatibility として $Y$ の任意の開区間の $f$ による引き戻しが可測であることを要請する．
+    この条件は命題 \ref{prop:approx_measurable_by_simple} の証明において本質的に用いられる．
+    $Y=\Cbb$ のときは $f$ の実部，虚部それぞれに対して同上の条件を課す．
+    これらの条件は $f$ が可測関数であることに他ならない (命題 \ref{prop:measurable_function_characterization})．
+    以上より，非積分関数の候補として可測関数を選ぶことの妥当性が了解される．
+}\footnote{
+    他にも，$Y$ が Banach 空間の場合に適用できる積分の理論がある (Bochner 積分という)．
+}．
+
+\begin{definition}
+    $X$ を集合とする．
+    $E\subset X$ に対して，
+    \begin{align*}
+        \chi_E(x)\defeq\begin{cases}
+            1&\text{if $x\in E$}\\
+            0&\text{otherwise}
+        \end{cases}
+    \end{align*}
+    で定義される関数 $\chi_E:X\to\{0,1\}$ を $E$ の定義関数
+    (または指示関数 (indicator function)，特性関数 (characteric function)) という．
+    \nomenclature{$\chi_E$}{集合 $E$ の定義関数}
+\end{definition}
+
+\begin{definition}
+    $X$ を集合とする．
+    $X$ 上の実数値関数であって有限種類の値しか取らないもの，すなわち，
+    $X$ の互いに素な部分集合 $E_1,\ldots,E_k$ と相異なる $\alpha_1,\ldots,\alpha_k\in\Rbb\setminus\{0\}$ を用いて
+    \begin{align}
+        f(x)=\sum_{i=1}^k\alpha_i\chi_{E_i}(x)
+        \label{eqn:simple_function}
+    \end{align}
+    と表される関数 $f:X\to\Rbb$ を $X$ 上の単関数 (simple function) という．
+\end{definition}
+
+\begin{proposition}\label{prop:measurability_of_simple_function}
+    $(X,\Afrak)$ を可測空間とする．
+    単関数 \eqref{eqn:simple_function} が可測関数であることは $E_1,\ldots,E_k\in\Afrak$ と同値である．
+\end{proposition}
+
+\begin{proof}
+    明らか．
+\end{proof}
+
+次の命題は，非負値可測関数が可測な非負値単関数で近似できることを主張する．
+
+\begin{proposition}\label{prop:approx_measurable_by_simple}
+    $(X,\Afrak)$ を可測空間，$f:X\to\Rbb\cup\{\pm\infty\}$ を非負値可測関数とする．
+    このとき，非負値可測単関数の列 $(f_n:X\to\Rbb)_{n=1}^\infty$ であって $f$ に $X$ 上で各点収束するものが存在する．
+\end{proposition}
+
+\begin{proof}
+    \begin{align*}
+        f_n(x)=\begin{cases}
+            \dfrac{k}{2^n}&\text{if $\dfrac{k}{2^n}\le f(x)<\dfrac{k+1}{2^n}$ for some $k\in\{0,1,\ldots,n2^n-1\}$}\\
+            n&\text{if $n\le f(x)$}
+        \end{cases}
+    \end{align*}
+    と定める．
+    命題 \ref{prop:measurable_function_characterization} より
+    \begin{align*}
+        &\left\{x\in X\,\middle\vert\,f_n(x)=\dfrac{k}{2^n}\right\}
+        =f^{-1}\biggl(\biggl[\dfrac{k}{2^n},\dfrac{k+1}{2^n}\biggr)\biggr)\in\Afrak\\
+        &\{x\in X\mid f_n(x)=n\}=f^{-1}([n,+\infty])\in\Afrak
+    \end{align*}
+    となるので，命題 \ref{prop:measurability_of_simple_function} より各 $f_n$ は可測である．
+    また，任意の $x\in X$ に対して $(f_n(x))_{n=1}^\infty$ は単調増加するので
+    ($+\infty$ も許せば) $\displaystyle\lim_{n\to\infty}f_n(x)$ が存在する．
+
+    $\displaystyle\lim_{n\to\infty}f_n(x)=f(x)$ を示す．
+    $f(x)<+\infty$ のとき，$n>f(x)$ なる任意の $n$ に対して $|f_n(x)-f(x)|\le1/2^n$ となるのでよい．
+    一方，$f(x)=+\infty$ のときは $f_n(x)=n$ なのでよい．
+\end{proof}
+
+\begin{definition}\label{def:Lebesgue_integral}
+    $(X,\Afrak,\mu)$ を測度空間とする．
+    \begin{enumerate}
+        \item $f:X\to\Rbb\cup\{\pm\infty\}$ を非負値可測単関数とする．
+            $f$ は $E_1,\ldots,E_k\in\Afrak$ と相異なる正の実数 $\alpha_1,\ldots,\alpha_k$ を用いて
+            \eqref{eqn:simple_function} と一意に表される．
+            このとき，$f$ の積分を
+            \begin{align*}
+                \int_Xf(x)\,\drm\mu(x)\defeq\sum_{i=1}^k\alpha_i\mu(E_i)
+            \end{align*}
+            と定める．
+        \item $f:X\to\Rbb\cup\{\pm\infty\}$ を非負値可測関数とする．
+            命題 \ref{prop:approx_measurable_by_simple} より，
+            $f$ に各点収束する非負値単関数列 $(f_i:X\to\Rbb)_{i=1}^\infty$ が存在する．
+            このとき，$f$ の積分を
+            \begin{align*}
+                \int_Xf(x)\,\drm\mu(x)\defeq\lim_{i\to\infty}\int_Xf_i(x)\,\drm\mu(x)
+            \end{align*}
+            と定める (値が $+\infty$ でもよい)．
+            これは well-defined である \cite[pp.74--77]{It63}．
+        \item
+            \begin{enumerate}
+                \item
+                    $f:X\to\Rbb\cup\{\pm\infty\}$ を可測関数とする．
+                    $f^+(x)\defeq\max\{f(x),0\},\ f^-(x)\defeq\max\{-f(x),0\}$ と置くと，
+                    定理 \ref{thm:elementary_measuable_functions} より $f^+,f^-$ は非負値可測関数であって，
+                    $f=f^+-f^-$ と書ける．
+                    \begin{align}
+                        \int_Xf^+(x)\,\drm\mu(x),\quad
+                        \int_Xf^-(x)\,\drm\mu(x)
+                        \label{eqn:f_pm_integral}
+                    \end{align}
+                    の少なくとも一方が有限であることを仮定する．
+                    このとき，$f$ の積分を
+                    \begin{align}
+                        \int_Xf(x)\,\drm\mu(x)\defeq\int_Xf^+(x)\,\drm\mu(x)-\int_Xf^-(x)\,\drm\mu(x)
+                        \label{eqn:f_integral}
+                    \end{align}
+                    と定める (値が $\pm\infty$ でもよい)．
+                    \eqref{eqn:f_pm_integral} の両方 (従って \eqref{eqn:f_integral}) が有限であるとき，$f$ は可積分 (integrable) であるという．
+                \item
+                    $f:X\to\Cbb$ を可測関数とする．
+                    命題 \ref{prop:measurable_function_characterization} より $\Re f,\Im f$ は可測関数である．
+                    $\Re f,\Im f$ が (a) の意味で可積分であると仮定する．
+                    このとき，$f$ は可積分であるといい，$f$ の積分を
+                    \begin{align*}
+                        \int_Xf(x)\,\drm\mu(x)\defeq\int_X\Re f(x)\,\drm\mu(x)+\im\int_X\Im f(x)\,\drm\mu(x)
+                    \end{align*}
+                    と定める．
+            \end{enumerate}
+            $f$ の積分を $\displaystyle\int_Xf\,\drm\mu$ と略記することもある．
+    \end{enumerate}
+\end{definition}
+
+このように定義される，測度空間上の可測関数の積分を Lebesgue 積分という．
+ただし，特に Lebesgue 測度に関する積分
+(すなわち，測度空間として $(\Rbb^n,\Bfrak_\Lrm^n,\mu_\Lrm^n)$
+(または，その $E\in\Bfrak_\Lrm^n$ への制限 $(E,(\Bfrak_\Lrm^n)_E,\mu_\Lrm^n\vert_{(\Bfrak_\Lrm^n)_E})$) を選んだ場合)
+のことを指して Lebesgue 積分という語を使うこともある．
+このときの積分を
+\begin{align*}
+    \int_{\Rbb^n}f(x)\,\drm x\defeq\int_{\Rbb^n}f(x)\,\drm\mu_\Lrm^n(x)
+    \quad\left(\text{または}\ 
+    \int_Ef(x)\,\drm x\defeq\int_Ef(x)\,\drm\mu_\Lrm^n\vert_{(\Bfrak_\Lrm^n)_E}(x)
+    \right)
+\end{align*}
+と表記する．
+
+Lebesgue 積分の基本的な性質をまとめておく．
+
+\begin{proposition}
+    $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\} $ または $\Cbb$ とする．
+    可測関数 $f:X\to Y$ が可積分であることは，定義 \ref{def:Lebesgue_integral} \textrm{ii)} の意味で
+    \begin{align*}
+        \int_X|f(x)|\,\drm\mu(x)<+\infty
+    \end{align*}
+    であることと同値である．
+\end{proposition}
+
+\begin{proof}
+    {\color{red}TODO}
+\end{proof}
+
+\begin{theorem}
+    $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\} $ または $\Cbb$ とする．
+    可積分関数 $f:X\to Y$ に対して
+    \begin{align*}
+        \left\lvert\int_Xf(x)\,\drm\mu(x)\right\rvert
+        \le\int_X|f(x)|\,\drm\mu(x)
+    \end{align*}
+    が成り立つ．
+\end{theorem}
+
+\begin{proof}
+    \cite[定理 12.1]{It63} を参照．
+\end{proof}
+
+\begin{theorem}
+    $(X,\Afrak,\mu)$ を測度空間とする．
+    可積分関数 $f,g:X\to\Cbb$ と $\alpha,\beta\in\Cbb$ に対して，
+    $\alpha f+\beta g$ も可積分であって
+    \begin{align*}
+        \int_X(\alpha f(x)+\beta g(x))\,\drm\mu(x)
+        =\alpha\int_Xf(x)\,\drm\mu(x)+\beta\int_Xg(x)\,\drm\mu(x)
+    \end{align*}
+    が成り立つ．
+\end{theorem}
+
+\begin{proof}
+    \cite[定理 12.3, 系 1]{It63} を参照．
+\end{proof}
+
+\begin{definition}
+    $(X,\Afrak,\mu)$ を測度空間とする．
+    $X$ の点 $x$ に関する命題 $P(x)$ に対して，
+    ある零集合 $N\in\Afrak$ が存在して，任意の $x\in X\setminus N$ で $P(x)$ が成立するとき，
+    $P$ は $\mu$ について $X$ 上ほとんどいたる所 (almost everywhere) 成立するといい，
+    $P(x)\ \textrm{$\mu$-a.e.\ $x\in X$}$ と書く．
+    文脈から明らかなときは $P\ \textrm{$\mu$-a.e.\ $X$}$ や $P\ \textrm{a.e.\ $X$}$ などと略記することもある．
+    \nomenclature{$\textrm{a.e.}$}{ほとんどいたる所}
+\end{definition}
+
+\begin{theorem}
+    $(X,\Afrak,\mu)$ を測度空間とする．
+    可積分関数 $f:X\to\Cbb$ に対して，$f=0\ \textrm{$\mu$-a.e.\ $X$}$ であることは
+    \begin{align*}
+        \int_X|f(x)|\,\drm\mu(x)=0
+    \end{align*}
+    と同値である．
+\end{theorem}
+
+\begin{proof}
+    \cite[定理 12.3, 系 2]{It63} を参照．
+\end{proof}
+
+\begin{example}
+    Riemann 可積分な関数は Lebesgue 積分の意味でも可積分であって積分値は等しい．
+    一方で，広義 Riemann 積分まで含めるとこれは必ずしも成り立たない．
+    $\Rbb$ 上の関数 $\sin x/x$ (ただし，$x=0$ での値は $1$ と定める) は
+    \begin{align*}
+        \int_{\Rbb}\left\lvert\frac{\sin x}{x}\right\rvert\drm x=+\infty
+    \end{align*}
+    となるので Lebesgue 積分の意味で可積分ではないが，
+    \begin{align*}
+        \lim_{\substack{L\to-\infty\\R\to+\infty}}\int_{L}^R\frac{\sin x}{x}\,\drm x=\pi
+    \end{align*}
+    となるので広義 Riemann 可積分である．
+\end{example}
