@@ -23,12 +23,11 @@ $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb
         また，位相ベクトル空間では和とスカラー倍の演算が連続であることを仮定する．
         複数の構造を結びつけるために，このような関係は必要不可欠である．
     \end{quote}
-    最も基本的な状況として，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ である場合を考えよう．
-    $Y=\Rbb\cup\{\pm\infty\}$ のときには，compatibility として $Y$ の任意の開区間の $f$ による引き戻しが可測であることを要請する．
-    この条件は命題 \ref{prop:approx_measurable_by_simple} の証明において本質的に用いられる．
-    $Y=\Cbb$ のときは $f$ の実部，虚部それぞれに対して同上の条件を課す．
-    これらの条件は $f$ が可測関数であることに他ならない (命題 \ref{prop:measurable_function_characterization})．
+    compatibility として，$Y$ の任意の開集合の $f$ による引き戻しが $X$ の可測集合になることを要請する．
+    最も基本的な状況として，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ である場合を考えると，
+    この条件は $f$ が可測関数であることに他ならない．
     以上より，非積分関数の候補として可測関数を選ぶことの妥当性が了解される．
+    なお，$\Rbb\cup\{\pm\infty\}$ はベクトル空間ではないが，一部の例外を除けば和とスカラー倍が定義できるため大きな問題にはならない．
 }\footnote{
     他にも，$Y$ が Banach 空間の場合に適用できる積分の理論がある (Bochner 積分という)．
 }．
@@ -67,12 +66,12 @@ $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb
     明らか．
 \end{proof}
 
-次の命題は，非負値可測関数が可測な非負値単関数で近似できることを主張する．
+次の定理は，非負値可測関数が可測な非負値単関数で近似できることを主張する．
 
-\begin{proposition}\label{prop:approx_measurable_by_simple}
+\begin{theorem}\label{thm:approx_measurable_by_simple}
     $(X,\Afrak)$ を可測空間，$f:X\to\Rbb\cup\{\pm\infty\}$ を非負値可測関数とする．
     このとき，非負値可測単関数の列 $(f_n:X\to\Rbb)_{n=1}^\infty$ であって $f$ に $X$ 上で各点収束するものが存在する．
-\end{proposition}
+\end{theorem}
 
 \begin{proof}
     \begin{align*}
@@ -109,7 +108,7 @@ $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb
             \end{align*}
             と定める．
         \item $f:X\to\Rbb\cup\{\pm\infty\}$ を非負値可測関数とする．
-            命題 \ref{prop:approx_measurable_by_simple} より，
+            定理 \ref{thm:approx_measurable_by_simple} より，
             $f$ に各点収束する非負値単関数列 $(f_i:X\to\Rbb)_{i=1}^\infty$ が存在する．
             このとき，$f$ の積分を
             \begin{align*}
@@ -121,7 +120,7 @@ $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb
             \begin{enumerate}
                 \item
                     $f:X\to\Rbb\cup\{\pm\infty\}$ を可測関数とする．
-                    $f^+(x)\defeq\max\{f(x),0\},\ f^-(x)\defeq\max\{-f(x),0\}$ と置くと，
+                    $f^+(x)\defeq\max\{f(x),0\},\ f^-(x)\defeq-\min\{f(x),0\}$ と置くと，
                     定理 \ref{thm:elementary_measuable_functions} より $f^+,f^-$ は非負値可測関数であって，
                     $f=f^+-f^-$ と書ける．
                     \begin{align}
