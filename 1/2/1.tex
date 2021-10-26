@@ -1,12 +1,12 @@
 \subsubsection{可測写像}
 
 \begin{definition}
-    $(X_1,\Afrak_1),(X_2,\Afrak_2)$ を可測空間とする．
+    $(X_i,\Afrak_i)$ ($i=1,2$) を可測空間とする．
     $f:X_1\to X_2$ が可測写像 (measurable map) であるとは，任意の $A\in\Afrak_2$ に対して $f^{-1}(A)\in\Afrak_1$ となることをいう．
 \end{definition}
 
 \begin{proposition}\label{prop:Meas_prop}
-    $(X_1,\Afrak_1),(X_2,\Afrak_2),(X_3,\Afrak_3)$ を可測空間とするとき，次が成り立つ．
+    $(X_i,\Afrak_i)$ ($i=1,2,3$) を可測空間とするとき，次が成り立つ．
     \begin{enumerate}
         \item 可測写像 $f:X_1\to X_2,\ g:X_2\to X_3$ に対して，$g\circ f:X_1\to X_3$ も可測．
         \item 恒等写像 $\mathrm{id}_{X_1}:{X_1}\to{X_1}$ は可測．
@@ -82,8 +82,8 @@
 \end{remark}
 
 \begin{proposition}\label{prop:conti_implies_measurable}
-    $(X_1,\Ocal_1),(X_2,\Ocal_2)$ を位相空間，$f:X_1\to X_2$ を連続写像とする．
-    $X_1,X_2$ を例 \ref{ex:Borel_algebra} によって可測空間 $(X_1,\Bfrak(X_1)),(X_2,\Bfrak(X_2))$ と見なすとき，
+    $(X_i,\Ocal_i)$ ($i=1,2$) を位相空間，$f:X_1\to X_2$ を連続写像とする．
+    各 $X_i$ を例 \ref{ex:Borel_algebra} によって可測空間 $(X_i,\Bfrak(X_i))$ と見なすとき，
     $f$ は可測写像になる．
 \end{proposition}
 
@@ -161,7 +161,7 @@
         \item $\Lambda$ は高々可算な集合であって，各 $\lambda\in\Lambda$ に対して $X_\lambda$ は第二可算公理を満たすとする．
             このとき，$X$ も第二可算公理を満たし，$\Bfrak(X)\subset\bigotimes_{\lambda\in\Lambda}\Bfrak(X_\lambda)$ が成り立つ
             \footnote{
-                位相が任意個の合併について閉じているのに対して，$\sigma$-加法族は可算個の合併についてしか閉じていない．
+                位相が任意個の開集合の合併について閉じているのに対して，$\sigma$-加法族は可算個の可測集合の合併についてしか閉じていない．
                 証明において，第二可算公理はこのギャップを埋める (すなわち，任意個の合併が実は可算個の合併として書けることを保証する) ために用いられる．
             }．
     \end{enumerate}

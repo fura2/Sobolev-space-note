@@ -170,7 +170,7 @@ Lebesgue 積分の基本的な性質をまとめておく．
     $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\} $ または $\Cbb$ とする．
     可測関数 $f:X\to Y$ が可積分であることは，定義 \ref{def:Lebesgue_integral} \textrm{ii)} の意味で
     \begin{align*}
-        \int_X|f(x)|\,\drm\mu(x)<+\infty
+        \int_X|f|\,\drm\mu<+\infty
     \end{align*}
     であることと同値である．
 \end{proposition}
@@ -183,8 +183,8 @@ Lebesgue 積分の基本的な性質をまとめておく．
     $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\} $ または $\Cbb$ とする．
     可積分関数 $f:X\to Y$ に対して
     \begin{align*}
-        \left\lvert\int_Xf(x)\,\drm\mu(x)\right\rvert
-        \le\int_X|f(x)|\,\drm\mu(x)
+        \left\lvert\int_Xf\,\drm\mu\right\rvert
+        \le\int_X|f|\,\drm\mu
     \end{align*}
     が成り立つ．
 \end{theorem}
@@ -198,8 +198,8 @@ Lebesgue 積分の基本的な性質をまとめておく．
     可積分関数 $f,g:X\to\Cbb$ と $\alpha,\beta\in\Cbb$ に対して，
     $\alpha f+\beta g$ も可積分であって
     \begin{align*}
-        \int_X(\alpha f(x)+\beta g(x))\,\drm\mu(x)
-        =\alpha\int_Xf(x)\,\drm\mu(x)+\beta\int_Xg(x)\,\drm\mu(x)
+        \int_X(\alpha f+\beta g)\,\drm\mu
+        =\alpha\int_Xf\,\drm\mu+\beta\int_Xg\,\drm\mu
     \end{align*}
     が成り立つ．
 \end{theorem}
@@ -222,7 +222,7 @@ Lebesgue 積分の基本的な性質をまとめておく．
     $(X,\Afrak,\mu)$ を測度空間とする．
     可積分関数 $f:X\to\Cbb$ に対して，$f=0\ \textrm{$\mu$-a.e.\ $X$}$ であることは
     \begin{align*}
-        \int_X|f(x)|\,\drm\mu(x)=0
+        \int_X|f|\,\drm\mu=0
     \end{align*}
     と同値である．
 \end{theorem}

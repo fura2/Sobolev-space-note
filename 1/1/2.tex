@@ -332,13 +332,61 @@
     となるので，右辺の下限をとると $m(E)\le\Gamma(E)$ を得る．
     従って，$\Gamma$ は $m$ の拡張になっている．
 
-    この $\Gamma$ に対して定理 \ref{thm:outer_measure_to_measure} を適用して測度空間 $(X,\Mfrak_\Gamma,\Gamma\vert_{\Mfrak_\Gamma})$ を得る．
+    この $\Gamma$ に対して定理 \ref{thm:outer_measure_to_measure} を適用して，測度空間 $(X,\Mfrak_\Gamma,\Gamma\vert_{\Mfrak_\Gamma})$ を得る．
     $\Ffrak\subset\Mfrak_\Gamma$ \cite[定理 5.2]{It63} で $\Mfrak_\Gamma$ は $\sigma$-加法族なので，
     特に $\sigma(\Ffrak)\subset\Mfrak_\Gamma$ であって，$\Gamma$ を $\sigma(\Ffrak)$ 上に制限することで所望の測度 $\mu$ が得られる．
     $\mu$ の一意性については \cite[定理 9.1]{It63} を参照．
 \end{proof}
 
-{\color{red} TODO 直積測度空間について書く}
+定理 \ref{thm:Hopf_extension} を用いて有限個の測度空間の直積が構成できる．
+
+\begin{definition}
+    測度空間 $(X,\Afrak,\mu)$ が $\sigma$-有限であるとは，
+    可測集合の列 $(A_n)_{n=1}^\infty\subset\Afrak$ であって $\mu(A_n)<+\infty$ ($n=1,2,\ldots$)
+    かつ $\bigcup_{n=1}^\infty A_n=X$ を満たすものが存在することをいう．
+\end{definition}
+
+\begin{theorem}\label{thm:product_measure_well_defined}
+    $(X_i,\Afrak_i,\mu_i)$ ($i=1,\ldots,n$) を測度空間とする．
+    これらの直積可測空間 (例 \ref{ex:product_sigma_algebra}) を $(\prod_{i=1}^nX_i,\bigotimes_{i=1}^n\Afrak_i)$ と置く．
+    このとき，$\prod_{i=1}^nX_i$ 上の測度 $\mu:\bigotimes_{i=1}^n\Afrak_i\to\Rbb\cup\{+\infty\}$ であって，
+    任意の $A_i\in\Afrak_i$ ($i=1,\ldots,n$) に対して
+    \begin{align}
+        \mu(A_1\times\cdots\times A_n)=\begin{cases}
+            0&\text{if $\mu_i(A_i)=0$ for some $i\in\{1,\ldots,n\}$}\\
+            \mu_1(A_1)\cdots\mu_n(A_n)&\text{otherwise}
+        \end{cases}
+        \label{eqn:product_measure_core}
+    \end{align}
+    を満たすものが存在する
+    \footnote{例 \ref{ex:extended_real} の注釈で述べたように $0\cdot(+\infty)\defeq0$ と定めるならば，
+    \eqref{eqn:product_measure_core} の場合分けは必要なくなる．}．
+    さらに，各 $(X_i,\Afrak_i,\mu_i)$ が $\sigma$-有限ならこのような $\mu$ は一意である．
+\end{theorem}
+
+\begin{proof}
+    $\prod_{i=1}^nA_i$ ($A_i\in\Afrak_i$) の有限個の非交和で表される集合の全体を $\Ffrak$ と置くと，
+    これは $\prod_{i=1}^nX_i$ 上の有限加法族になる．
+    そして，$\widetilde\mu:\Ffrak\to\Rbb\cup\{+\infty\}$ を
+    \begin{align*}
+        \widetilde\mu\biggl(\biggl(\prod_{i=1}^nA_{i,1}\biggr)\sqcup\cdots\sqcup\biggl(\prod_{i=1}^nA_{i,k}\biggr)\biggr)
+        =\mu\biggl(\prod_{i=1}^nA_{i,1}\biggr)+\cdots+\mu\biggl(\prod_{i=1}^nA_{i,k}\biggr),\quad
+        A_{i,k}\in\Afrak_i,
+    \end{align*}
+    と定める (右辺は \eqref{eqn:product_measure_core} のものとする) と，$\widetilde\mu$ は well-defined であって
+    $\Ffrak$ 上の有限加法的測度になる．
+    さらに，$\widetilde\mu$ が $\Ffrak$ 上で $\sigma$-加法的であることも示せる．
+    ゆえに，定理 \ref{thm:Hopf_extension} より $\widetilde\mu$ は
+    $\Afrak_1\otimes\Afrak_2=\sigma(\Afrak_1\times\Afrak_2)=\sigma(\Ffrak)$ 上の測度に拡張できる．
+    拡張の一意性も定理 \ref{thm:Hopf_extension} から直ちに従う．
+    詳細は \cite[\S2.5]{Fo99} などを参照．
+\end{proof}
+
+\begin{definition}
+    $\sigma$-有限な測度空間 $(X_i,\Afrak_i,\mu_i)$ ($i=1,\ldots,n$) に対して，
+    定理 \ref{thm:product_measure_well_defined} の $\mu$ を $\bigotimes_{i=1}^n\mu_i=\mu_1\otimes\cdots\otimes\mu_n$ と書き，
+    $(\prod_{i=1}^nX_i,\bigotimes_{i=1}^n\Afrak_i,\bigotimes_{i=1}^n\mu_i)$ を直積測度空間という．
+\end{definition}
 
 次に，測度空間の完備性について述べる．
 
