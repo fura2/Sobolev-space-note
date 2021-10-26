@@ -232,13 +232,13 @@ Lebesgue 積分の基本的な性質をまとめておく．
 \end{proof}
 
 \begin{example}
-    Riemann 可積分な関数は Lebesgue 積分の意味でも可積分であって積分値は等しい．
+    Riemann 可積分な関数は (Lebesgue 測度に関する) Lebesgue 積分の意味でも可積分であって，両者の積分値は等しい．
     一方で，広義 Riemann 積分まで含めるとこれは必ずしも成り立たない．
     $\Rbb$ 上の関数 $\sin x/x$ (ただし，$x=0$ での値は $1$ と定める) は
     \begin{align*}
         \int_{\Rbb}\left\lvert\frac{\sin x}{x}\right\rvert\drm x=+\infty
     \end{align*}
-    となるので Lebesgue 積分の意味で可積分ではないが，
+    となるので Lebesgue の意味で可積分ではないが，
     \begin{align*}
         \lim_{\substack{L\to-\infty\\R\to+\infty}}\int_{L}^R\frac{\sin x}{x}\,\drm x=\pi
     \end{align*}
