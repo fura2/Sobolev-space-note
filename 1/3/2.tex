@@ -1,1 +1,96 @@
-\subsubsection{積分の順序交換に関する定理}
+\subsubsection{収束定理}
+
+この節では，Lebesgue 積分を応用する上で非常に重要となる，積分と極限の順序交換を保証する定理たちについてまとめる．
+
+\begin{theorem}[単調収束定理]\label{thm:mct}
+    $(X,\Afrak,\mu)$ を測度空間とする．
+    可測関数列 $(f_n:X\to\Rbb\cup\{\pm\infty\})_{n=1}^\infty$ と可測関数 $f:X\to\Rbb\cup\{\pm\infty\}$ は次を満たすとする．
+    \begin{enumerate}
+        \item $0\le f_1(x)\le f_2(x)\le\cdots\quad\text{$\mu$-a.e.\ $x\in X$}.$
+        \item $\displaystyle\lim_{n\to+\infty}f_n(x)=f(x)\quad\text{$\mu$-a.e.\ $x\in X$}$.
+    \end{enumerate}
+    このとき，
+    \begin{align}
+        \lim_{n\to+\infty}\int_Xf_n\,\drm\mu=\int_Xf\,\drm\mu
+        \label{eqn:mct_conclusion}
+    \end{align}
+    が成り立つ\footnote{
+        $(f_n)_{n=1}^\infty$ の単調増加性から，\textrm{ii)} を仮定せずとも，
+        $f_n$ は $n\to+\infty$ である可測関数にほとんどいたる所各点収束することが証明される．
+    }\footnote{\eqref{eqn:mct_conclusion} の両辺が共に $+\infty$ であるような状況も許容する．}．
+\end{theorem}
+
+\begin{proof}
+    \cite[定理 13.2]{It63} を参照．
+\end{proof}
+
+\begin{remark}
+    定理 \ref{thm:mct} \textrm{i)} の仮定 $f_1\ge0\ \text{$\mu$-a.e.\ $X$}$ は，
+    $\int_Xf_1\,\drm\mu$ が存在して
+    \begin{align*}
+        \int_Xf_1\,\drm\mu>-\infty
+    \end{align*}
+    と緩められる．
+\end{remark}
+
+\begin{lemma}[Fatou の補題]\label{lem:Fatou}
+    $(X,\Afrak,\mu)$ を測度空間とする．
+    可測関数列 $(f_n:X\to\Rbb\cup\{\pm\infty\})_{n=1}^\infty$ は，
+    各 $n$ に対して $f_n\ge0\ \text{$\mu$-a.e.\ $X$}$ を満たすとする．
+    このとき，
+    \begin{align*}
+        \int_X\liminf_{n\to+\infty}f_n\,\drm\mu\le\liminf_{n\to+\infty}\int_Xf_n\,\drm\mu
+    \end{align*}
+    が成り立つ．
+\end{lemma}
+
+\begin{proof}
+    $g_n(x)\defeq\inf_{k\ge n}f_k(x)$ と置くと，
+    $(g_n)_{n=1}^\infty$ は単調増加な可測関数列であって $g_1\ge0\ \text{$\mu$-a.e.\ $X$}$ が成り立つ．
+    従って，定理 \ref{thm:mct} が適用できて
+    \begin{align}
+        \lim_{n\to+\infty}\int_Xg_n\,\drm\mu
+        =\int_X\lim_{n\to+\infty}g_n\,\drm\mu
+        =\int_X\sup_{n\ge1}g_n\,\drm\mu
+        =\int_X\liminf_{n\to+\infty}f_n\,\drm\mu.\label{eqn:Fatou_mid_1}
+    \end{align}
+    一方，任意の $x\in X$ に対して $g_n(x)\le f_n(x)$ となるので，$\displaystyle\int_Xg_n\,\drm\mu\le\int_Xf_n\,\drm\mu$．
+    ゆえに
+    \begin{align}
+        \liminf_{n\to+\infty}\int_Xg_n\,\drm\mu\le\liminf_{n\to+\infty}\int_Xf_n\,\drm\mu.
+        \label{eqn:Fatou_mid_2}
+    \end{align}
+    \eqref{eqn:Fatou_mid_1}, \eqref{eqn:Fatou_mid_2} より結論を得る．
+\end{proof}
+
+\begin{theorem}[Lebesgue の優収束定理]
+    $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ とする．
+    可測関数列 $(f_n:X\to Y)_{n=1}^\infty$ と可測関数 $f:X\to Y$ は次を満たすとする．
+    \begin{enumerate}
+        \item $\displaystyle\lim_{n\to+\infty}f_n(x)=f(x)\quad\text{$\mu$-a.e.\ $x\in X$}$.
+        \item ある可積分関数 $\varphi:X\to[0,+\infty]$ が存在して，
+            各 $n$ に対して $|f_n(x)|\le\varphi(x)\ \text{$\mu$-a.e.\ $x\in X$}$ が成り立つ．
+    \end{enumerate}
+    このとき，$f_n,f$ も可積分であって
+    \begin{align*}
+        \lim_{n\to+\infty}\int_Xf_n\,\drm\mu=\int_Xf\,\drm\mu
+    \end{align*}
+    が成り立つ．
+\end{theorem}
+
+\begin{proof}
+    $Y=\Rbb\cup\{\pm\infty\}$ のときを示せば十分．
+    仮定 \textrm{ii)} と定理 \ref{thm:TODO (monotonicity)} より $f_n,f$ は可積分である．
+    仮定 \textrm{ii)} より $\varphi\pm f_n\ge0\ \text{$\mu$-a.e.\ $X$}$ となるので，補題 \ref{lem:Fatou} が適用できて，
+    \begin{align*}
+        \int_X(\varphi+f)\,\drm\mu\le\liminf_{n\to+\infty}\int_X(\varphi+f_n)\,\drm\mu,\qquad
+        \int_X(\varphi-f)\,\drm\mu\le\liminf_{n\to+\infty}\int_X(\varphi-f_n)\,\drm\mu
+    \end{align*}
+    を得る．
+    これらを $\displaystyle\int_X\varphi\,\drm\mu<+\infty$ に注意して整理すると，それぞれ
+    \begin{align*}
+        \int_Xf\,\drm\mu\le\liminf_{n\to+\infty}\int_Xf_n\,\drm\mu,\qquad
+        \int_Xf\,\drm\mu\ge\limsup_{n\to+\infty}\int_Xf_n\,\drm\mu
+    \end{align*}
+    となるので，結論が従う．
+\end{proof}

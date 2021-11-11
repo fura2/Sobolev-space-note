@@ -1,0 +1,34 @@
+\subsubsection{Fubini の定理}
+
+{\color{red}この節は書きかけ！！！}
+
+この節では，二つの積分の順序交換を保証する Fubini の定理について述べる．
+また，直積測度空間を完備化した場合の結果についても言及する．
+
+\begin{theorem}[Fubini]
+    $(X,\Afrak_1,\mu_1),(Y,\Afrak_2,\mu_2)$ を $\sigma$-有限な測度空間とする．
+    これらの直積測度空間を $(X\times Y,\Afrak_1\otimes\Afrak_2,\mu_1\otimes\mu_2)$ と置く (定義 \ref{def:product_measure})．
+    \begin{enumerate}
+        \item 非負値可測関数 $f:X\times Y\to\Rbb\cup\{\pm\infty\}$ に対して，次が成り立つ．
+            \begin{enumerate}
+                \item[1-a)] 任意の $x\in X$ に対して，$Y\ni y\mapsto f(x,y)\in\Rbb\cup\{\pm\infty\}$ は可測である．
+                \item[1-b)] 任意の $y\in Y$ に対して，$X\ni x\mapsto f(x,y)\in\Rbb\cup\{\pm\infty\}$ は可測である．
+                \item[2-a)] $\displaystyle X\ni x\mapsto\int_Yf(x,y)\,\drm\mu_2(y)$ は可測である．
+                \item[2-b)] $\displaystyle Y\ni y\mapsto\int_Xf(x,y)\,\drm\mu_1(x)$ は可測である．
+                \item[3)]
+                    $\displaystyle
+                        \int_{X\times Y}f(x,y)\,\drm(\mu_1\otimes\mu_2)(x,y)
+                        =
+                    $
+            \end{enumerate}
+        \item
+            $f:X_1\times X_2\to\Cbb$ を可測関数とする．
+            \begin{enumerate}
+                \item
+                    ほとんどいたる所の $x\in X$ に対して，$Y\ni y\mapsto f(x,y)\in K$ は可積分である．
+                    また，ほとんどいたる所の $y\in Y$ に対して，$X\ni x\mapsto f(x,y)\in K$ は可積分である．
+                \item 2
+                \item 3
+            \end{enumerate}
+    \end{enumerate}
+\end{theorem}

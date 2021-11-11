@@ -1,0 +1,378 @@
+\subsection{定義と性質}
+
+この節では，$L^p$ 空間を定義し，それが Banach 空間 ($p=2$ のときは Hilbert 空間) になることを示す．
+また，$L^p$ 空間の解析において基本的な道具となる H\"older の不等式について述べる．
+この節を通して，$(X,\Afrak,\mu)$ を測度空間，$K=\Rbb$ または $\Cbb$ とする．
+
+\begin{definition}
+    \leavevmode
+    \begin{enumerate}
+        \item
+            $1\le p<+\infty$ に対して
+            \begin{align*}
+                \Lcal^p(X,\mu)\defeq\left\{f:X\to K\,\middle\vert\,\text{$f$ は可測，}\ \int_X|f|^p\,\drm\mu<+\infty\right\}
+            \end{align*}
+            と置く\footnote{
+                より厳密には $\Lcal^p(X,\Afrak,\mu)$ と書くべきだが，
+                これ以降 $\Afrak$ が何であるかを気にする必要はあまりなくなるので，
+                記法の簡略化のためにこのように書いた，
+            }．
+        \item
+            $p=+\infty$ に対して
+            \begin{align*}
+                \Lcal^\infty(X,\mu)\defeq\left\{f:X\to K\,\middle\vert\,\text{$f$ は可測，}\ \esssup_{x\in X}|f(x)|<+\infty\right\}
+            \end{align*}
+            と置く．
+            ここで，可測関数 $g:X\to\Rbb$ の本質的上限を
+            \begin{align*}
+                \esssup_{x\in X}g(x)\defeq\inf\{C\in\Rbb\mid g\le C\ \textrm{$\mu$-a.e.\ $X$}\}
+            \end{align*}
+            と置いた\footnote{
+                $g\le C\ \textrm{$\mu$-a.e.\ $X$}$ となるような $C$ が存在しない場合は $\esssup_{x\in X}g(x)\defeq+\infty$ と定める．
+            }．
+            \nomenclature{$\esssup$}{本質的上限}
+        \item
+            $1\le p\le+\infty$ に対して，
+            $\Lcal^p(X,\mu)$ の同値関係
+            \begin{align*}
+                f\sim g\stackrel{\textrm{def}}{\iff}f=g\ \textrm{$\mu$-a.e.\ $X$}
+            \end{align*}
+            についての商集合を $L^p(X,\mu)\defeq\Lcal^p(X,\mu)/\sim$ と書き，
+            $L^p$ 空間 (または Lebesgue 空間) という．
+            \nomenclature{$L^p(X,\mu)$}{$L^p$ 空間}
+    \end{enumerate}
+    特に，$\Omega$ を $\Rbb^n$ の Lebesgue 可測集合とし，測度として Lebesgue 測度を $\Omega$ 上に制限したものを選んだとき
+    (正確には，例 \ref{ex:relative_sigma_algebra} の記法を用いて
+        $(X,\Afrak,\mu)=(\Omega,(\Bfrak_\Lrm^n)_\Omega,\mu_\Lrm^n\vert_{(\Bfrak_\Lrm^n)_\Omega})$
+    のとき) の $L^p$ 空間を $L^p(\Omega)$ と書く．
+    \nomenclature{$L^p(\Omega)$}{Lebesgue 測度に関する $L^p$ 空間}
+    また，$K$ を明示したいときには $L^p(X,\mu;K)$ や $L^p(\Omega;K)$ とも書く．
+\end{definition}
+
+\begin{remark}
+    $L^p$ 空間の元は，$\Lcal^p(X,\mu)$ に属する関数たちのうち，ほとんどいたる所で一致するものを同一視して得られる同値類である．
+    従ってこれらは厳密には関数ではないが，\textbf{ほとんどいたる所で等しい関数については同じ結果を与える概念}
+    (積分の値 (命題 \ref{TODO}) や本質的上限など) を扱う限りにおいては代表元の取り方によって結果は変わらないので，
+    そのような場合には $L^p$ 空間の元をあたかも関数であるかのように記述する．
+    もちろん，$f\in L^p(X,\mu)$ に対して $f$ の一点での値 $f(x)$ などは一般には定義されない．
+\end{remark}
+
+\begin{proposition}
+    $L^p(X,\mu)$ は $\Lcal^p(X,\mu)$ から誘導される和とスカラー倍についてベクトル空間になる．
+\end{proposition}
+
+\begin{proof}
+    任意の $f,g\in\Lcal^p(X,\mu)$ に対して $f+g\in\Lcal^p(X,\mu)$ になることを示せば，他はほとんど明らか．
+
+    $p=+\infty$ のとき，任意の $x\in X$ に対して $|f(x)+g(x)|\le|f(x)|+|g(x)|$ なので，
+    \begin{align*}
+        &|f(x)+g(x)|\le\|f\|_{L^\infty}+|g(x)|\quad\text{$\mu$-a.e.\ $x\in X$},\\
+        &|f(x)+g(x)|\le\|f\|_{L^\infty}+\|g\|_{L^\infty}\quad\text{$\mu$-a.e.\ $x\in X$}
+    \end{align*}
+    が順に示され，ゆえに $f+g\in\Lcal^\infty(X,\mu)$ となる．
+
+    $1\le p<+\infty$ のとき，任意の $x\in X$ に対して
+    \begin{align*}
+        |f(x)+g(x)|^p
+        &\le(|f(x)|+|g(x)|)^p\\
+        &\le(2\max\{|f(x)|,|g(x)|\})^p\\
+        &=2^p\max\{|f(x)|^p,|g(x)|^p\}\\
+        &\le2^p(|f(x)|^p+|g(x)|^p)
+    \end{align*}
+    が成り立つ\footnote{
+        実は，任意の $a,b\ge0$ と $1\le p<+\infty$ に対して，より精密な不等式 $(a+b)^p\le2^{p-1}(a^p+b^p)$ が成り立つ．
+        これは $f(x)=x^p$ の凸性 $f((a+b)/2)\le(f(a)+f(b))/2$ から直ちに導かれる．
+    }ので，これを $X$ 上で積分して
+    \begin{align*}
+        \int_X|f+g|^p\,\drm\mu
+        \le2^p\left(\int_X|f|^p\,\drm\mu+\int_X|g|^p\,\drm\mu\right)
+        <+\infty
+    \end{align*}
+    が分かる．
+    ゆえに $f+g\in\Lcal^p(X,\mu)$ となる．
+\end{proof}
+
+\begin{definition}\label{def:Lp_norm}
+    \leavevmode
+    \begin{enumerate}
+        \item
+            $1\le p<+\infty$ に対して，$f\in L^p(X,\mu)$ の $L^p$ ノルムを
+            \begin{align*}
+                \|f\|_{L^p(X,\mu)}\defeq\left(\int_X|f|^p\,\drm\mu\right)^{1/p}
+            \end{align*}
+            と定める．
+        \item
+            $p=+\infty$ に対して，$f\in L^\infty(X,\mu)$ の $L^\infty$ ノルムを
+            \begin{align*}
+                \|f\|_{L^\infty(X,\mu)}\defeq\esssup_{x\in X}|f(x)|
+            \end{align*}
+            と定める．
+    \end{enumerate}
+    文脈から明らかなときは $\|f\|_{L^p}$ と略記することもある．
+\end{definition}
+
+\begin{proposition}\label{prop:Lp_norm_basic}
+    $1\le p\le+\infty$ とする．
+    任意の $f\in L^p(X,\mu)$ と $\alpha\in K$ に対して，次が成り立つ．
+    \begin{enumerate}
+        \item $\|f\|_{L^p}=0\iff f=0\ \text{in}\ L^p$ (すなわち，$f(x)=0\ \ \mu$-a.e.\ $x\in X$)\footnote{
+            $L^p$ 空間を定義する際に同値関係で割ったことがここで使われている．
+        }．
+        \item $\|\alpha f\|_{L^p}=|\alpha|\|f\|_{L^p}.$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \textrm{i)} は定理 \ref{TODO} より直ちに従う．
+    \textrm{ii)} は $L^p$ ノルムの定義から明らか．
+\end{proof}
+
+$L^p$ ノルムについての三角不等式が示されれば，命題 \ref{prop:Lp_norm_basic} と合わせて，$L^p$ ノルムが実際に $L^p$ 空間のノルムであることが分かる．
+これは後の定理 \ref{thm:Minkowski} で証明する．
+
+次に，H\"older の不等式とそのいくつかの系について述べる．
+
+\begin{definition}
+    $1\le p\le+\infty$ に対して，
+    \begin{align*}
+        \frac{1}{p}+\frac{1}{p'}=1
+    \end{align*}
+    となる $p'$ を $p$ の H\"older 共役指数 (あるいは単に共役指数) という．
+    \nomenclature{$p'$}{$p$ の H\"older 共役指数}
+    すなわち，$p'\defeq p/(p-1)$ ($p=1,+\infty$ のときはそれぞれ $p'\defeq+\infty,1$) と定める．
+\end{definition}
+
+\begin{proposition}[Young の不等式]\label{prop:Young}
+    任意の $a,b>0$ と $1<p<+\infty$ に対して
+    \begin{align*}
+        ab\le\frac{1}{p}a^p+\frac{1}{p'}b^p
+    \end{align*}
+    が成り立つ．
+\end{proposition}
+
+\begin{proof}
+    $\log$ の凹性によって
+    \begin{align*}
+        \log(ab)
+        =\log a+\log b
+        =\frac{1}{p}\log(a^p)+\frac{1}{p'}\log(b^{p'})
+        \le\log\!\left(\frac{1}{p}a^p+\frac{1}{p'}b^{p'}\right)
+    \end{align*}
+    が成り立つ．
+    $\log$ は単調増加なので結論を得る．
+\end{proof}
+
+\begin{theorem}[H\"older の不等式]\label{thm:Holder}
+    $1\le p\le+\infty$ とする．
+    任意の $f\in L^p(X,\mu),g\in L^{p'}(X,\mu)$ に対して，$fg\in L^1(X,\mu)$ かつ
+    \begin{align*}
+        \|fg\|_{L^1}\le\|f\|_{L^p}\|g\|_{L^{p'}}
+    \end{align*}
+    が成り立つ．
+\end{theorem}
+
+\begin{proof}[定理 \ref{thm:Holder} の証明]
+    $p=1,+\infty$ のときは明らか．
+    $1<p<+\infty$ とする．
+    $\|f\|_{L^p}>0$ のときを示せば十分．
+    命題 \ref{prop:Young} より
+    \begin{align*}
+        |f(x)g(x)|\le\frac{1}{p}|f(x)|^p+\frac{1}{p'}|g(x)|^{p'}\quad\textrm{$\mu$-a.e.\ $x\in X$}
+    \end{align*}
+    となるので，
+    この両辺を $X$ 上で積分して，$fg\in L^1(X,\mu)$ かつ
+    \begin{align*}
+        \int_X|f(x)g(x)|\,\drm\mu
+        \le\frac{1}{p}\|f\|_{L^p}^p+\frac{1}{p'}\|g\|_{L^{p'}}^{p'}
+    \end{align*}
+    を得る．
+    $f$ を $\lambda f$ ($\lambda>0$) で置き換えて
+    \begin{align}
+        \int_X|f(x)g(x)|\,\drm\mu
+        \le\frac{\lambda^{p-1}}{p}\|f\|_{L^p}^p+\frac{1}{\lambda p'}\|g\|_{L^{p'}}^{p'}.
+        \label{eqn:Holder_mid}
+    \end{align}
+    この右辺を最小化するように $\lambda$ を選ぶと
+    \begin{align*}
+        \lambda
+        =\|g\|_{L^{p'}}^{p'/p}/\|f\|_{L^p}
+        =\|g\|_{L^{p'}}^{1/(p-1)}/\|f\|_{L^p}
+    \end{align*}
+    となり，これを \eqref{eqn:Holder_mid} に代入すると結論を得る．
+\end{proof}
+
+\begin{corollary}\label{cor:generalized_Holder}
+    $1\le p,p_i\le+\infty$ ($i=1,\ldots,n$) が
+    \begin{align*}
+        \frac{1}{p}=\frac{1}{p_1}+\cdots+\frac{1}{p_n}
+    \end{align*}
+    を満たすとする．
+    このとき，任意の $f_i\in L^{p_i}(X,\mu)$ ($i=1,\ldots,n$) に対して，$f_1\cdots f_n\in L^p(X,\mu)$ かつ
+    \begin{align*}
+        \|f_1\cdots f_n\|_{L^p}\le\|f_1\|_{L^{p_1}}\cdots\|f_n\|_{L^{p_n}}
+    \end{align*}
+    が成り立つ．
+\end{corollary}
+
+\begin{proof}
+    $n=2$ のときを示せば十分．
+    実際，$n=2$ のときの結果を繰り返し適用すれば一般の $n$ についての結果が示される．
+
+    $1/r=1/p+1/q,\ f\in L^p,g\in L^q$ と置く．
+    $r=+\infty$ のときは明らか．
+    $r<+\infty$ とする．
+    このとき $p/r,q/r\ge1$ となる．
+    $1/(p/r)+1/(q/r)=1,\ |f|^r\in L^{p/r},|g|^r\in L^{q/r}$ なので，定理 \ref{thm:Holder} より
+    $|fg|^r\in L^1$ かつ
+    \begin{align*}
+        \||fg|^r\|_{L^1}
+        \le\||f|^r\|_{L^{p/r}}\||g|^r\|_{L^{q/r}}.
+    \end{align*}
+    従って，$fg\in L^r$ かつ
+    \begin{align*}
+        \|fg\|_{L^r}^r
+        \le\|f\|_{L^p}^r\|g\|_{L^q}^r
+    \end{align*}
+    となるので，両辺の $r$ 乗根を取って結論を得る．
+\end{proof}
+
+\begin{corollary}[補間不等式]\label{cor:Holder_interpolation}
+    $1\le p,q,r\le+\infty$ と $0\le\alpha\le1$ が
+    \begin{align*}
+        \frac{1}{r}=\frac{\alpha}{p}+\frac{1-\alpha}{q}
+    \end{align*}
+    を満たすとする．
+    このとき，任意の $f\in L^p(X,\mu)\cap L^q(X,\mu)$ に対して，$f\in L^r(X,\mu)$ かつ
+    \begin{align*}
+        \|f\|_{L^r}\le\|f\|_{L^p}^\alpha\|f\|_{L^q}^{1-\alpha}
+    \end{align*}
+    が成り立つ．
+\end{corollary}
+
+\begin{proof}
+    $\alpha=0,1$ のときは明らか．
+    $0<\alpha<1$ とする．
+    $|f|^\alpha\in L^{p/\alpha},|f|^{1-\alpha}\in L^{q/(1-\alpha)},|f|=|f|^\alpha|f|^{1-\alpha}$ なので，
+    系 \ref{cor:generalized_Holder} より $f\in L^r$ かつ
+    \begin{align*}
+        \|f\|_{L^r}
+        \le\||f|^\alpha\|_{L^{p/\alpha}}\||f|^{1-\alpha}\|_{L^{q/(1-\alpha)}}
+        =\|f\|_{L^p}^\alpha\|f\|_{L^q}^{1-\alpha}
+    \end{align*}
+    を得る．
+\end{proof}
+
+\begin{corollary}\label{cor:Lp_inclusion}
+    $(X,\Afrak,\mu)$ を有限測度空間 (すなわち $\mu(X)<+\infty$)，
+    $1\le p\le q\le+\infty$ とする．
+    このとき，任意の $f\in L^q(X,\mu)$ に対して，$f\in L^p(X,\mu)$ かつ
+    \begin{align*}
+        \|f\|_{L^p}\le\mu(X)^{\frac{1}{p}-\frac{1}{q}}\|f\|_{L^q}
+    \end{align*}
+    が成り立つ．
+    特に，$p\le q$ ならば $L^q(X,\mu)\subset L^p(X,\mu)$ であって埋め込みは連続である．
+\end{corollary}
+
+\begin{proof}
+    $s$ を $1/p=1/s+1/q$ となるように定める．
+    $1\in L^s,f\in L^q$ に対して系 \ref{cor:generalized_Holder} を適用すると，$f\in L^p$ かつ
+    \begin{align*}
+        \|f\|_{L^p}
+        \le\|1\|_{L^s}\|f\|_{L^q}
+        =\mu(X)^{1/s}\|f\|_{L^q}
+    \end{align*}
+    を得る．
+\end{proof}
+
+\begin{remark}
+    $1\le p\le+\infty$ とし，$f$ を $X$ 上の可測関数とする．
+    $f\in L^p(X,\mu)$ となるためには，大雑把に言って次の二つの条件をクリアする必要がある．
+    \begin{enumerate}
+        \item
+            無限遠方での $f$ の``減衰''が十分速い\footnote{
+                通常の意味で $f$ が減衰する (すなわち，$\lim_{|x|\to+\infty}f(x)=0$ が成り立つ) わけではないことに注意．
+                積分が発散しない程度には $f$ の値が空間遠方で小さくなる傾向にある，という程度の意味である．
+            }．
+            たとえば，$1$ 次元 Lebesgue 測度に関する積分 $\displaystyle\int_{[1,+\infty)}\frac{1}{x^2}\,\drm x$ のような状況．
+        \item
+            有界な領域での $f$ の特異性 ($|f|$ の $+\infty$ への発散) が十分弱い．
+            たとえば，$\displaystyle\int_{(0,1]}\frac{1}{\sqrt x}\,\drm x$ のような状況．
+    \end{enumerate}
+    \textrm{i)} は $p$ が小さい ($1$ に近い) ほど厳しい条件になる．
+    たとえば，
+    \begin{align*}
+        \int_{[1,+\infty)}\frac{1}{x}\,\drm x=+\infty,\qquad
+        \int_{[1,+\infty)}\frac{1}{x^2}\,\drm x<+\infty
+    \end{align*}
+    となるので，$1/x\in L^2([1,+\infty))\setminus L^1([1,+\infty))$ である．
+    $p$ が最も大きい状況 ($p=+\infty$) では，$f\in L^p$ であることは $f$ が (本質的に) 有界であることに他ならないが，
+    これは減衰しない $f$ までもが許容されるようなシナリオであると見なせる．
+    一方，\textrm{ii)} は $p$ が大きいほど厳しい条件になる．
+    たとえば，
+    \begin{align*}
+        \int_{(0,1]}\frac{1}{\sqrt x}\,\drm x<+\infty,\qquad
+        \int_{(0,1]}\frac{1}{x}\,\drm x=+\infty
+    \end{align*}
+    となるので，$1/\sqrt x\in L^1((0,1])\setminus L^2((0,1])$ である．
+    $p=+\infty$ は，特異性が最も弱い $f$ のみが許容されるようなシナリオであると見なせる．
+
+    次に，$1\le p\le q\le+\infty,\ f\in L^p(X,\mu)\cap L^q(X,\mu)$ とする．
+    このとき，
+    \begin{itemize}
+        \item 無限遠方での $f$ の減衰は少なくとも $L^p$ に属する程度には速い．
+        \item 有界な領域での $f$ の特異性は少なくとも $L^q$ に属する程度には弱い．
+    \end{itemize}
+    従って，$p\le r\le q$ であるような任意の $r$ に対して，
+    $f$ は $L^r$ に属するための二つの条件 \textrm{i)}, \textrm{ii)} をクリアしている．
+    系 \ref{cor:Holder_interpolation} はここで述べたようなイメージを定量的に捉えたものであると解釈できる．
+
+    有限測度空間に対しては条件 \textrm{i)} が常に成り立つ．
+    ゆえに，このとき $L^p$ 空間は条件 \textrm{ii)} のみで特徴づけられ，$p$ が大きいほど小さい空間になる．
+    これを精密化したものが系 \ref{cor:Lp_inclusion} である．
+\end{remark}
+
+次に，定義 \ref{def:Lp_norm} で定めた $L^p$ ノルムが実際に $L^p$ 空間のノルムになることを示す．
+
+\begin{theorem}[Minkowski の不等式]\label{thm:Minkowski}
+    $1\le p\le+\infty$ とする．
+    任意の $f,g\in L^p(X,\mu)$ に対して，
+    \begin{align*}
+        \|f+g\|_{L^p}\le\|f\|_{L^p}+\|g\|_{L^p}
+    \end{align*}
+    が成り立つ．
+\end{theorem}
+
+\begin{proof}
+    $p=1,+\infty$ のときは明らか．
+    $1<p<+\infty$ とする．
+    $f,g\in L^p$ を任意にとる．
+    $f+g=0$ のときは明らかなので $f+g\ne0$ と仮定する．
+    このとき，
+    \begin{align*}
+        \|f+g\|_{L^p}^p
+        &=\int_X|f+g|^{p-1}|f+g|\,\drm\mu\\
+        &\le\int_X|f+g|^{p-1}|f|\,\drm\mu+\int_X|f+g|^{p-1}|g|\,\drm\mu.
+    \end{align*}
+    $(p-1)p'=p$ より $|f+g|^{p-1}\in L^{p'}$ となるので，H\"older の不等式 (定理 \ref{thm:Holder}) によって
+    \begin{align*}
+        \int_X|f+g|^{p-1}|f|\,\drm\mu
+        \le\||f+g|^{p-1}\|_{L^{p'}}\|f\|_{L^p}
+        =\|f+g\|_{L^p}^{p-1}\|f\|_{L^p}
+    \end{align*}
+    を得る．
+    同様にして $\int_X|f+g|^{p-1}|g|\,\drm\mu\le\|f+g\|_{L^p}^{p-1}\|g\|_{L^p}$ も分かる．
+    従って，
+    \begin{align*}
+        \|f+g\|_{L^p}^p
+        \le\|f+g\|_{L^p}^{p-1}(\|f\|_{L^p}+\|g\|_{L^p})
+    \end{align*}
+    が成り立ち，両辺を $\|f+g\|_{L^p}^{p-1}$ で割って結論を得る．
+\end{proof}
+
+命題 \ref{prop:Lp_norm_basic} と定理 \ref{thm:Minkowski} によって，
+$L^p$ 空間はノルム $\|\cdot\|_{L^p}$ についてノルム空間になることが分かった．
+さらに，この空間が完備になることを示そう．
+
+\begin{theorem}[F.\ Riesz--Fischer]
+    $1\le p\le+\infty$ に対して，$L^p(X,\mu)$ は Banach 空間である．
+\end{theorem}

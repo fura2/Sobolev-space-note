@@ -1,4 +1,4 @@
-\subsubsection{積分の定義と性質}
+\subsubsection{定義と性質}
 
 測度空間 $(X,\Afrak,\mu)$ が与えられているとする．
 $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ に値をとる可測写像 $f:X\to Y$) に対して積分を定義しよう
@@ -96,7 +96,7 @@ $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb
     一方，$f(x)=+\infty$ のときは $f_n(x)=n$ なのでよい．
 \end{proof}
 
-\begin{definition}\label{def:Lebesgue_integral}
+\begin{definition}
     $(X,\Afrak,\mu)$ を測度空間とする．
     \begin{enumerate}
         \item $f:X\to\Rbb\cup\{\pm\infty\}$ を非負値可測単関数とする．
@@ -168,11 +168,11 @@ Lebesgue 積分の基本的な性質をまとめておく．
 
 \begin{proposition}
     $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\} $ または $\Cbb$ とする．
-    可測関数 $f:X\to Y$ が可積分であることは，定義 \ref{def:Lebesgue_integral} \textrm{ii)} の意味で
+    可測関数 $f:X\to Y$ に対して，$f$ が可積分であることは $|f|$ が可積分であること，すなわち
     \begin{align*}
-        \int_X|f|\,\drm\mu<+\infty
+        \int_X|f|\,\drm\mu<+\infty,
     \end{align*}
-    であることと同値である．
+    と同値である．
 \end{proposition}
 
 \begin{proof}
@@ -211,7 +211,7 @@ Lebesgue 積分の基本的な性質をまとめておく．
 \begin{definition}
     $(X,\Afrak,\mu)$ を測度空間とする．
     $X$ の点 $x$ に関する命題 $P(x)$ に対して，
-    ある零集合 $N\in\Afrak$ が存在して，任意の $x\in X\setminus N$ で $P(x)$ が成立するとき，
+    ある零集合 $N\in\Afrak$ が存在して任意の $x\in X\setminus N$ で $P(x)$ が成立するとき，
     $P$ は $\mu$ について $X$ 上ほとんどいたる所 (almost everywhere) 成立するといい，
     $P(x)\ \textrm{$\mu$-a.e.\ $x\in X$}$ と書く．
     文脈から明らかなときは $P\ \textrm{$\mu$-a.e.\ $X$}$ や $P\ \textrm{a.e.\ $X$}$ などと略記することもある．
@@ -219,8 +219,8 @@ Lebesgue 積分の基本的な性質をまとめておく．
 \end{definition}
 
 \begin{theorem}
-    $(X,\Afrak,\mu)$ を測度空間とする．
-    可積分関数 $f:X\to\Cbb$ に対して，$f=0\ \textrm{$\mu$-a.e.\ $X$}$ であることは
+    $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\} $ または $\Cbb$ とする．
+    可積分関数 $f:X\to Y$ に対して，$f=0\ \textrm{$\mu$-a.e.\ $X$}$ であることは
     \begin{align*}
         \int_X|f|\,\drm\mu=0
     \end{align*}

@@ -359,33 +359,35 @@
         \label{eqn:product_measure_core}
     \end{align}
     を満たすものが存在する
-    \footnote{例 \ref{ex:extended_real} の注釈で述べたように $0\cdot(+\infty)\defeq0$ と定めるならば，
+    \footnote{例 \ref{ex:extended_real} の脚注で述べたように $0\cdot(+\infty)\defeq0$ と定めるならば，
     \eqref{eqn:product_measure_core} の場合分けは必要なくなる．}．
-    さらに，各 $(X_i,\Afrak_i,\mu_i)$ が $\sigma$-有限ならこのような $\mu$ は一意である．
+    さらに，各 $(X_i,\Afrak_i,\mu_i)$ が $\sigma$-有限ならばこのような $\mu$ は一意である．
 \end{theorem}
 
 \begin{proof}
     $\prod_{i=1}^nA_i$ ($A_i\in\Afrak_i$) の有限個の非交和で表される集合の全体を $\Ffrak$ と置くと，
     これは $\prod_{i=1}^nX_i$ 上の有限加法族になる．
-    そして，$\mu_0:\Ffrak\to\Rbb\cup\{+\infty\}$ を
+    そして，$m:\Ffrak\to\Rbb\cup\{+\infty\}$ を
     \begin{align*}
-        \mu_0\biggl(\biggl(\prod_{i=1}^nA_{i,1}\biggr)\sqcup\cdots\sqcup\biggl(\prod_{i=1}^nA_{i,k}\biggr)\biggr)
+        m\biggl(\biggl(\prod_{i=1}^nA_{i,1}\biggr)\sqcup\cdots\sqcup\biggl(\prod_{i=1}^nA_{i,k}\biggr)\biggr)
         \defeq\mu\biggl(\prod_{i=1}^nA_{i,1}\biggr)+\cdots+\mu\biggl(\prod_{i=1}^nA_{i,k}\biggr),\quad
         A_{i,k}\in\Afrak_i,
     \end{align*}
-    と定める (右辺は \eqref{eqn:product_measure_core} のものとする) と，$\mu_0$ は well-defined であって
+    と定める (右辺は \eqref{eqn:product_measure_core} のものとする) と，$m$ は well-defined であって
     $\Ffrak$ 上の有限加法的測度になる．
-    さらに，$\mu_0$ が $\Ffrak$ 上で $\sigma$-加法的であることも示せる．
-    ゆえに，定理 \ref{thm:Hopf_extension} より $\mu_0$ は
+    さらに，$m$ が $\Ffrak$ 上で $\sigma$-加法的であることも示せる．
+    ゆえに，定理 \ref{thm:Hopf_extension} より $m$ は
     $\Afrak_1\otimes\Afrak_2=\sigma(\Afrak_1\times\Afrak_2)=\sigma(\Ffrak)$ 上の測度に拡張できる．
     拡張の一意性も定理 \ref{thm:Hopf_extension} から直ちに従う．
     詳細は \cite[\S2.5]{Fo99} などを参照．
 \end{proof}
 
-\begin{definition}
+\begin{definition}\label{def:product_measure}
     $\sigma$-有限な測度空間 $(X_i,\Afrak_i,\mu_i)$ ($i=1,\ldots,n$) に対して，
     定理 \ref{thm:product_measure_well_defined} の $\mu$ を $\bigotimes_{i=1}^n\mu_i=\mu_1\otimes\cdots\otimes\mu_n$ と書き，
-    $(\prod_{i=1}^nX_i,\bigotimes_{i=1}^n\Afrak_i,\bigotimes_{i=1}^n\mu_i)$ を直積測度空間という．
+    $\mu_1,\ldots,\mu_n$ の直積測度という．
+    \nomenclature{$\bigotimes_{i=1}^n\mu_i$}{$\mu_1,\ldots,\mu_n$ の直積測度}
+    また，$(\prod_{i=1}^nX_i,\bigotimes_{i=1}^n\Afrak_i,\bigotimes_{i=1}^n\mu_i)$ を直積測度空間という．
 \end{definition}
 
 次に，測度空間の完備性について述べる．
@@ -495,12 +497,12 @@
                     $A$ を Vitali 集合という．
 
                 \item
-                    $\Rbb^3$ における半径 $1$ の球体を有限個の集合 $A_1,\ldots,A_m$ に分割して，
+                    $\Rbb^3$ における半径 $1$ の球体を有限個の集合 $A_1,\ldots,A_n$ に分割して，
                     それらを回転と平行移動によって組み替えることで，半径 $1$ の球体を二つ作ることができる．
                     これは Banach--Tarski のパラドックスと呼ばれている．
                     YouTube \cite{yts86-Z-CbaHA} に綺麗なグラフィックスを用いた解説がある (字幕もついている)．
 
-                    このとき，$A_1,\ldots,A_m$ の少なくとも一つは Lebesgue 可測ではない．
+                    このとき，$A_1,\ldots,A_n$ の少なくとも一つは Lebesgue 可測ではない．
                     実際，これらがすべて Lebesgue 可測であると仮定すると，Lebesgue 測度が回転と平行移動について不変であることから
                     $\mu_\Lrm^3(\text{球体})=2\times\mu_\Lrm^3(\text{球体})$ がいえてしまい矛盾が起きる．
             \end{enumerate}
