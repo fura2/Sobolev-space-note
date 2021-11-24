@@ -14,7 +14,7 @@
             \end{align*}
             と置く\footnote{
                 より厳密には $\Lcal^p(X,\Afrak,\mu)$ と書くべきだが，
-                これ以降 $\Afrak$ が何であるかを気にする必要はあまりなくなるので，
+                これ以降 $\Afrak$ が陽に現れることはあまりないので，
                 記法の簡略化のためにこのように書いた，
             }．
         \item
@@ -25,10 +25,10 @@
             と置く．
             ここで，可測関数 $g:X\to\Rbb$ の本質的上限を
             \begin{align*}
-                \esssup_{x\in X}g(x)\defeq\inf\{C\in\Rbb\mid g\le C\ \textrm{$\mu$-a.e.\ $X$}\}
+                \esssup_{x\in X}g(x)\defeq\inf\{C\in\Rbb\mid g(x)\le C\ \textrm{$\mu$-a.e.\ $x\in X$}\}
             \end{align*}
             と置いた\footnote{
-                $g\le C\ \textrm{$\mu$-a.e.\ $X$}$ となるような $C$ が存在しない場合は $\esssup_{x\in X}g(x)\defeq+\infty$ と定める．
+                $g(x)\le C\ \textrm{$\mu$-a.e.\ $x\in X$}$ となるような $C$ が存在しない場合は $\esssup_{x\in X}g(x)\defeq+\infty$ と定める．
             }．
             \nomenclature{$\esssup$}{本質的上限}
         \item
@@ -57,6 +57,26 @@
     もちろん，$f\in L^p(X,\mu)$ に対して $f$ の一点での値 $f(x)$ などは一般には定義されない．
 \end{remark}
 
+\begin{remark}\label{rem:pointwise_esssup}
+    可測関数 $f:X\to\Rbb$ に対して
+    \begin{align}
+        f(x)\le\esssup_{y\in X}f(y)\quad\text{$\mu$-a.e.\ $x\in X$}
+        \label{eqn:esssup_ineq}
+    \end{align}
+    が成り立つ．
+    実際，$\esssup$ の定義より，次の二つの条件を満たす実数列 $(C_n)_{n=1}^\infty$ が存在する．
+    \begin{enumerate}
+        \item $\displaystyle\lim_{n\to\infty}C_n=\esssup_{x\in X}f(x).$
+        \item 各 $n$ に対して，$f(x)\le C_n\quad\text{$\mu$-a.e.\ $x\in X$}$．
+    \end{enumerate}
+    \textrm{ii)} より，各 $n$ に対してある零集合 $E_n\in\Afrak$ が存在して，
+    任意の $x\in X\setminus E_n$ について $f(x)\le C_n$ となる．
+    $E\defeq\bigcup_{n=1}^\infty E_n$ と置くと，注意 \ref{rem:null_set_countable} より $E$ も零集合であって，
+    任意の $n\ge1$ と $x\in X\setminus E$ について $f(x)\le C_n$ が成り立つ．
+    ゆえに \textrm{i)} より，任意の $x\in X\setminus E$ について $f(x)\le\esssup_{y\in X}f(y)$ であって
+    \eqref{eqn:esssup_ineq} が従う．
+\end{remark}
+
 \begin{proposition}
     $L^p(X,\mu)$ は $\Lcal^p(X,\mu)$ から誘導される和とスカラー倍についてベクトル空間になる．
 \end{proposition}
@@ -64,12 +84,19 @@
 \begin{proof}
     任意の $f,g\in\Lcal^p(X,\mu)$ に対して $f+g\in\Lcal^p(X,\mu)$ になることを示せば，他はほとんど明らか．
 
-    $p=+\infty$ のとき，任意の $x\in X$ に対して $|f(x)+g(x)|\le|f(x)|+|g(x)|$ なので，
+    $p=+\infty$ のとき，注意 \ref{rem:pointwise_esssup} より
     \begin{align*}
-        &|f(x)+g(x)|\le\|f\|_{L^\infty}+|g(x)|\quad\text{$\mu$-a.e.\ $x\in X$},\\
-        &|f(x)+g(x)|\le\|f\|_{L^\infty}+\|g\|_{L^\infty}\quad\text{$\mu$-a.e.\ $x\in X$}
+        |f(x)+g(x)|
+        \le|f(x)|+|g(x)|
+        \le\esssup_{y\in X}|f(y)|+\esssup_{y\in X}|g(y)|\quad\text{$\mu$-a.e.\ $x\in X$}
     \end{align*}
-    が順に示され，ゆえに $f+g\in\Lcal^\infty(X,\mu)$ となる．
+    が成り立つので，
+    \begin{align}
+        \esssup_{x\in X}|f(x)+g(x)|\le\esssup_{x\in X}|f(x)|+\esssup_{x\in X}|g(x)|
+        \label{eqn:esssup_triangle}
+    \end{align}
+    が分かる．
+    特に $f+g\in\Lcal^\infty(X,\mu)$ となる．
 
     $1\le p<+\infty$ のとき，任意の $x\in X$ に対して
     \begin{align*}
@@ -86,10 +113,9 @@
     \begin{align*}
         \int_X|f+g|^p\,\drm\mu
         \le2^p\left(\int_X|f|^p\,\drm\mu+\int_X|g|^p\,\drm\mu\right)
-        <+\infty
     \end{align*}
     が分かる．
-    ゆえに $f+g\in\Lcal^p(X,\mu)$ となる．
+    特に $f+g\in\Lcal^p(X,\mu)$ となる．
 \end{proof}
 
 \begin{definition}\label{def:Lp_norm}
@@ -290,8 +316,9 @@ $L^p$ ノルムについての三角不等式が示されれば，命題 \ref{pr
     \begin{enumerate}
         \item
             無限遠方での $f$ の``減衰''が十分速い\footnote{
-                通常の意味で $f$ が減衰する (すなわち，$\lim_{|x|\to+\infty}f(x)=0$ が成り立つ) わけではないことに注意．
+                通常の意味で $f$ が減衰する (すなわち，$\lim_{|x|\to\infty}f(x)=0$ が成り立つ) わけではないことに注意．
                 積分が発散しない程度には $f$ の値が空間遠方で小さくなる傾向にある，という程度の意味である．
+                そもそも，一般の測度空間 $(X,\Afrak,\mu)$ に対して $|x|$ は定義されていない．
             }．
             たとえば，$1$ 次元 Lebesgue 測度に関する積分 $\displaystyle\int_{[1,+\infty)}\frac{1}{x^2}\,\drm x$ のような状況．
         \item
@@ -305,7 +332,7 @@ $L^p$ ノルムについての三角不等式が示されれば，命題 \ref{pr
         \int_{[1,+\infty)}\frac{1}{x^2}\,\drm x<+\infty
     \end{align*}
     となるので，$1/x\in L^2([1,+\infty))\setminus L^1([1,+\infty))$ である．
-    $p$ が最も大きい状況 ($p=+\infty$) では，$f\in L^p$ であることは $f$ が (本質的に) 有界であることに他ならないが，
+    $p$ が最も大きい状況 ($p=+\infty$) では，$f\in L^p$ であることは $f$ が本質的に有界であることに他ならないが，
     これは減衰しない $f$ までもが許容されるようなシナリオであると見なせる．
     一方，\textrm{ii)} は $p$ が大きいほど厳しい条件になる．
     たとえば，
@@ -328,7 +355,7 @@ $L^p$ ノルムについての三角不等式が示されれば，命題 \ref{pr
 
     有限測度空間に対しては条件 \textrm{i)} が常に成り立つ．
     ゆえに，このとき $L^p$ 空間は条件 \textrm{ii)} のみで特徴づけられ，$p$ が大きいほど小さい空間になる．
-    これを精密化したものが系 \ref{cor:Lp_inclusion} である．
+    これを定量的に表したものが系 \ref{cor:Lp_inclusion} である．
 \end{remark}
 
 次に，定義 \ref{def:Lp_norm} で定めた $L^p$ ノルムが実際に $L^p$ 空間のノルムになることを示す．
@@ -343,10 +370,10 @@ $L^p$ ノルムについての三角不等式が示されれば，命題 \ref{pr
 \end{theorem}
 
 \begin{proof}
-    $p=1,+\infty$ のときは明らか．
+    $p=1$ のときは明らか．
+    $p=+\infty$ のときは \eqref{eqn:esssup_triangle} で示した．
     $1<p<+\infty$ とする．
-    $f,g\in L^p$ を任意にとる．
-    $f+g=0$ のときは明らかなので $f+g\ne0$ と仮定する．
+    $f+g=0$ ならば結論は明らかなので $f+g\ne0$ と仮定する．
     このとき，
     \begin{align*}
         \|f+g\|_{L^p}^p
@@ -376,3 +403,122 @@ $L^p$ 空間はノルム $\|\cdot\|_{L^p}$ についてノルム空間になる�
 \begin{theorem}[F.\ Riesz--Fischer]
     $1\le p\le+\infty$ に対して，$L^p(X,\mu)$ は Banach 空間である．
 \end{theorem}
+
+\begin{proof}
+    \leavevmode
+    \begin{itemize}[leftmargin=\parindent]
+    \item $p=+\infty$ のとき\\
+        $(f_n)_{n=1}^\infty$ を $L^\infty$ における Cauchy 列とする．
+        この列がある $f\in L^\infty$ に収束することを示せばよい．
+
+        \textbf{第 $1$ 段：極限の候補となる $f$ を構成する．}\\
+        $(f_n)_{n=1}^\infty$ は Cauchy 列なので，
+        任意の $k\ge1$ に対して，ある $N_k\ge1$ が存在して
+        \begin{align*}
+            \|f_m-f_n\|_{L^\infty}\le\frac{1}{k}\quad\text{for $m,n\ge N_k$}
+        \end{align*}
+        となる．
+        このことと注意 \ref{rem:pointwise_esssup} より，各 $k$ について零集合 $E_k$ が存在して，
+        \begin{align}
+            |f_m(x)-f_n(x)|\le\frac{1}{k}\quad\text{for $m,n\ge N_k,\ x\in X\setminus E_k$}
+            \label{eqn:Lp_completeness_proof1}
+        \end{align}
+        が成り立つ\footnote{厳密には，ここで関数の同値類としての $L^\infty$ の元からその代表元に議論を移行している．}．
+        ゆえに，$E\defeq\bigcup_{k=1}^\infty E_k$ と置くと，
+        注意 \ref{rem:null_set_countable} より $E$ も零集合であって，
+        任意の $x\in X\setminus E$ に対して $(f_n(x))_{n=1}^\infty$ は $K$ における Cauchy 列である．
+        $K$ は完備なので $\displaystyle f(x)\defeq\lim_{n\to\infty}f_n(x)$ が存在し，
+        (たとえば $E$ 上での値を $0$ と定めることで) 関数 $f:X\to K$ が定まる．
+        系 \ref{cor:measurable_function_pointwise_convergence} より $f$ は可測である．
+
+        \textbf{第 $2$ 段：$f\in L^\infty$ を示す．}\\
+        \eqref{eqn:Lp_completeness_proof1} で $m\to\infty$ として
+        \begin{align*}
+            |f(x)-f_n(x)|\le\frac{1}{k}\quad\text{for $n\ge N_k,\ x\in X\setminus E$}.
+        \end{align*}
+        $E$ は零集合だったので，$f-f_n\in L^\infty$ かつ任意の $k\ge1$ に対して
+        \begin{align}
+            \|f-f_n\|_{L^\infty}\le\frac{1}{k}\quad\text{for $n\ge N_k$}
+            \label{eqn:Lp_completeness_proof2}
+        \end{align}
+        が成り立つ．
+        特に $f\in L^\infty$ である．
+
+        \textbf{第 $3$ 段：$\|f_n-f\|_{L^\infty}\to0$ を示す．}\\
+        これは \eqref{eqn:Lp_completeness_proof2} より直ちに従う．
+
+    \item $1\le p<+\infty$ のとき\\
+        $(f_n)_{n=1}^\infty$ を $L^p$ における Cauchy 列とする．
+        この列のある部分列 $(f_{n_k})_{k=1}^\infty$ に対して，それがある $f\in L^p$ に収束することを示せば十分．
+        実際，このとき
+        \begin{align*}
+            \|f_n-f\|_{L^p}
+            \le\|f_n-f_{n_k}\|_{L^p}+\|f_{n_k}-f\|_{L^p}
+            \to0\quad\text{as $n,k\to\infty$}
+        \end{align*}
+        となるので $\|f_n-f\|_{L^p}\to0$ が従う．
+        $(f_{n_k})_{k=1}^\infty$ を
+        \begin{align}
+            \|f_{n_{k+1}}-f_{n_k}\|_{L^p}\le\frac{1}{2^k}\quad\text{for $k\ge1$}
+            \label{eqn:Lp_completeness_proof3}
+        \end{align}
+        となるように選ぶ．
+        $(f_n)_{n=1}^\infty$ は Cauchy 列なのでこのような選び方は必ず存在する．
+        以下では $f_{n_k}$ を単に $f_k$ と書く．
+
+        \textbf{第 $1$ 段：極限の候補となる $f$ を構成する．}
+        \begin{align*}
+            g_n(x)\defeq\sum_{k=1}^n|f_{k+1}(x)-f_k(x)|
+        \end{align*}
+        と置く．
+        $f_k\in L^p$ なので $g_n\in L^p$ であって，さらに \eqref{eqn:Lp_completeness_proof3} より
+        \begin{align}
+            \|g_n\|_{L^p}\le\sum_{k=1}^n\|f_{k+1}-f_k\|<1
+            \label{eqn:Lp_completeness_proof4}
+        \end{align}
+        である．
+        $\mu$-a.e.\ $x\in X$ に対して $(g_n(x))_{n=1}^\infty$ は単調増加なので各点収束極限
+        $\displaystyle g(x)\defeq\lim_{n\to\infty}g_n(x)$ が存在し\footnote{
+            厳密には，$p=+\infty$ のときの証明と同様に代表元を取って議論すればよい．
+        }，また $g_1(x)\ge0$．
+        従って，単調収束定理 (定理 \ref{thm:monotone_convergence}) と \eqref{eqn:Lp_completeness_proof4} によって
+        \begin{align*}
+            \int_Xg^p\,\drm\mu
+            =\lim_{n\to\infty}\int_Xg_n^p\,\drm\mu
+            =\lim_{n\to\infty}\|g_n\|_{L^p}^p
+            \le1
+        \end{align*}
+        を得る．
+        特に $g\in L^p$ が分かる．
+
+        一方，
+        \begin{align}
+            |f_m(x)-f_n(x)|
+            &\le\sum_{k=n}^{m-1}|f_{k+1}(x)-f_k(x)|\nonumber\\
+            &=g_{m-1}(x)-g_{n-1}(x)\quad\text{for $m\ge n\ge2$}\label{eqn:Lp_completeness_proof5}
+        \end{align}
+        で $m,n\to\infty$ とすると，\eqref{eqn:Lp_completeness_proof5} の右辺はほとんどいたる所 $g(x)-g(x)=0$ に収束．
+        ゆえに，$\mu$-a.e.\ $x\in X$ に対して $(f_k(x))_{k=1}^\infty$ は $K$ における Cauchy 列であって，
+        $p=+\infty$ のときと同様にして可測関数 $\displaystyle f(x)\defeq\lim_{k\to\infty}f_k(x)$ が定まる．
+
+        \textbf{第 $2$ 段：$f\in L^p$ を示す．}\\
+        \eqref{eqn:Lp_completeness_proof5} で $m\to\infty$ として，$\mu$-a.e.\ $x\in X$ で
+        \begin{align}
+            |f(x)-f_n(x)|
+            &\le g(x)-g_{n-1}(x)\nonumber\\
+            &\le g(x)\quad\text{for $n\ge2$}\label{eqn:Lp_completeness_proof6}
+        \end{align}
+        が成り立つ．
+        $f_n,g\in L^p$ だったので $f\in L^p$ を得る．
+
+        \textbf{第 $3$ 段：$\|f_n-f\|_{L^p}\to0$ を示す．}\\
+        $f$ の定義と \eqref{eqn:Lp_completeness_proof6} によって，
+        $\mu$-a.e.\ $x\in X$ に対して $|f_n(x)-f(x)|^p\to0$ かつ $|f_n(x)-f(x)|^p\le g(x)^p$ となる．
+        ゆえに，Lebesgue の優収束定理 (定理 \ref{thm:dominated_convergence}) より
+        \begin{align*}
+            \lim_{n\to\infty}\int_X|f_n-f|^p\,\drm\mu
+            =\int_X0\,\drm\mu=0
+        \end{align*}
+        となり結論を得る．
+    \end{itemize}
+\end{proof}

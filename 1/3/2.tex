@@ -2,7 +2,7 @@
 
 この節では，Lebesgue 積分を応用する上で非常に重要となる，積分と極限の順序交換を保証する定理たちについてまとめる．
 
-\begin{theorem}[単調収束定理]\label{thm:mct}
+\begin{theorem}[単調収束定理]\label{thm:monotone_convergence}
     $(X,\Afrak,\mu)$ を測度空間とする．
     可測関数列 $(f_n:X\to\Rbb\cup\{\pm\infty\})_{n=1}^\infty$ と可測関数 $f:X\to\Rbb\cup\{\pm\infty\}$ は次を満たすとする．
     \begin{enumerate}
@@ -16,7 +16,7 @@
     \end{align}
     が成り立つ\footnote{
         $(f_n)_{n=1}^\infty$ の単調増加性から，\textrm{ii)} を仮定せずとも，
-        $f_n$ は $n\to+\infty$ である可測関数にほとんどいたる所各点収束することが証明される．
+        $f_n$ はある可測関数に $n\to+\infty$ でほとんどいたる所各点収束することが証明される．
     }\footnote{\eqref{eqn:mct_conclusion} の両辺が共に $+\infty$ であるような状況も許容する．}．
 \end{theorem}
 
@@ -25,7 +25,7 @@
 \end{proof}
 
 \begin{remark}
-    定理 \ref{thm:mct} \textrm{i)} の仮定 $f_1\ge0\ \text{$\mu$-a.e.\ $X$}$ は，
+    定理 \ref{thm:monotone_convergence} \textrm{i)} の仮定 $f_1\ge0\ \text{$\mu$-a.e.\ $X$}$ は，
     $\int_Xf_1\,\drm\mu$ が存在して
     \begin{align*}
         \int_Xf_1\,\drm\mu>-\infty
@@ -47,7 +47,7 @@
 \begin{proof}
     $g_n(x)\defeq\inf_{k\ge n}f_k(x)$ と置くと，
     $(g_n)_{n=1}^\infty$ は単調増加な可測関数列であって $g_1\ge0\ \text{$\mu$-a.e.\ $X$}$ が成り立つ．
-    従って，定理 \ref{thm:mct} が適用できて
+    従って，定理 \ref{thm:monotone_convergence} が適用できて
     \begin{align}
         \lim_{n\to+\infty}\int_Xg_n\,\drm\mu
         =\int_X\lim_{n\to+\infty}g_n\,\drm\mu
@@ -63,7 +63,7 @@
     \eqref{eqn:Fatou_mid_1}, \eqref{eqn:Fatou_mid_2} より結論を得る．
 \end{proof}
 
-\begin{theorem}[Lebesgue の優収束定理]
+\begin{theorem}[Lebesgue の優収束定理]\label{thm:dominated_convergence}
     $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ とする．
     可測関数列 $(f_n:X\to Y)_{n=1}^\infty$ と可測関数 $f:X\to Y$ は次を満たすとする．
     \begin{enumerate}

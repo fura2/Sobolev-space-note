@@ -12,7 +12,7 @@
     三つ組 $(X,\Afrak,\mu)$ を測度空間 (measure space) という．
 \end{definition}
 
-\begin{remark}
+\begin{remark}\label{rem:measure_property}
     測度空間 $(X,\Afrak,\mu)$ に対して次が成り立つ．
     \begin{enumerate}
         \item 任意の $A,B\in\Afrak,\ A\subset B,$ に対して $\mu(A)\le\mu(B)$．\qquad(単調性)
@@ -396,9 +396,14 @@
     $(X,\Afrak,\mu)$ を測度空間とする．
     \begin{enumerate}
         \item $N\in\Afrak$ が零集合 (null set) であるとは，$\mu(N)=0$ となることをいう．
-        \item $(X,\Afrak,\mu)$ が完備 (complete) であるとは，零集合の任意の部分集合が $\Afrak$ に属する (したがって零集合になる) ことをいう．
+        \item $(X,\Afrak,\mu)$ が完備 (complete) であるとは，任意の零集合の部分集合が $\Afrak$ に属する (従って零集合になる) ことをいう．
     \end{enumerate}
 \end{definition}
+
+\begin{remark}\label{rem:null_set_countable}
+    高々可算個の零集合の和集合もまた零集合になる．
+    このことは測度の劣加法性 (注意 \ref{rem:measure_property}) から直ちに従う．
+\end{remark}
 
 \begin{proposition}
     定理 \ref{thm:outer_measure_to_measure} の測度空間 $(X,\Mfrak_\Gamma,\Gamma\vert_{\Mfrak_\Gamma})$ は完備．
