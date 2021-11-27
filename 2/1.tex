@@ -25,7 +25,7 @@
             と置く．
             ここで，可測関数 $g:X\to\Rbb$ の本質的上限を
             \begin{align*}
-                \esssup_{x\in X}g(x)\defeq\inf\{C\in\Rbb\mid g(x)\le C\ \textrm{$\mu$-a.e.\ $x\in X$}\}
+                \esssup_{x\in X}g(x)\defeq\inf\{C>0\mid g(x)\le C\ \textrm{$\mu$-a.e.\ $x\in X$}\}
             \end{align*}
             と置いた\footnote{
                 $g(x)\le C\ \textrm{$\mu$-a.e.\ $x\in X$}$ となるような $C$ が存在しない場合は $\esssup_{x\in X}g(x)\defeq+\infty$ と定める．
@@ -203,7 +203,7 @@
 
 \begin{theorem}[H\"older の不等式]\label{thm:Holder}
     $1\le p\le+\infty$ とする．
-    任意の $f\in L^p(X,\mu),g\in L^{p'}(X,\mu)$ に対して，$fg\in L^1(X,\mu)$ かつ
+    このとき，任意の $f\in L^p(X,\mu),\ g\in L^{p'}(X,\mu)$ に対して，$fg\in L^1(X,\mu)$ かつ
     \begin{align*}
         \|fg\|_{L^1}\le\|f\|_{L^p}\|g\|_{L^{p'}}
     \end{align*}
@@ -539,3 +539,119 @@ $L^p$ 空間はノルム $\|\cdot\|_{L^p}$ についてノルム空間になる�
 \begin{corollary}
     $L^2(X,\mu)$ は Hilbert 空間である．
 \end{corollary}
+
+定理 \ref{thm:Riesz-Fischer} と似たアイデアによって次の定理が証明される．
+
+\begin{theorem}
+    $1\le p\le+\infty$ とする．
+    $(f_n)_{n=1}^\infty\subset L^p(X,\mu)$ と $f\in L^p(X,\mu)$ は
+    \begin{align}
+        \|f_n-f\|_{L^p}\to0\quad\text{as $n\to\infty$}
+        \label{eqn:Lp_norm_converge_eq1}
+    \end{align}
+    を満たすとする．
+    このとき，次の二つの条件を満たす部分列 $(f_{n_k})_{k=1}^\infty$ が存在する．
+    \begin{enumerate}
+        \item $\displaystyle\lim_{k\to\infty}f_{n_k}(x)=f(x)\quad\text{$\mu$-a.e.\ $x\in X$}.$
+        \item ある $g\in L^p(X,\mu)$ が存在して，各 $k$ に対して $|f_{n_k}(x)|\le g(x)\ \ \text{$\mu$-a.e.\ $x\in X$}$ が成り立つ．
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \leavevmode
+    \begin{itemize}[leftmargin=\parindent]
+    \item $p=+\infty$ のとき\\
+        部分列を取らずとも (すなわち $n_k=k$ で) 主張が成り立つ．
+        実際，注意 \ref{rem:pointwise_esssup} より
+        \begin{align*}
+            |f_n(x)-f(x)|\le\|f_n-f\|_{L^\infty}\quad\text{$\mu$-a.e.\ $x\in X$}
+        \end{align*}
+        となるので \textrm{i)} が分かる．
+        また，\eqref{eqn:Lp_norm_converge_eq1} より，
+        ある $N\ge1$ が存在して
+        \begin{align*}
+            \|f_n-f\|_{L^\infty}\le1\quad\text{for $n\ge N$}
+        \end{align*}
+        となるので，定数関数
+        $g(x)\defeq\max\{\|f\|_{L^\infty}+1,\|f_1\|_{L^\infty},\ldots,\|f_{N-1}\|_{L^\infty}\}$
+        に対して \textrm{ii)} が成り立つ．
+
+    \item $1\le p<+\infty$ のとき\\
+        部分列 $(f_{n_k})_{k=1}^\infty$ を \eqref{eqn:Lp_completeness_proof3} が満たされるように選ぶ．
+        このとき，定理 \ref{thm:Riesz-Fischer} の証明の第 $1$ 段より，
+        $f_{n_k}$ はある可測関数 $\widetilde f$ にほとんどいたる所各点収束する．
+        さらに，同証明の第 $2,3$ 段より $\widetilde f\in L^p$ かつ $\|f_{n_k}-\widetilde f\|_{L^p}\to0$ が分かる．
+        \eqref{eqn:Lp_norm_converge_eq1} と極限の一意性によって $\widetilde f=f$ となるので \textrm{i)} が成り立つ．
+        また，\eqref{eqn:Lp_completeness_proof6} より
+        \begin{align*}
+            |f_{n_k}(x)|\le|f(x)|+g(x)\quad\text{$\mu$-a.e.\ $x\in X$}
+        \end{align*}
+        となるので \textrm{ii)} が従う．
+    \end{itemize}
+\end{proof}
+
+次の命題は本質的上限による $L^\infty$ ノルムの定義がある意味で自然なものであることを示している．
+
+\begin{proposition}
+    $1\le p<+\infty$ とする．
+    このとき，任意の $f\in L^p(X,\mu)\cap L^\infty(X,\mu)$ に対して
+    \begin{align*}
+        \lim_{q\to\infty}\|f\|_{L^q}=\|f\|_{L^\infty}
+    \end{align*}
+    が成り立つ．
+\end{proposition}
+
+\begin{proof}
+    $p\le q<+\infty$ なる $q$ に対して，
+    指数の関係式
+    \begin{align*}
+        \frac{1}{q}=\frac{p/q}{p}+\frac{1-p/q}{+\infty}
+    \end{align*}
+    について
+    系 \ref{cor:Holder_interpolation} を適用すると
+    \begin{align*}
+        \|f\|_{L^q}\le\|f\|_{L^p}^{p/q}\|f\|_{L^\infty}^{1-p/q}
+    \end{align*}
+    が成り立つ．
+    ゆえに，
+    \begin{align}
+        \limsup_{q\to\infty}\|f\|_{L^q}
+        \le\limsup_{q\to\infty}\|f\|_{L^p}^{p/q}\|f\|_{L^\infty}^{1-p/q}
+        =\|f\|_{L^\infty}
+        \label{eqn:Lq_limit_proof1}
+    \end{align}
+    を得る．
+    一方，$0<\epsilon<\|f\|_{L^\infty}$ なる $\epsilon$ に対して
+    \begin{align*}
+        S_\epsilon\defeq\{x\in X\mid|f(x)|\ge\|f\|_{L^\infty}-\epsilon\}
+    \end{align*}
+    と置くと，$L^\infty$ ノルムの定義より $\mu(S_\epsilon)>0$ である．
+    さらに，
+    \begin{align*}
+        \|f\|_{L^q}^q
+        =\int_X|f|^q\,\drm\mu
+        \ge\int_{S_\epsilon}|f|^q\,\drm\mu
+        \ge\int_{S_\epsilon}(\|f\|_{L^\infty}-\epsilon)^q\,\drm\mu
+        =(\|f\|_{L^\infty}-\epsilon)^q\mu(S_\epsilon)
+    \end{align*}
+    なので
+    \begin{align*}
+        \|f\|_{L^q}
+        \ge(\|f\|_{L^\infty}-\epsilon)\mu(S_\epsilon)^{1/q}
+    \end{align*}
+    が成り立ち，
+    $\|f\|_{L^q}<+\infty$ より $\mu(S_\epsilon)<+\infty$ となるから
+    \begin{align*}
+        \liminf_{q\to\infty}\|f\|_{L^q}
+        \ge\liminf_{q\to\infty}\,(\|f\|_{L^\infty}-\epsilon)\mu(S_\epsilon)^{1/q}
+        =\|f\|_{L^\infty}-\epsilon
+    \end{align*}
+    が分かる．
+    $\epsilon$ は任意だったので
+    \begin{align}
+        \liminf_{q\to\infty}\|f\|_{L^q}\ge\|f\|_{L^\infty}
+        \label{eqn:Lq_limit_proof2}
+    \end{align}
+    を得る．
+    \eqref{eqn:Lq_limit_proof1} と \eqref{eqn:Lq_limit_proof2} より結論が従う．
+\end{proof}
