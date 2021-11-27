@@ -153,9 +153,22 @@
     \textrm{ii)} は $L^p$ ノルムの定義から明らか．
 \end{proof}
 
-$L^p$ ノルムについての三角不等式が示されれば，命題 \ref{prop:Lp_norm_basic} と合わせて，$L^p$ ノルムが実際に $L^p$ 空間のノルムであることが分かる．
+あとは三角不等式が示されれば，命題 \ref{prop:Lp_norm_basic} と合わせて，$L^p$ ノルムが実際に $L^p$ 空間のノルムであることが分かる．
 これは後の定理 \ref{thm:Minkowski} で証明する．
 
+\begin{definition}
+    $L^2(X,\mu)$ の内積を
+    \begin{align*}
+        \langle f,g\rangle_{L^2}\defeq\begin{dcases}
+            \int_Xf(x)g(x)\,\drm\mu(x)&\text{if $K=\Rbb$},\\
+            \int_Xf(x)\overline{g(x)}\,\drm\mu(x)&\text{if $K=\Cbb$}
+        \end{dcases}
+    \end{align*}
+    と定める．
+    積分の基本的な性質と命題 \ref{prop:Lp_norm_basic} \textrm{i)} より，これが実際に $L^2$ 空間の内積になることが分かる．
+\end{definition}
+
+% これが実際に $L^2$ 空間の内積になることは後の \ref{thm:Minkowski} で証明する．
 次に，H\"older の不等式とそのいくつかの系について述べる．
 
 \begin{definition}
@@ -400,7 +413,7 @@ $L^p$ ノルムについての三角不等式が示されれば，命題 \ref{pr
 $L^p$ 空間はノルム $\|\cdot\|_{L^p}$ についてノルム空間になることが分かった．
 さらに，この空間が完備になることを示そう．
 
-\begin{theorem}[F.\ Riesz--Fischer]
+\begin{theorem}[F.\ Riesz--Fischer]\label{thm:Riesz-Fischer}
     $1\le p\le+\infty$ に対して，$L^p(X,\mu)$ は Banach 空間である．
 \end{theorem}
 
@@ -522,3 +535,7 @@ $L^p$ 空間はノルム $\|\cdot\|_{L^p}$ についてノルム空間になる�
         となり結論を得る．
     \end{itemize}
 \end{proof}
+
+\begin{corollary}
+    $L^2(X,\mu)$ は Hilbert 空間である．
+\end{corollary}
