@@ -4,7 +4,7 @@
 
 \begin{theorem}[単調収束定理]\label{thm:monotone_convergence}
     $(X,\Afrak,\mu)$ を測度空間とする．
-    可測関数列 $(f_n:X\to\Rbb\cup\{\pm\infty\})_{n=1}^\infty$ と可測関数 $f:X\to\Rbb\cup\{\pm\infty\}$ は次を満たすとする．
+    可測関数列 $(f_n:X\to[-\infty,+\infty])_{n=1}^\infty$ と可測関数 $f:X\to[-\infty,+\infty]$ は次を満たすとする．
     \begin{enumerate}
         \item $0\le f_1(x)\le f_2(x)\le\cdots\quad\text{$\mu$-a.e.\ $x\in X$}.$
         \item $\displaystyle\lim_{n\to+\infty}f_n(x)=f(x)\quad\text{$\mu$-a.e.\ $x\in X$}$.
@@ -35,7 +35,7 @@
 
 \begin{lemma}[Fatou の補題]\label{lem:Fatou}
     $(X,\Afrak,\mu)$ を測度空間とする．
-    可測関数列 $(f_n:X\to\Rbb\cup\{\pm\infty\})_{n=1}^\infty$ は，
+    可測関数列 $(f_n:X\to[-\infty,+\infty])_{n=1}^\infty$ は，
     各 $n$ に対して $f_n\ge0\ \text{$\mu$-a.e.\ $X$}$ を満たすとする．
     このとき，
     \begin{align*}
@@ -64,7 +64,7 @@
 \end{proof}
 
 \begin{theorem}[Lebesgue の優収束定理]\label{thm:dominated_convergence}
-    $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ とする．
+    $(X,\Afrak,\mu)$ を測度空間，$Y=[-\infty,+\infty]$ または $\Cbb$ とする．
     可測関数列 $(f_n:X\to Y)_{n=1}^\infty$ と可測関数 $f:X\to Y$ は次を満たすとする．
     \begin{enumerate}
         \item $\displaystyle\lim_{n\to+\infty}f_n(x)=f(x)\quad\text{$\mu$-a.e.\ $x\in X$}$.
@@ -79,7 +79,7 @@
 \end{theorem}
 
 \begin{proof}
-    $Y=\Rbb\cup\{\pm\infty\}$ のときを示せば十分．
+    $Y=[-\infty,+\infty]$ のときを示せば十分．
     仮定 \textrm{ii)} と定理 \ref{thm:TODO (monotonicity)} より $f_n,f$ は可積分である．
     仮定 \textrm{ii)} より $\varphi\pm f_n\ge0\ \text{$\mu$-a.e.\ $X$}$ となるので，補題 \ref{lem:Fatou} が適用できて，
     \begin{align*}

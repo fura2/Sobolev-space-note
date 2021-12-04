@@ -2,9 +2,9 @@
 
 \begin{definition}
     $(X,\Afrak)$ を可測空間とする．
-    次の二つの条件を満たす $\mu:\Afrak\to\Rbb\cup\{+\infty\}$ を $X$ 上の測度 (measure) という．
+    次の二つの条件を満たす $\mu:\Afrak\to[0,+\infty]$ を $X$ 上の測度 (measure) という．
     \begin{enumerate}[label=\textsf{(M\arabic*)},align=left]
-        \item\label{item:m1} 任意の $A\in\Afrak$ に対して $\mu(A)\ge0$．また，$\mu(\emptyset)=0$．\qquad (非負性)
+        \item\label{item:m1} $\mu(\emptyset)=0$．
         \item\label{item:m2} 互いに素\footnote{pairwise disjoint．すなわち，$i\ne j$ ならば $A_i\cap A_j=\emptyset$．}な
             任意の $(A_n)_{n=1}^\infty\subset\Afrak$ に対して
             $\displaystyle\mu\biggl(\bigcup_{n=1}^\infty A_n\biggr)=\sum_{n=1}^\infty\mu(A_n)$．\qquad ($\sigma$-加法性)
@@ -31,9 +31,9 @@
 
 \begin{definition}
     $X$ を集合とする．
-    次の三つの条件を満たす $\Gamma:2^X\to\Rbb\cup\{+\infty\}$ を $X$ 上の外測度 (outer measure) という．
+    次の三つの条件を満たす $\Gamma:2^X\to[0,+\infty]$ を $X$ 上の外測度 (outer measure) という．
     \begin{enumerate}[label=\textsf{(OM\arabic*)},align=left]
-        \item\label{item:om1} 任意の $A\subset X$ に対して $\Gamma(A)\ge0$.また，$\Gamma(\emptyset)=0$．
+        \item\label{item:om1} $\Gamma(\emptyset)=0$．
         \item\label{item:om2} 任意の $A,B\subset X,\ A\subset B,$ に対して $\Gamma(A)\le\Gamma(B)$．
         \item\label{item:om3} 任意の $(A_n)_{n=1}^\infty\subset2^X$ に対して
             $\displaystyle\Gamma\biggl(\bigcup_{n=1}^\infty A_n\biggr)\le\sum_{n=1}^\infty\Gamma(A_n)$．
@@ -59,7 +59,7 @@
         \end{cases}
     \end{align*}
     と置く．
-    $\mu_\Lrm^{n,\ast}:2^{\Rbb^n}\to\Rbb\cup\{+\infty\}$ を任意の $A\subset\Rbb^n$ に対して
+    $\mu_\Lrm^{n,\ast}:2^{\Rbb^n}\to[0,+\infty]$ を任意の $A\subset\Rbb^n$ に対して
     \begin{align}
         \mu_\Lrm^{n,\ast}(A)\defeq\inf\left\{
             \sum_{i=1}^\infty\mathrm{vol}(I_i)
@@ -91,9 +91,9 @@
 
 \begin{theorem}\label{thm:outer_measure_to_measure}
     $\Gamma$ を集合 $X$ 上の外測度とする．
-    このとき，$\Mfrak_\Gamma$ は $X$ 上の $\sigma$-加法族で
+    このとき，$\Mfrak_\Gamma$ は $X$ 上の $\sigma$-加法族であって，$\Gamma$ の $\Mfrak_\Gamma$ への制限
     \begin{align*}
-        \Gamma\vert_{\Mfrak_\Gamma}:\Mfrak_\Gamma\to\Rbb\cup\{+\infty\}
+        \Gamma\vert_{\Mfrak_\Gamma}:\Mfrak_\Gamma\to[0,+\infty]
     \end{align*}
     は $X$ 上の測度になる．
 \end{theorem}
@@ -105,13 +105,14 @@
     そこで，$\Gamma=\mu_\Lrm^{n,\ast}$ の場合にこの条件が何を意味しているかを調べる．
 
     $E$ を $\Rbb^n$ の有界集合，$A\supset E$ を有界な区間とする．
-    \eqref{eqn:Caratheodory} を次のように書き換える：
+    \eqref{eqn:Caratheodory} を
     \begin{align*}
         % \mu_\Lrm^{n,\ast}(A)=\mu_\Lrm^{n,\ast}(A\cap E)+\mu_\Lrm^{n,\ast}(A\cap E^\crm)
         % &\iff\mathrm{vol}(A)=\mu_\Lrm^{n,\ast}(E)+\mu_\Lrm^{n,\ast}(A\setminus E)\\
         % &\iff\mu_\Lrm^{n,\ast}(E)=\mathrm{vol}(A)-\mu_\Lrm^{n,\ast}(A\setminus E).
         \mu_\Lrm^{n,\ast}(E)=\mathrm{vol}(A)-\mu_\Lrm^{n,\ast}(A\setminus E).
     \end{align*}
+    と書き換える．
     この右辺は，$A$ 全体の測度から $E$ の補集合の外測度を取り去ることで $E$ の大きさを測っていることに相当している ($A$ は有界なので $\infty-\infty$ の形は現れないことに注意)．
     すなわち，ある意味で $E$ を内側から近似したような量になっている．
     これは Lebesgue 内測度
@@ -131,7 +132,8 @@
     \begin{align*}
         \mu_\Lrm^{n,\ast}(E)=\mu_{\Lrm,\ast}^n(E)
     \end{align*}
-    と同値である \cite[\S1 Exercise 19]{Fo99} (Riemann 積分論における Jordan 可測性と類似)．
+    と同値である \cite[\S1 Exercise 19]{Fo99}．
+    このように書くと，Riemann 積分論における Jordan 可測性との類似が見て取れる．
 
     Jordan 測度の場合と異なり，Lebesgue 外測度と内測度の定義の間に非対称性があることに注意する．
     たとえば，定義式が (ある程度) 対称な形になるように Lebesgue 内測度を
@@ -260,7 +262,7 @@
 \begin{example}
     $X=\Rbb^n,\Gamma=\mu_\Lrm^{n,\ast}$ (例 \ref{ex:Lebesgue_outer_measure} を参照) に対して，
     定理 $\ref{thm:outer_measure_to_measure}$ の方法で定まる $\sigma$-加法族を $\Bfrak_\Lrm^n$，
-    測度を $\mu_\Lrm^n:\Bfrak_\Lrm^n\to\Rbb\cup\{+\infty\}$ と書く．
+    測度を $\mu_\Lrm^n:\Bfrak_\Lrm^n\to[0,+\infty]$ と書く．
     $\Bfrak_\Lrm^n$ の元を Lebesgue 可測集合，$\mu_\Lrm^n$ を $n$ 次元 Lebesgue 測度という．
     \nomenclature{$\Bfrak_\Lrm^n$}{Lebesgue 可測集合の全体}
     \nomenclature{$\mu_\Lrm^n$}{$n$ 次元 Lebesgue 測度}
@@ -288,13 +290,13 @@
         \item[$\textsf{(SA3)}_\textsf{fin}$] 任意の $A,B\in\Ffrak$ に対して $A\cup B\in\Ffrak$
     \end{enumerate}
     を満たすとする (このような $\Ffrak$ を有限加法族という)．
-    $m:\Ffrak\to\Rbb\cup\{+\infty\}$ は \ref{item:m1} および
+    $m:\Ffrak\to[0,+\infty]$ は \ref{item:m1} および
     \begin{enumerate}[align=left]
         \item[$\textsf{(M2)}_\textsf{fin}$] 互いに素な任意の $A,B\in\Ffrak$ に対して $m(A\cup B)=m(A)+m(B)$
     \end{enumerate}
     を満たすとする (このような $m$ を有限加法的測度という)．
 
-    このとき，測度 $\mu:\sigma(\Ffrak)\to\Rbb\cup\{+\infty\}$ で $\mu\vert_\Ffrak=m$ を満たすものが存在するためには，
+    このとき，測度 $\mu:\sigma(\Ffrak)\to[0,+\infty]$ で $\mu\vert_\Ffrak=m$ を満たすものが存在するためには，
     $m$ が $\Ffrak$ 上で $\sigma$-加法的であること\footnote{このような $m$ は前測度 (premeasure) と呼ばれる．}：
     \begin{itemize}
         \item 互いに素な任意の $(A_n)_{n=1}^\infty\subset\Ffrak$ で
@@ -311,7 +313,7 @@
     必要性は明らか．
     十分性を示す．
     まず，(\eqref{eqn:Lebesgue_outer_measure} に対応して)
-    $\Gamma:2^X\to\Rbb\cup\{+\infty\}$ を任意の $A\subset X$ に対して
+    $\Gamma:2^X\to[0,+\infty]$ を任意の $A\subset X$ に対して
     \begin{align*}
         \Gamma(A)=\inf\left\{
             \sum_{n=1}^\infty m(E_n)
@@ -349,7 +351,7 @@
 \begin{theorem}\label{thm:product_measure_well_defined}
     $(X_i,\Afrak_i,\mu_i)$ ($i=1,\ldots,n$) を測度空間とする．
     $(X_i,\Afrak_i)$ ($i=1,\ldots,n$) の直積可測空間 (例 \ref{ex:product_sigma_algebra}) を $(\prod_{i=1}^nX_i,\bigotimes_{i=1}^n\Afrak_i)$ と置く．
-    このとき，$\prod_{i=1}^nX_i$ 上の測度 $\mu:\bigotimes_{i=1}^n\Afrak_i\to\Rbb\cup\{+\infty\}$ であって，
+    このとき，$\prod_{i=1}^nX_i$ 上の測度 $\mu:\bigotimes_{i=1}^n\Afrak_i\to[0,+\infty]$ であって，
     任意の $A_i\in\Afrak_i$ ($i=1,\ldots,n$) に対して
     \begin{align}
         \mu(A_1\times\cdots\times A_n)=\begin{cases}
@@ -367,7 +369,7 @@
 \begin{proof}
     $\prod_{i=1}^nA_i$ ($A_i\in\Afrak_i$) の有限個の非交和で表される集合の全体を $\Ffrak$ と置くと，
     これは $\prod_{i=1}^nX_i$ 上の有限加法族になる．
-    そして，$m:\Ffrak\to\Rbb\cup\{+\infty\}$ を
+    そして，$m:\Ffrak\to[0,+\infty]$ を
     \begin{align*}
         m\biggl(\biggl(\prod_{i=1}^nA_{i,1}\biggr)\sqcup\cdots\sqcup\biggl(\prod_{i=1}^nA_{i,k}\biggr)\biggr)
         \defeq\mu\biggl(\prod_{i=1}^nA_{i,1}\biggr)+\cdots+\mu\biggl(\prod_{i=1}^nA_{i,k}\biggr),\quad
@@ -423,7 +425,7 @@
 \end{proof}
 
 \begin{theorem}\label{thm:measure_completion}
-    測度空間 $(X,\Afrak,\mu)$ に対して，$\mu^\ast:2^X\to\Rbb\cup\{+\infty\}$ を
+    測度空間 $(X,\Afrak,\mu)$ に対して，$\mu^\ast:2^X\to[0,+\infty]$ を
     \begin{align*}
         \mu^\ast(A)\defeq\inf\left\{
             \mu(B)\,\middle\vert\,A\subset B\in\Afrak

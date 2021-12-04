@@ -91,7 +91,10 @@
 
 \begin{example}\label{ex:extended_real}
     実数体 $\Rbb$ に形式的な元 $+\infty,-\infty$ を加えた集合 $\Rbb\cup\{\pm\infty\}$ を考える．
-    $a\in\Rbb$ に対して，順序関係を $-\infty<a<+\infty$，演算を
+    $a\in\Rbb$ に対して，順序関係を $-\infty<a<+\infty$ と定める．
+    $\Rbb$ における区間の記号に倣って $[-\infty,+\infty]\defeq\Rbb\cup\{\pm\infty\}$ とも書く．
+    $[0,+\infty]$ なども同様に定義する．
+    また，$a\in\Rbb$ に対して，演算を
     \begin{align*}
         &(\pm\infty)+a=a+(\pm\infty)\defeq\pm\infty,\quad
         (\pm\infty)+(\pm\infty)\defeq\pm\infty,\\
@@ -114,9 +117,13 @@
     これら以外の演算は定義しない\footnote{測度論では $0\cdot(\pm\infty)=(\pm\infty)\cdot0\defeq0$ と定めることがあるが，\cite[p.12]{It63} に倣ってこの約束は用いずに進める．}．
 
     $\Ocal$ を $\Rbb$ の通常の位相とする．
-    $\Rbb\cup\{\pm\infty\}$ を，位相
+    $[-\infty,+\infty]$ を位相
     \begin{align}
-        \widetilde\Ocal\defeq\Ocal\cup\{O\cup(a,+\infty]\mid O\in\Ocal, a\in\Rbb\}\cup\{O\cup[-\infty,a)\mid O\in\Ocal, a\in\Rbb\}\cup\{\Rbb\cup\{\pm\infty\}\}
+        \widetilde\Ocal
+        \defeq\Ocal
+        \cup\{O\cup(a,+\infty]\mid O\in\Ocal, a\in\Rbb\}
+        \cup\{O\cup[-\infty,a)\mid O\in\Ocal, a\in\Rbb\}
+        \cup\{[-\infty,+\infty]\}
         \label{eqn:extended_real_topology}
     \end{align}
     を備えた位相空間と見なす．
@@ -124,14 +131,14 @@
     %     \Ocal\cup\{(a,+\infty]\mid a\in\Rbb\}\cup\{[-\infty,a)\mid a\in\Rbb\}
     % \end{align*}
     % によって生成される位相 $\widetilde\Ocal$ を入れる．
-    このとき，$\Rbb\cup\{\pm\infty\}$ は閉区間 $[-1,1]$ と同相になる．
-    また，$\Ocal=\widetilde\Ocal_\Rbb$ が成り立つ．
-    すなわち，$\Rbb\cup\{\pm\infty\}$ の部分位相空間としての $\Rbb$ は $(\Rbb,\Ocal)$ と等しい．
+    このとき，$[-\infty,+\infty]$ は閉区間 $[-1,1]$ と同相になる．
+    また，$\{O\cap\Rbb\mid O\in\widetilde\Ocal\}=\Ocal$ が成り立つ．
+    すなわち，$[-\infty,+\infty]$ の部分位相空間としての $\Rbb$ は $(\Rbb,\Ocal)$ と等しい．
 
-    例 \ref{ex:Borel_algebra} によって $\Rbb\cup\{\pm\infty\}$ は自然に可測空間になる．
-    $\Rbb\cup\{\pm\infty\}$ 上の Borel 集合族は
+    例 \ref{ex:Borel_algebra} によって $[-\infty,+\infty]$ は自然に可測空間になる．
+    $[-\infty,+\infty]$ 上の Borel 集合族は
     \begin{align*}
-        \Bfrak(\Rbb\cup\{\pm\infty\})
+        \Bfrak([-\infty,+\infty])
         =\{B\cup S\mid B\in\Bfrak(\Rbb),\ S\subset\{+\infty,-\infty\}\}
     \end{align*}
     と特徴づけられる．

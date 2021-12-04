@@ -1,7 +1,7 @@
 \subsubsection{定義と性質}
 
 測度空間 $(X,\Afrak,\mu)$ が与えられているとする．
-$X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ に値をとる可測写像 $f:X\to Y$) に対して積分を定義しよう
+$X$ 上の可測関数 (すなわち，$Y=[-\infty,+\infty]$ または $\Cbb$ に値をとる可測写像 $f:X\to Y$) に対して積分を定義しよう
 \footnote{
     被積分関数の候補として可測関数を選ぶのは天下り的に感じるかもしれない．
     この理由については，次のように発見的に議論できる．
@@ -24,10 +24,10 @@ $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb
         複数の構造を結びつけるために，このような関係は必要不可欠である．
     \end{quote}
     compatibility として，$Y$ の任意の開集合の $f$ による引き戻しが $X$ の可測集合になることを要請する．
-    最も基本的な状況として，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb$ である場合を考えると，
+    最も基本的な状況として，$Y=[-\infty,+\infty]$ または $\Cbb$ である場合を考えると，
     この条件は $f$ が可測関数であることに他ならない．
     以上より，非積分関数の候補として可測関数を選ぶことの妥当性が了解される．
-    なお，$\Rbb\cup\{\pm\infty\}$ はベクトル空間ではないが，一部の例外を除けば和とスカラー倍が定義できるため大きな問題にはならない．
+    なお，$[-\infty,+\infty]$ はベクトル空間ではないが，一部の例外を除けば和とスカラー倍が定義できるため大きな問題にはならない．
 }\footnote{
     他にも，$Y$ が Banach 空間の場合に適用できる積分の理論がある (Bochner 積分という)．
 }．
@@ -69,7 +69,7 @@ $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb
 次の定理は，非負値可測関数が可測な非負値単関数で近似できることを主張する．
 
 \begin{theorem}\label{thm:approx_measurable_by_simple}
-    $(X,\Afrak)$ を可測空間，$f:X\to\Rbb\cup\{\pm\infty\}$ を非負値可測関数とする．
+    $(X,\Afrak)$ を可測空間，$f:X\to[-\infty,+\infty]$ を非負値可測関数とする．
     このとき，非負値可測単関数の列 $(f_n:X\to\Rbb)_{n=1}^\infty$ であって $f$ に $X$ 上で各点収束するものが存在する．
 \end{theorem}
 
@@ -99,7 +99,7 @@ $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb
 \begin{definition}
     $(X,\Afrak,\mu)$ を測度空間とする．
     \begin{enumerate}
-        \item $f:X\to\Rbb\cup\{\pm\infty\}$ を非負値可測単関数とする．
+        \item $f:X\to[-\infty,+\infty]$ を非負値可測単関数とする．
             $f$ は $E_1,\ldots,E_k\in\Afrak$ と相異なる正の実数 $\alpha_1,\ldots,\alpha_k$ を用いて
             \eqref{eqn:simple_function} と一意に表される．
             このとき，$f$ の積分を
@@ -107,7 +107,7 @@ $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb
                 \int_Xf(x)\,\drm\mu(x)\defeq\sum_{i=1}^k\alpha_i\mu(E_i)
             \end{align*}
             と定める．
-        \item $f:X\to\Rbb\cup\{\pm\infty\}$ を非負値可測関数とする．
+        \item $f:X\to[-\infty,+\infty]$ を非負値可測関数とする．
             定理 \ref{thm:approx_measurable_by_simple} より，
             $f$ に各点収束する非負値単関数列 $(f_n:X\to\Rbb)_{n=1}^\infty$ が存在する．
             このとき，$f$ の積分を
@@ -119,7 +119,7 @@ $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb
         \item
             \begin{enumerate}
                 \item
-                    $f:X\to\Rbb\cup\{\pm\infty\}$ を可測関数とする．
+                    $f:X\to[-\infty,+\infty]$ を可測関数とする．
                     $f^+(x)\defeq\max\{f(x),0\},\ f^-(x)\defeq-\min\{f(x),0\}$ と置くと，
                     定理 \ref{thm:elementary_measuable_functions} より $f^+,f^-$ は非負値可測関数であって，
                     $f=f^+-f^-$ と書ける．
@@ -167,7 +167,7 @@ $X$ 上の可測関数 (すなわち，$Y=\Rbb\cup\{\pm\infty\}$ または $\Cbb
 Lebesgue 積分の基本的な性質をまとめておく．
 
 \begin{proposition}
-    $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\} $ または $\Cbb$ とする．
+    $(X,\Afrak,\mu)$ を測度空間，$Y=[-\infty,+\infty]$ または $\Cbb$ とする．
     可測関数 $f:X\to Y$ に対して，$f$ が可積分であることは $|f|$ が可積分であること，すなわち
     \begin{align*}
         \int_X|f|\,\drm\mu<+\infty,
@@ -180,7 +180,7 @@ Lebesgue 積分の基本的な性質をまとめておく．
 \end{proof}
 
 \begin{theorem}
-    $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\} $ または $\Cbb$ とする．
+    $(X,\Afrak,\mu)$ を測度空間，$Y=[-\infty,+\infty]$ または $\Cbb$ とする．
     可積分関数 $f:X\to Y$ に対して
     \begin{align*}
         \left\lvert\int_Xf\,\drm\mu\right\rvert
@@ -219,7 +219,7 @@ Lebesgue 積分の基本的な性質をまとめておく．
 \end{definition}
 
 \begin{theorem}
-    $(X,\Afrak,\mu)$ を測度空間，$Y=\Rbb\cup\{\pm\infty\} $ または $\Cbb$ とする．
+    $(X,\Afrak,\mu)$ を測度空間，$Y=[-\infty,+\infty]$ または $\Cbb$ とする．
     可積分関数 $f:X\to Y$ に対して，$f=0\ \textrm{$\mu$-a.e.\ $X$}$ であることは
     \begin{align*}
         \int_X|f|\,\drm\mu=0
