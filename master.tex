@@ -13,6 +13,7 @@
 \usepackage{mathtools}
 \usepackage[refpage]{nomencl}
 \usepackage{pxjahyper}
+\usepackage{tikz}
 \usepackage{tikz-cd}
 
 \numberwithin{equation}{section}
@@ -95,11 +96,14 @@
 
 \begin{document}
 
+\include{dependency.tex}
+
 \tableofcontents
 
 \include{1/main.tex}
 \include{2/main.tex}
 \include{3/main.tex}
+\include{4/main.tex}
 \include{bib.tex}
 
 \printnomenclature
